@@ -2,7 +2,7 @@
 
 Create date: Sep 7, 2026
 
-This file records mu learning progress and completed exercises in C#
+This file records learning progress and completed exercises in C#
 
 ---
 
