@@ -31,4 +31,12 @@ This file records learning progress and completed exercises in C#
  - Topic:
     + Functions and methods
     + If-else and switch-case
- ...
+
+  ### Sep 10, 2026;
+  - Complete Lesson 4
+  - Fishished exercise Ex01 -> Ex05
+  - Topic:
+    + If-else branching
+    + Linear equation systems
+  
+  ...
