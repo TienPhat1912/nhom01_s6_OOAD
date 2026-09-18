@@ -39,20 +39,16 @@ This file records learning progress and completed exercises in C#
     + If-else branching
     + Linear equation systems
   
-### Session 09 — September 15, 2026
-
-## Completed
-- Completed all exercises in **Section A**.
-- Completed **4 exercises in Section B**.
-
-## What I learned
-- Basic concepts of **one-dimensional arrays**.
-- Declaring, initializing, inputting, and outputting arrays.
-- Traversing arrays using loops.
-- Accessing array elements using indexes.
-- Applying basic searching, counting, and processing techniques.
-
----
+  ### Session 09 — September 15, 2026
+  - Completed
+    + Completed all exercises in **Section A**.
+    + Completed **4 exercises in Section B**.
+  - What I learned
+    + Basic concepts of **one-dimensional arrays**.
+    + Declaring, initializing, inputting, and outputting arrays.
+    + Traversing arrays using loops.
+    + Accessing array elements using indexes.
+    + Applying basic searching, counting, and processing techniques.
 
 ### Session 10 — September 16, 2026
 
@@ -67,23 +63,19 @@ This file records learning progress and completed exercises in C#
 - Checking relationships between adjacent elements.
 - Designing simple **O(n)** algorithms by traversing an array once.
 
----
-
 ### Session 11 — September 17, 2026
 
-## Completed
-- Completed all exercises in **Section A**.
-- Completed **4 exercises in Section B**.
+- Completed
++ Completed all exercises in **Section A**.
++ Completed **4 exercises in Section B**.
 
-## What I learned
-- Techniques for transforming and rearranging arrays.
-- Reversing an array using the **two-pointer technique**.
-- Sorting elements according to different conditions.
-- Merging two sorted arrays.
-- Inserting elements into an array using a temporary array.
-- Combining multiple conditions, such as even/odd ordering.
-
----
+- What I learned
++ Techniques for transforming and rearranging arrays.
++ Reversing an array using the **two-pointer technique**.
++ Sorting elements according to different conditions.
++ Merging two sorted arrays.
++ Inserting elements into an array using a temporary array.
++ Combining multiple conditions, such as even/odd ordering.
 
 ### Session 12 — September 18, 2026
 
