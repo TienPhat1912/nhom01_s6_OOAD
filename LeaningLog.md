@@ -5,7 +5,8 @@ Create date: Sep 7, 2026
 This file records learning progress and completed exercises in C#
 
 ---
-
+## Implementer: Hoan Ca
+---
 ### Session 01 — Sep 7, 2026:
 - Complete Lesson 1
 - Finished exercises Ex01 -> Ex07
@@ -37,7 +38,10 @@ This file records learning progress and completed exercises in C#
 - Topic:
    + If-else branching
    + Linear equation systems
-  
+---
+
+## Implementer: Anh Bao 
+---
 ### Session 09 — Sep 15, 2026
 - Completed
    + Completed **5 exercises in Section A**.
@@ -83,4 +87,4 @@ This file records learning progress and completed exercises in C#
  + Processing elements on the matrix boundary.
  + Checking properties of all elements in a matrix.
  + Applying nested loops to solve matrix-processing problems.
-
+---
