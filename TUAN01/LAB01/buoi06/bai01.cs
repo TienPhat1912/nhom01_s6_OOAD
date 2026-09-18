@@ -1,3 +1,20 @@
+/*
+ * CHƯƠNG TRÌNH IN CHỮ I VÀ U
+ * Tác giả  : Trần Tiến Phát
+ * Ngày viết: 18/09/2026
+ *
+ * Phát biểu đề bài: Nhập chiều cao h, in hai chữ I và U bằng các ký tự '*'.
+ *
+ * Ý tưởng: Dùng vòng lặp theo từng dòng, xét vị trí để in nét của chữ I và chữ U.
+ *
+ * Mã giả:
+ * Bắt đầu:
+ * 1. Nhập h
+ * 2. Với mỗi dòng từ 1 đến h, in nét chữ I tương ứng
+ * 3. In hai cạnh chữ U, riêng dòng cuối in thêm đáy
+ * Kết thúc
+ */
+
 using System;
 
 namespace NMLT.Buoi06

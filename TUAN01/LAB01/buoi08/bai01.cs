@@ -1,3 +1,21 @@
+/*
+ * CHƯƠNG TRÌNH TÍNH TỔ HỢP
+ * Tác giả  : Trần Tiến Phát
+ * Ngày viết: 18/09/2026
+ *
+ * Phát biểu đề bài: Nhập k và n, tính tổ hợp C(k,n) = n! / (k!(n-k)!).
+ *
+ * Ý tưởng: Dùng hàm TinhGiaiThua để tính các giai thừa, sau đó dùng hàm TinhToHop áp dụng công thức tổ hợp.
+ *
+ * Mã giả:
+ * Bắt đầu:
+ * 1. Nhập k và n
+ * 2. Tính n!, k! và (n-k)!
+ * 3. Tính C(k,n) = n! / (k!(n-k)!)
+ * 4. In kết quả
+ * Kết thúc
+ */
+
 using System;
 
 namespace NMLT.Buoi08

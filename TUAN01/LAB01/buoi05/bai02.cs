@@ -1,3 +1,21 @@
+/*
+ * CHƯƠNG TRÌNH TÍNH GIÁ TRỊ BIỂU THỨC
+ * Tác giả  : Trần Tiến Phát
+ * Ngày viết: 18/09/2026
+ *
+ * Phát biểu đề bài: Nhập số nguyên n, tính hai tổng S1 và S2 theo các phân số từ 1 đến n.
+ *
+ * Ý tưởng: Dùng vòng lặp cộng các số hạng của tổng thuận và tổng đan dấu.
+ *
+ * Mã giả:
+ * Bắt đầu:
+ * 1. Nhập n
+ * 2. Tính S1 = 1 + 1/2 + ... + 1/n
+ * 3. Tính S2 = 1/n - 1/(n-1) + ... với dấu luân phiên
+ * 4. In S1 và S2
+ * Kết thúc
+ */
+
 using System;
 
 namespace NMLT.Buoi05

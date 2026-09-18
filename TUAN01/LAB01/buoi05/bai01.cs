@@ -1,3 +1,21 @@
+/*
+ * CHƯƠNG TRÌNH TÍNH GIAI THỪA
+ * Tác giả  : Trần Tiến Phát
+ * Ngày viết: 18/09/2026
+ *
+ * Phát biểu đề bài: Nhập số nguyên n, tính và in giá trị n!.
+ *
+ * Ý tưởng: Dùng vòng lặp nhân lần lượt các số từ 1 đến n.
+ *
+ * Mã giả:
+ * Bắt đầu:
+ * 1. Nhập n
+ * 2. Đặt gt = 1
+ * 3. Với i từ 1 đến n, tính gt = gt * i
+ * 4. In gt
+ * Kết thúc
+ */
+
 using System;
 
 namespace NMLT.Buoi05

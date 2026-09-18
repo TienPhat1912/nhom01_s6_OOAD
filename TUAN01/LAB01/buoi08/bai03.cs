@@ -1,3 +1,21 @@
+/*
+ * CHƯƠNG TRÌNH RÚT GỌN PHÂN SỐ
+ * Tác giả  : Trần Tiến Phát
+ * Ngày viết: 18/09/2026
+ *
+ * Phát biểu đề bài: Nhập tử số và mẫu số, rút gọn phân số về dạng tối giản.
+ *
+ * Ý tưởng: Dùng thuật toán Euclid trong hàm USCLN để tìm ước số chung lớn nhất, rồi chia cả tử và mẫu cho ước đó.
+ *
+ * Mã giả:
+ * Bắt đầu:
+ * 1. Nhập tử số và mẫu số
+ * 2. Tìm USCLN của tử và mẫu bằng thuật toán Euclid
+ * 3. Chia tử và mẫu cho USCLN
+ * 4. In phân số đã rút gọn
+ * Kết thúc
+ */
+
 using System;
 
 namespace NMLT.Buoi08

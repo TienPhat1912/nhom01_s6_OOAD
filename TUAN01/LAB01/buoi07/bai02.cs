@@ -1,3 +1,21 @@
+/*
+ * CHƯƠNG TRÌNH TÍNH SỐ PI
+ * Tác giả  : Trần Tiến Phát
+ * Ngày viết: 18/09/2026
+ *
+ * Phát biểu đề bài: Nhập sai số epsilon, tính gần đúng số pi bằng chuỗi Leibniz.
+ *
+ * Ý tưởng: Dùng hàm TinhPi để cộng các số hạng luân phiên 4/(2i+1) khi số hạng còn lớn hơn hoặc bằng epsilon.
+ *
+ * Mã giả:
+ * Bắt đầu:
+ * 1. Nhập epsilon
+ * 2. Đặt pi = 0, i = 0 và dấu đầu tiên là dương
+ * 3. Khi 4/(2i+1) >= epsilon, cộng số hạng có dấu tương ứng và đổi dấu
+ * 4. In pi và sai số thực tế
+ * Kết thúc
+ */
+
 using System;
 
 namespace NMLT.Buoi07

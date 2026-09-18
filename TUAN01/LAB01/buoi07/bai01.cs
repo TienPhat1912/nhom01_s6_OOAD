@@ -1,3 +1,21 @@
+/*
+ * CHƯƠNG TRÌNH KIỂM TRA SỐ HOÀN HẢO BẰNG HÀM
+ * Tác giả  : Trần Tiến Phát
+ * Ngày viết: 18/09/2026
+ *
+ * Phát biểu đề bài: Nhập n, kiểm tra n có phải là số hoàn hảo hay không bằng một hàm riêng.
+ *
+ * Ý tưởng: Viết hàm tính tổng các ước dương thực sự và trả về kết quả so sánh với n.
+ *
+ * Mã giả:
+ * Bắt đầu:
+ * 1. Nhập n
+ * 2. Gọi hàm LaSoHoanHao(n)
+ * 3. Trong hàm, tính tổng các ước của n và kiểm tra tổng bằng n
+ * 4. In kết luận
+ * Kết thúc
+ */
+
 using System;
 
 namespace NMLT.Buoi07

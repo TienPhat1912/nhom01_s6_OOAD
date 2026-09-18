@@ -1,3 +1,22 @@
+/*
+ * CHƯƠNG TRÌNH XỬ LÝ CHỮ SỐ
+ * Tác giả  : Trần Tiến Phát
+ * Ngày viết: 18/09/2026
+ *
+ * Phát biểu đề bài: Nhập số nguyên n và vị trí k, tìm chữ số ở vị trí k, tính tổng các chữ số lẻ, chữ số lẻ nhỏ nhất và lớn nhất.
+ *
+ * Ý tưởng: Chuyển trị tuyệt đối của n thành chuỗi để lấy chữ số theo vị trí, sau đó dùng phép chia lấy dư để duyệt các chữ số.
+ *
+ * Mã giả:
+ * Bắt đầu:
+ * 1. Nhập n và k
+ * 2. Lấy chữ số vị trí k từ trái sang phải
+ * 3. Tách từng chữ số của n, kiểm tra chữ số lẻ
+ * 4. Cộng và cập nhật chữ số lẻ nhỏ nhất, lớn nhất
+ * 5. In kết quả
+ * Kết thúc
+ */
+
 using System;
 
 namespace NMLT.Buoi06

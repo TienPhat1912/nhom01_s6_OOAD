@@ -1,3 +1,20 @@
+/*
+ * CHƯƠNG TRÌNH THỐNG KÊ CHỮ SỐ
+ * Tác giả  : Trần Tiến Phát
+ * Ngày viết: 18/09/2026
+ *
+ * Phát biểu đề bài: Nhập số nguyên n, đếm và in số lần xuất hiện của từng chữ số trong n.
+ *
+ * Ý tưởng: Với mỗi chữ số từ 0 đến 9, dùng hàm DemXuatHien để duyệt n bằng phép chia lấy dư.
+ *
+ * Mã giả:
+ * Bắt đầu:
+ * 1. Nhập n
+ * 2. Với digit từ 0 đến 9, đếm số lần digit xuất hiện trong n
+ * 3. Nếu số lần xuất hiện lớn hơn 0, in kết quả
+ * Kết thúc
+ */
+
 using System;
 
 namespace NMLT.Buoi08

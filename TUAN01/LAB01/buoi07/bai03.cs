@@ -1,3 +1,21 @@
+/*
+ * CHƯƠNG TRÌNH TÌM NGÀY TRƯỚC
+ * Tác giả  : Trần Tiến Phát
+ * Ngày viết: 18/09/2026
+ *
+ * Phát biểu đề bài: Nhập một ngày, tháng, năm và tìm ngày liền trước ngày đó.
+ *
+ * Ý tưởng: Dùng hàm kiểm tra năm nhuận và hàm xác định số ngày trong tháng để xử lý ngày đầu tháng, đầu năm.
+ *
+ * Mã giả:
+ * Bắt đầu:
+ * 1. Nhập ngày d, tháng m, năm y
+ * 2. Nếu d > 1, ngày trước là d - 1
+ * 3. Nếu d = 1, chuyển về ngày cuối tháng trước; riêng tháng 1 chuyển về 31/12 năm trước
+ * 4. In ngày trước
+ * Kết thúc
+ */
+
 using System;
 
 namespace NMLT.Buoi07

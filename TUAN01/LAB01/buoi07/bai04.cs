@@ -1,3 +1,21 @@
+/*
+ * CHƯƠNG TRÌNH XỬ LÝ CHỮ SỐ BẰNG HÀM
+ * Tác giả  : Trần Tiến Phát
+ * Ngày viết: 18/09/2026
+ *
+ * Phát biểu đề bài: Nhập số nguyên n và vị trí k, tìm chữ số ở vị trí k, tổng các chữ số lẻ, chữ số lẻ nhỏ nhất và lớn nhất.
+ *
+ * Ý tưởng: Gom toàn bộ thao tác xử lý vào hàm XuLy, trả kết quả qua các tham số ref.
+ *
+ * Mã giả:
+ * Bắt đầu:
+ * 1. Nhập n và k
+ * 2. Gọi hàm XuLy để lấy chữ số vị trí k
+ * 3. Trong hàm, duyệt các chữ số, cộng chữ số lẻ và cập nhật min, max
+ * 4. In các kết quả
+ * Kết thúc
+ */
+
 using System;
 
 namespace NMLT.Buoi07
