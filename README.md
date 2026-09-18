@@ -7,7 +7,6 @@
 _**Sai Gon University, Ho Chi Minh City, VietNam**_\
 _**[2026–2027] CSharp**_\
 Class name: **DCT124C3**\
-Group name: ****\
 Professor: **Đỗ Như Tài**
 |Student|Student ID|
 |------|-----|
