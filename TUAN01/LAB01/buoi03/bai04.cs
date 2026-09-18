@@ -1,3 +1,25 @@
+/*
+* CHƯƠNG TRÌNH ĐỌC THÁNG TIẾNG ANH
+* Tác giả  : Nguyễn Khải Hoàn Ca
+* Ngày viết: 9/9/2026
+*
+* Phát biểu đề bài:
+* Nhập vào một số nguyên M từ 1 đến 12.
+* In ra tên tháng tương ứng.
+*
+* Ý tưởng:
+* Sử dụng cấu trúc switch-case.
+* Mỗi giá trị từ 1 đến 12 tương ứng với một tháng.
+*
+* Mã giả:
+* 1. Nhập M
+* 2. Dùng switch để kiểm tra M
+* 3. Nếu M = 1 thì in January
+* 4. Nếu M = 2 thì in February
+* 5. ...
+* 6. Nếu M = 12 thì in December
+*/
+
 using System;
 
 class Program
@@ -54,7 +76,7 @@ class Program
             break;
 
             case 12:
-            Console.WriteLine($"Month {M} is: Devember");
+            Console.WriteLine($"Month {M} is: December");
             break;
         }
     }
