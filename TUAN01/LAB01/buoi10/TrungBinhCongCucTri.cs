@@ -1,101 +1,161 @@
-// Buổi 10 - Bài tập cơ bản - Bài 1: Trung bình cộng phần tử cực trị
-// File: TrungBinhCongCucTri.cs
-// Định nghĩa cực trị (theo sách): phần tử a[i] với 0 < i < n-1 thỏa
-//     (a[i] >= a[i-1] && a[i] >= a[i+1])  ||  (a[i] <= a[i-1] && a[i] <= a[i+1])
-// Hai phần tử đầu/cuối KHÔNG được xét vì thiếu một phía lân cận.
+/*
+ * CHƯƠNG TRÌNH TÍNH TRUNG BÌNH CỘNG CÁC PHẦN TỬ CỰC TRỊ
+ * Tác giả: Lê Nguyễn Anh Bảo
+ * Ngày viết: 16/09/2026
+ *
+ * Phát biểu đề bài:
+ * -Nhập dãy số thực A có n phần tử.
+ * -Tìm các phần tử cực trị trong dãy.
+ * -Tính trung bình cộng các phần tử cực trị.
+ *
+ * -Định nghĩa cực trị:
+ * Phần tử ai với 0 < i < n - 1 là cực trị khi: (a[i] >= a[i-1] và a[i] >= a[i+1]) || (a[i] <= a[i-1] và a[i] <= a[i+1])
+ *
+ * -Hai phần tử đầu và cuối không được xét vì thiếu một phía lân cận.
+ *
+ * Ý tưởng:
+ *
+ * A = (a[0], a[1], ..., a[n-1])
+ * Xét:
+ *     a[i], 1 <= i <= n - 2
+ * Cực đại:
+ *     a[i] >= a[i-1] và a[i] >= a[i+1]
+ * Cực tiểu:
+ *     a[i] <= a[i-1] và a[i] <= a[i+1]
+ * Nếu ai là cực trị:
+ *     dem ← dem + 1
+ *     tong ← tong + ai
+ * Trung bình cộng: TBC = tong / dem
+ * Nếu dem = 0: Dãy không có phần tử cực trị.
+ *
+ * Mã giả:
+ *
+ * TrungBinhCongCucTri(A, n)
+ * 1   dem ← 0
+ * 2   tong ← 0
+ * 3   for i ← 1 to n - 2
+ * 4       do
+ * 5           if (a[i] >= a[i-1] và a[i] >= a[i+1])
+ * 6              hoặc (a[i] <= a[i-1] và a[i] <= a[i+1])
+ * 7               then
+ * 8                   dem ← dem + 1
+ * 9                  tong ← tong + ai
+ * 10  if dem = 0
+ * 11      then return
+ * 12  TBC ← tong / dem
+ * 13  return TBC
+ */
+
 using System;
-using System.Globalization;
 
-namespace NMLT.Buoi10
+class TrungBinhCongCucTri
 {
-    class TrungBinhCongCucTri
+    const int MAX_N = 500;
+
+    public static void nhapDaySo(ref double[] day)
     {
-        const int MAX_N = 500;
+        int n;
 
-        public static void nhapDaySo(ref double[] day)
+        do
         {
-            int n;
-            do
-            {
-                Console.Write("Moi ban nhap so luong phan tu: ");
-            } while (!int.TryParse(Console.ReadLine(), out n) || n <= 0 || n > MAX_N);
+            Console.Write("Moi ban nhap so luong phan tu: ");
+            n = int.Parse(Console.ReadLine() ?? "0");
+        }
+        while (n < 0 || n > MAX_N);
 
-            day = new double[n];
-            for (int i = 0; i <= n - 1; i++)
+        day = new double[n];
+
+        for (int i = 0; i <= day.Length - 1; i++)
+        {
+            Console.Write("Phan tu {0}: ", i);
+            day[i] = double.Parse(Console.ReadLine() ?? "0");
+        }
+    }
+
+    public static void inMangTraiSangPhai(double[] day)
+    {
+        Console.Write("Day so co {0} phan tu:", day.Length);
+
+        for (int i = 0; i <= day.Length - 1; i++)
+            Console.Write(" {0}", day[i]);
+
+        Console.WriteLine();
+    }
+
+    private static bool laCucTri(double[] day, int i)
+    {
+        bool cucDai =
+            day[i] >= day[i - 1] &&
+            day[i] >= day[i + 1];
+
+        bool cucTieu =
+            day[i] <= day[i - 1] &&
+            day[i] <= day[i + 1];
+
+        return cucDai || cucTieu;
+    }
+
+    public static int thongKeCucTri(
+        double[] day,
+        ref double tong)
+    {
+        int dem = 0;
+        tong = 0;
+
+        for (int i = 1; i <= day.Length - 2; i++)
+        {
+            if (laCucTri(day, i))
             {
-                do
-                {
-                    Console.Write("Phan tu {0}: ", i);
-                } while (!double.TryParse(Console.ReadLine(), NumberStyles.Float,
-                                          CultureInfo.InvariantCulture, out day[i]));
+                dem++;
+                tong += day[i];
             }
         }
 
-        public static void inMangTraiSangPhai(double[] day)
+        return dem;
+    }
+
+    public static void lietKeCucTri(double[] day)
+    {
+        for (int i = 1; i <= day.Length - 2; i++)
         {
-            Console.Write("Day so co {0} phan tu:", day.Length);
-            for (int i = 0; i <= day.Length - 1; i++)
-                Console.Write(" {0}", day[i].ToString("G", CultureInfo.InvariantCulture));
-            Console.WriteLine();
+            if (laCucTri(day, i))
+                Console.Write(" {0}", day[i]);
         }
 
-        private static bool laCucTri(double[] day, int i)
+        Console.WriteLine();
+    }
+
+    public static void Main(string[] args)
+    {
+        double[] daySo = null;
+        double tong = 0;
+
+        nhapDaySo(ref daySo);
+        inMangTraiSangPhai(daySo);
+
+        int dem = thongKeCucTri(
+            daySo,
+            ref tong);
+
+        if (dem == 0)
         {
-            if (i <= 0 || i >= day.Length - 1)   // biên: không xét
-                return false;
-            bool cucDai = day[i] >= day[i - 1] && day[i] >= day[i + 1];
-            bool cucTieu = day[i] <= day[i - 1] && day[i] <= day[i + 1];
-            return cucDai || cucTieu;
+            Console.WriteLine(
+                "Day so khong co phan tu cuc tri.");
+            return;
         }
 
-        // Duyệt bộ ba kề nhau (i-1, i, i+1); trả về số lượng cực trị, tổng qua ref
-        public static int thongKeCucTri(double[] day, ref double tong)
-        {
-            int dem = 0;
-            tong = 0;
-            for (int i = 1; i <= day.Length - 2; i++)
-            {
-                if (laCucTri(day, i))
-                {
-                    dem++;
-                    tong += day[i];
-                }
-            }
-            return dem;
-        }
+        Console.Write(
+            "Day so co {0} phan tu cuc tri:",
+            dem);
 
-        public static void lietKeCucTri(double[] day)
-        {
-            for (int i = 1; i <= day.Length - 2; i++)
-                if (laCucTri(day, i))
-                    Console.Write(" {0}", day[i].ToString("G", CultureInfo.InvariantCulture));
-        }
+        lietKeCucTri(daySo);
 
-        public static void Main(string[] args)
-        {
-            CultureInfo.CurrentCulture = CultureInfo.InvariantCulture;
+        Console.WriteLine(
+            "Tong cac phan tu cuc tri co trong day so: {0}.",
+            tong);
 
-            double[] a = null;
-            double tong = 0;
-
-            nhapDaySo(ref a);
-            inMangTraiSangPhai(a);
-
-            int dem = thongKeCucTri(a, ref tong);
-
-            if (dem == 0)   // chặn chia cho 0
-            {
-                Console.WriteLine("Day so khong co phan tu cuc tri.");
-                return;
-            }
-
-            Console.Write("Day so co {0} phan tu cuc tri:", dem);
-            lietKeCucTri(a);
-            Console.WriteLine();
-            Console.WriteLine("Tong cac phan tu cuc tri co trong day so: {0}.",
-                              tong.ToString("G", CultureInfo.InvariantCulture));
-            Console.WriteLine("Trung binh cong cac phan tu cuc tri: {0}.",
-                              (tong / dem).ToString("F2", CultureInfo.InvariantCulture));
-        }
+        Console.WriteLine(
+            "Trung binh cong cac phan tu cuc tri: {0:F2}.",
+            tong / dem);
     }
 }

@@ -1,87 +1,139 @@
-// Buổi 11 - Bài tập cơ bản - Bài 3: Thêm chẵn lẻ
-// File: ThemChanLe.cs
-// Đề bài chỉ nói "thêm 1 giá trị lẻ" mà KHÔNG nói giá trị nào.
-// Suy ra quy tắc từ ví dụ trong sách:
-//     2 4 3 4 2 8 2 5  ->  2 [3] 4 3 4 [5] 2 [3] 8 [9] 2 5
-//     chèn sau 2 -> 3 ;  sau 4 -> 5 ;  sau 2 -> 3 ;  sau 8 -> 9
-//     => giá trị chèn = a[i] + 1  (a[i] chẵn nên a[i]+1 luôn lẻ)
-// Kỹ thuật: KHÔNG chèn tại chỗ. Chèn tại chỗ phải dời đuôi mảng mỗi lần -> O(n^2)
-//   và phải cẩn thận không xét lại phần tử vừa chèn. Ở đây ta duyệt 1 lượt và
-//   ghi thẳng sang mảng kết quả -> O(n).
+/*
+ * CHƯƠNG TRÌNH THÊM GIÁ TRỊ LẺ SAU CẶP CHẴN
+ * Tác giả: Lê Nguyễn Anh Bảo
+ * Ngày viết: 17/09/2026
+ *
+ * Phát biểu đề bài:
+ * Nhập dãy số nguyên A có n phần tử.
+ * Sau mỗi cặp hai phần tử kề nhau đều là số chẵn,
+ * chèn thêm một giá trị lẻ vào giữa hai phần tử đó.
+ *
+ * Theo ví dụ:
+ *     2 4 3 4 2 8 2 5
+ *     → 2 3 4 3 4 5 2 3 8 9 2 5
+ *
+ * Giá trị được chèn:
+ *     a[i] + 1
+ *
+ * Vì a[i] là số chẵn nên:
+ *     a[i] + 1 là số lẻ.
+ *
+ * Ý tưởng:
+ * A = (a[0], a[1], ..., a[n-1])
+ * Tạo mảng kết quả C.
+ * Duyệt A từ trái sang phải.
+ * Luôn đưa a[i] vào C.
+ * Nếu i < n - 1 và a[i], a[i+1] đều chẵn:
+ *     chèn a[i] + 1 vào C.
+ * Sau khi duyệt xong, tạo mảng kết quả có đúng k phần tử.
+ * Chép k phần tử đầu của C sang mảng kết quả.
+ * Gán A ← mảng kết quả.
+ * Mỗi phần tử của A chỉ được duyệt một lần.
+ * Độ phức tạp:
+ *     Thời gian: O(n)
+ *     Bộ nhớ phụ: O(n)
+ *
+ * Mã giả:
+ * THEM-CHAN-LE(A, n)
+ * 1   tạo C có 2n phần tử
+ * 2   k ← 0
+ * 3   for i ← 0 to n - 1
+ * 4       do c[k] ← a[i]
+ * 5          k ← k + 1
+ * 6          if i < n - 1 và a[i] chẵn và a[i+1] chẵn
+ * 7              then c[k] ← a[i] + 1
+ * 8                   k ← k + 1
+ * 9   tạo KQ có k phần tử
+ * 10  for i ← 0 to k - 1
+ * 11      do KQ[i] ← C[i]
+ * 12  A ← KQ
+ */
+
 using System;
-using System.Globalization;
 
-namespace NMLT.Buoi11
+class ThemChanLe
 {
-    class ThemChanLe
+    const int MAX_N = 500;
+
+    public static void nhapDaySo(ref int[] day)
     {
-        const int MAX_N = 500;
+        int n;
 
-        public static void nhapDaySo(ref int[] day)
+        do
         {
-            int n;
-            do
-            {
-                Console.Write("Moi ban nhap so luong phan tu: ");
-            } while (!int.TryParse(Console.ReadLine(), out n) || n <= 0 || n > MAX_N);
+            Console.Write("Moi ban nhap so luong phan tu: ");
+            n = int.Parse(Console.ReadLine() ?? "0");
+        }
+        while (n < 0 || n > MAX_N);
 
-            day = new int[n];
-            for (int i = 0; i <= n - 1; i++)
+        day = new int[n];
+
+        for (int i = 0; i <= day.Length - 1; i++)
+        {
+            Console.Write("Phan tu {0}: ", i);
+            day[i] = int.Parse(Console.ReadLine() ?? "0");
+        }
+    }
+
+    public static void inMangTraiSangPhai(int[] day)
+    {
+        Console.Write("Day so co {0} phan tu:", day.Length);
+
+        for (int i = 0; i <= day.Length - 1; i++)
+            Console.Write(" {0}", day[i]);
+
+        Console.WriteLine();
+    }
+
+    private static bool laChan(int x)
+    {
+        return x % 2 == 0;
+    }
+
+    public static void themChanLe(ref int[] day)
+    {
+        int n = day.Length;
+
+        // Mỗi phần tử có thể tạo thêm tối đa 1 phần tử
+        int[] tam = new int[2 * n];
+        int k = 0;
+
+        for (int i = 0; i <= n - 1; i++)
+        {
+            tam[k] = day[i];
+            k++;
+
+            if (i < n - 1 &&
+                laChan(day[i]) &&
+                laChan(day[i + 1]))
             {
-                do
-                {
-                    Console.Write("Phan tu {0}: ", i);
-                } while (!int.TryParse(Console.ReadLine(), out day[i]));
+                tam[k] = day[i] + 1;
+                k++;
             }
         }
 
-        public static void inMangTraiSangPhai(int[] day)
-        {
-            Console.Write("Day so co {0} phan tu:", day.Length);
-            for (int i = 0; i <= day.Length - 1; i++)
-                Console.Write(" {0}", day[i]);
-            Console.WriteLine();
-        }
+        // Tạo mảng kết quả có đúng k phần tử
+        int[] kq = new int[k];
 
-        private static bool laChan(int x)
-        {
-            return x % 2 == 0;
-        }
+        // Chép dữ liệu từ mảng tạm sang mảng kết quả
+        for (int i = 0; i <= k - 1; i++)
+            kq[i] = tam[i];
 
-        // Số phần tử chèn tối đa là n-1 (mọi phần tử đều chẵn) -> mảng kết quả <= 2n-1
-        public static void themChanLe(ref int[] day)
-        {
-            int n = day.Length;
-            int[] kq = new int[2 * n];   // cấp phát dư 1 ô, an toàn với n = 0
-            int k = 0;
+        day = kq;
+    }
 
-            for (int i = 0; i <= n - 1; i++)
-            {
-                kq[k++] = day[i];
+    public static void Main(string[] args)
+    {
+        int[] daySo = null;
 
-                // Nếu (a[i], a[i+1]) là cặp kề nhau cùng chẵn -> chèn giá trị lẻ vào giữa
-                if (i < n - 1 && laChan(day[i]) && laChan(day[i + 1]))
-                    kq[k++] = day[i] + 1;
-            }
+        nhapDaySo(ref daySo);
 
-            Array.Resize(ref kq, k);
-            day = kq;
-        }
+        Console.WriteLine("* Mang truoc them:");
+        inMangTraiSangPhai(daySo);
 
-        public static void Main(string[] args)
-        {
-            CultureInfo.CurrentCulture = CultureInfo.InvariantCulture;
+        themChanLe(ref daySo);
 
-            int[] a = null;
-            nhapDaySo(ref a);
-
-            Console.WriteLine("* Mang truoc them:");
-            inMangTraiSangPhai(a);
-
-            themChanLe(ref a);
-
-            Console.WriteLine("* Mang sau khi them:");
-            inMangTraiSangPhai(a);
-        }
+        Console.WriteLine("* Mang sau khi them:");
+        inMangTraiSangPhai(daySo);
     }
 }
