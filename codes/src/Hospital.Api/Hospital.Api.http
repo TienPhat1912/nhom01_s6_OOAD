@@ -1,0 +1,22 @@
+@Hospital.Api_HostAddress = http://localhost:5014
+
+GET {{Hospital.Api_HostAddress}}/health/ready
+Accept: application/json
+
+###
+
+# Requires development seed data. Copy data.token into Swagger Authorize to explore protected endpoints.
+POST {{Hospital.Api_HostAddress}}/api/auth/login
+Content-Type: application/json
+
+{
+  "username": "patient1",
+  "password": "Patient@123"
+}
+
+###
+
+GET {{Hospital.Api_HostAddress}}/swagger/v1/swagger.json
+Accept: application/json
+
+###
