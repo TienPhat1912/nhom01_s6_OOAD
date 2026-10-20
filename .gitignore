@@ -1,0 +1,10 @@
+**/bin/
+**/obj/
+.dotnet/
+.nuget/
+.tools/
+tmp/
+TestResults/
+*.user
+*.suo
+**/appsettings.Local.json
