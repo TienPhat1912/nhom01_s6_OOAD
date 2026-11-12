@@ -1,0 +1,475 @@
+<?xml version='1.0' encoding='utf-8'?>
+<mxfile host="app.diagrams.net" type="device" version="24.7.17">
+  <diagram id="page1" name="01. Tổng quát">
+    <mxGraphModel dx="1500" dy="990" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1500" pageHeight="990" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="boundary" value="" style="html=0;fontFamily=Arial;fontColor=#111111;strokeColor=#222222;strokeWidth=2;fillColor=#FFFFFF;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="300" y="30" width="900" height="930" />
+        </mxCell>
+        <mxCell id="title" value="HỆ THỐNG QUẢN LÝ ĐẶT LỊCH KHÁM" style="text;html=0;align=center;verticalAlign=middle;fontFamily=Arial;fontSize=25;fontStyle=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="320" y="45" width="860" height="45" />
+        </mxCell>
+        <mxCell id="Tài khoản cá nhân" value="Tài khoản cá nhân" style="html=0;fontFamily=Arial;fontColor=#111111;strokeColor=#222222;strokeWidth=2;ellipse;whiteSpace=wrap;fillColor=#F7F8FA;fontSize=24;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="390" y="110" width="700" height="78" />
+        </mxCell>
+        <mxCell id="Tra cứu chuyên khoa, bác sĩ&#10;và khung giờ" value="Tra cứu chuyên khoa, bác sĩ&#10;và khung giờ" style="html=0;fontFamily=Arial;fontColor=#111111;strokeColor=#222222;strokeWidth=2;ellipse;whiteSpace=wrap;fillColor=#F7F8FA;fontSize=24;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="390" y="215" width="700" height="78" />
+        </mxCell>
+        <mxCell id="Lịch làm việc bác sĩ" value="Lịch làm việc bác sĩ" style="html=0;fontFamily=Arial;fontColor=#111111;strokeColor=#222222;strokeWidth=2;ellipse;whiteSpace=wrap;fillColor=#F7F8FA;fontSize=24;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="390" y="320" width="700" height="78" />
+        </mxCell>
+        <mxCell id="Đặt lịch khám" value="Đặt lịch khám" style="html=0;fontFamily=Arial;fontColor=#111111;strokeColor=#222222;strokeWidth=2;ellipse;whiteSpace=wrap;fillColor=#F7F8FA;fontSize=24;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="390" y="425" width="700" height="78" />
+        </mxCell>
+        <mxCell id="Quản lý lịch hẹn" value="Quản lý lịch hẹn" style="html=0;fontFamily=Arial;fontColor=#111111;strokeColor=#222222;strokeWidth=2;ellipse;whiteSpace=wrap;fillColor=#F7F8FA;fontSize=24;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="390" y="530" width="700" height="78" />
+        </mxCell>
+        <mxCell id="Tiếp nhận bệnh nhân" value="Tiếp nhận bệnh nhân" style="html=0;fontFamily=Arial;fontColor=#111111;strokeColor=#222222;strokeWidth=2;ellipse;whiteSpace=wrap;fillColor=#F7F8FA;fontSize=24;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="390" y="635" width="700" height="78" />
+        </mxCell>
+        <mxCell id="Thông báo và nhắc lịch" value="Thông báo và nhắc lịch" style="html=0;fontFamily=Arial;fontColor=#111111;strokeColor=#222222;strokeWidth=2;ellipse;whiteSpace=wrap;fillColor=#F7F8FA;fontSize=24;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="390" y="740" width="700" height="78" />
+        </mxCell>
+        <mxCell id="Dữ liệu và phân quyền" value="Dữ liệu và phân quyền" style="html=0;fontFamily=Arial;fontColor=#111111;strokeColor=#222222;strokeWidth=2;ellipse;whiteSpace=wrap;fillColor=#F7F8FA;fontSize=24;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="390" y="845" width="700" height="78" />
+        </mxCell>
+        <mxCell id="patient" value="Bệnh nhân" style="html=0;fontFamily=Arial;fontColor=#111111;strokeColor=#222222;strokeWidth=2;shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;align=center;fontSize=23;fillColor=#FFFFFF;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="95" y="200" width="65" height="110" />
+        </mxCell>
+        <mxCell id="staff" value="Nhân viên" style="html=0;fontFamily=Arial;fontColor=#111111;strokeColor=#222222;strokeWidth=2;shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;align=center;fontSize=23;fillColor=#FFFFFF;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="95" y="700" width="65" height="110" />
+        </mxCell>
+        <mxCell id="doctor" value="Bác sĩ" style="html=0;fontFamily=Arial;fontColor=#111111;strokeColor=#222222;strokeWidth=2;shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;align=center;fontSize=23;fillColor=#FFFFFF;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="1315" y="200" width="65" height="110" />
+        </mxCell>
+        <mxCell id="admin" value="Quản trị viên" style="html=0;fontFamily=Arial;fontColor=#111111;strokeColor=#222222;strokeWidth=2;shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;align=center;fontSize=23;fillColor=#FFFFFF;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="1315" y="700" width="65" height="110" />
+        </mxCell>
+        <mxCell id="edge0" style="endArrow=none;startArrow=none;html=0;strokeColor=#555555;strokeWidth=1.8;" edge="1" parent="1" source="patient" target="Tài khoản cá nhân">
+          <mxGeometry as="geometry" relative="1" />
+        </mxCell>
+        <mxCell id="edge1" style="endArrow=none;startArrow=none;html=0;strokeColor=#555555;strokeWidth=1.8;" edge="1" parent="1" source="patient" target="Tra cứu chuyên khoa, bác sĩ&#10;và khung giờ">
+          <mxGeometry as="geometry" relative="1" />
+        </mxCell>
+        <mxCell id="edge2" style="endArrow=none;startArrow=none;html=0;strokeColor=#555555;strokeWidth=1.8;" edge="1" parent="1" source="patient" target="Đặt lịch khám">
+          <mxGeometry as="geometry" relative="1" />
+        </mxCell>
+        <mxCell id="edge3" style="endArrow=none;startArrow=none;html=0;strokeColor=#555555;strokeWidth=1.8;" edge="1" parent="1" source="patient" target="Quản lý lịch hẹn">
+          <mxGeometry as="geometry" relative="1" />
+        </mxCell>
+        <mxCell id="edge4" style="endArrow=none;startArrow=none;html=0;strokeColor=#555555;strokeWidth=1.8;" edge="1" parent="1" source="patient" target="Thông báo và nhắc lịch">
+          <mxGeometry as="geometry" relative="1" />
+        </mxCell>
+        <mxCell id="edge5" style="endArrow=none;startArrow=none;html=0;strokeColor=#555555;strokeWidth=1.8;" edge="1" parent="1" source="staff" target="Tài khoản cá nhân">
+          <mxGeometry as="geometry" relative="1" />
+        </mxCell>
+        <mxCell id="edge6" style="endArrow=none;startArrow=none;html=0;strokeColor=#555555;strokeWidth=1.8;" edge="1" parent="1" source="staff" target="Tra cứu chuyên khoa, bác sĩ&#10;và khung giờ">
+          <mxGeometry as="geometry" relative="1" />
+        </mxCell>
+        <mxCell id="edge7" style="endArrow=none;startArrow=none;html=0;strokeColor=#555555;strokeWidth=1.8;" edge="1" parent="1" source="staff" target="Đặt lịch khám">
+          <mxGeometry as="geometry" relative="1" />
+        </mxCell>
+        <mxCell id="edge8" style="endArrow=none;startArrow=none;html=0;strokeColor=#555555;strokeWidth=1.8;" edge="1" parent="1" source="staff" target="Quản lý lịch hẹn">
+          <mxGeometry as="geometry" relative="1" />
+        </mxCell>
+        <mxCell id="edge9" style="endArrow=none;startArrow=none;html=0;strokeColor=#555555;strokeWidth=1.8;" edge="1" parent="1" source="staff" target="Tiếp nhận bệnh nhân">
+          <mxGeometry as="geometry" relative="1" />
+        </mxCell>
+        <mxCell id="edge10" style="endArrow=none;startArrow=none;html=0;strokeColor=#555555;strokeWidth=1.8;" edge="1" parent="1" source="doctor" target="Tài khoản cá nhân">
+          <mxGeometry as="geometry" relative="1" />
+        </mxCell>
+        <mxCell id="edge11" style="endArrow=none;startArrow=none;html=0;strokeColor=#555555;strokeWidth=1.8;" edge="1" parent="1" source="doctor" target="Lịch làm việc bác sĩ">
+          <mxGeometry as="geometry" relative="1" />
+        </mxCell>
+        <mxCell id="edge12" style="endArrow=none;startArrow=none;html=0;strokeColor=#555555;strokeWidth=1.8;" edge="1" parent="1" source="doctor" target="Quản lý lịch hẹn">
+          <mxGeometry as="geometry" relative="1" />
+        </mxCell>
+        <mxCell id="edge13" style="endArrow=none;startArrow=none;html=0;strokeColor=#555555;strokeWidth=1.8;" edge="1" parent="1" source="admin" target="Tài khoản cá nhân">
+          <mxGeometry as="geometry" relative="1" />
+        </mxCell>
+        <mxCell id="edge14" style="endArrow=none;startArrow=none;html=0;strokeColor=#555555;strokeWidth=1.8;" edge="1" parent="1" source="admin" target="Lịch làm việc bác sĩ">
+          <mxGeometry as="geometry" relative="1" />
+        </mxCell>
+        <mxCell id="edge15" style="endArrow=none;startArrow=none;html=0;strokeColor=#555555;strokeWidth=1.8;" edge="1" parent="1" source="admin" target="Dữ liệu và phân quyền">
+          <mxGeometry as="geometry" relative="1" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+  <diagram id="page2" name="02. Tài khoản cá nhân">
+    <mxGraphModel dx="1500" dy="570" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1500" pageHeight="570" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="boundary" value="" style="html=0;fontFamily=Arial;fontColor=#111111;strokeColor=#222222;strokeWidth=2;fillColor=#FFFFFF;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="300" y="30" width="900" height="510" />
+        </mxCell>
+        <mxCell id="title" value="Tài khoản cá nhân" style="text;html=0;align=center;verticalAlign=middle;fontFamily=Arial;fontSize=25;fontStyle=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="320" y="45" width="860" height="45" />
+        </mxCell>
+        <mxCell id="UC01" value="UC01 Đăng ký tài khoản" style="html=0;fontFamily=Arial;fontColor=#111111;strokeColor=#222222;strokeWidth=2;ellipse;whiteSpace=wrap;fillColor=#F7F8FA;fontSize=24;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="390" y="110" width="700" height="78" />
+        </mxCell>
+        <mxCell id="UC02" value="UC02 Đăng nhập" style="html=0;fontFamily=Arial;fontColor=#111111;strokeColor=#222222;strokeWidth=2;ellipse;whiteSpace=wrap;fillColor=#F7F8FA;fontSize=24;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="390" y="215" width="700" height="78" />
+        </mxCell>
+        <mxCell id="UC03" value="UC03 Cập nhật thông tin cá nhân" style="html=0;fontFamily=Arial;fontColor=#111111;strokeColor=#222222;strokeWidth=2;ellipse;whiteSpace=wrap;fillColor=#F7F8FA;fontSize=24;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="390" y="320" width="700" height="78" />
+        </mxCell>
+        <mxCell id="UC04" value="UC04 Đổi mật khẩu" style="html=0;fontFamily=Arial;fontColor=#111111;strokeColor=#222222;strokeWidth=2;ellipse;whiteSpace=wrap;fillColor=#F7F8FA;fontSize=24;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="390" y="425" width="700" height="78" />
+        </mxCell>
+        <mxCell id="user" value="Người dùng&#10;(bốn vai trò)" style="html=0;fontFamily=Arial;fontColor=#111111;strokeColor=#222222;strokeWidth=2;shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;align=center;fontSize=23;fillColor=#FFFFFF;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="95" y="230" width="65" height="110" />
+        </mxCell>
+        <mxCell id="patient" value="Bệnh nhân" style="html=0;fontFamily=Arial;fontColor=#111111;strokeColor=#222222;strokeWidth=2;shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;align=center;fontSize=23;fillColor=#FFFFFF;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="1315" y="100" width="65" height="110" />
+        </mxCell>
+        <mxCell id="edge0" style="endArrow=none;startArrow=none;html=0;strokeColor=#555555;strokeWidth=1.8;" edge="1" parent="1" source="user" target="UC02">
+          <mxGeometry as="geometry" relative="1" />
+        </mxCell>
+        <mxCell id="edge1" style="endArrow=none;startArrow=none;html=0;strokeColor=#555555;strokeWidth=1.8;" edge="1" parent="1" source="user" target="UC03">
+          <mxGeometry as="geometry" relative="1" />
+        </mxCell>
+        <mxCell id="edge2" style="endArrow=none;startArrow=none;html=0;strokeColor=#555555;strokeWidth=1.8;" edge="1" parent="1" source="user" target="UC04">
+          <mxGeometry as="geometry" relative="1" />
+        </mxCell>
+        <mxCell id="edge3" style="endArrow=none;startArrow=none;html=0;strokeColor=#555555;strokeWidth=1.8;" edge="1" parent="1" source="patient" target="UC01">
+          <mxGeometry as="geometry" relative="1" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+  <diagram id="page3" name="03. Tra cứu chuyên khoa, bác sĩ và khung giờ">
+    <mxGraphModel dx="1500" dy="570" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1500" pageHeight="570" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="boundary" value="" style="html=0;fontFamily=Arial;fontColor=#111111;strokeColor=#222222;strokeWidth=2;fillColor=#FFFFFF;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="300" y="30" width="900" height="510" />
+        </mxCell>
+        <mxCell id="title" value="Tra cứu chuyên khoa, bác sĩ và khung giờ" style="text;html=0;align=center;verticalAlign=middle;fontFamily=Arial;fontSize=25;fontStyle=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="320" y="45" width="860" height="45" />
+        </mxCell>
+        <mxCell id="UC05" value="UC05 Tra cứu chuyên khoa" style="html=0;fontFamily=Arial;fontColor=#111111;strokeColor=#222222;strokeWidth=2;ellipse;whiteSpace=wrap;fillColor=#F7F8FA;fontSize=24;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="390" y="110" width="700" height="78" />
+        </mxCell>
+        <mxCell id="UC06" value="UC06 Tra cứu bác sĩ" style="html=0;fontFamily=Arial;fontColor=#111111;strokeColor=#222222;strokeWidth=2;ellipse;whiteSpace=wrap;fillColor=#F7F8FA;fontSize=24;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="390" y="215" width="700" height="78" />
+        </mxCell>
+        <mxCell id="UC07" value="UC07 Xem thông tin bác sĩ" style="html=0;fontFamily=Arial;fontColor=#111111;strokeColor=#222222;strokeWidth=2;ellipse;whiteSpace=wrap;fillColor=#F7F8FA;fontSize=24;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="390" y="320" width="700" height="78" />
+        </mxCell>
+        <mxCell id="UC08" value="UC08 Xem khung giờ trống" style="html=0;fontFamily=Arial;fontColor=#111111;strokeColor=#222222;strokeWidth=2;ellipse;whiteSpace=wrap;fillColor=#F7F8FA;fontSize=24;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="390" y="425" width="700" height="78" />
+        </mxCell>
+        <mxCell id="patient" value="Bệnh nhân" style="html=0;fontFamily=Arial;fontColor=#111111;strokeColor=#222222;strokeWidth=2;shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;align=center;fontSize=23;fillColor=#FFFFFF;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="95" y="230" width="65" height="110" />
+        </mxCell>
+        <mxCell id="staff" value="Nhân viên" style="html=0;fontFamily=Arial;fontColor=#111111;strokeColor=#222222;strokeWidth=2;shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;align=center;fontSize=23;fillColor=#FFFFFF;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="1315" y="230" width="65" height="110" />
+        </mxCell>
+        <mxCell id="edge0" style="endArrow=none;startArrow=none;html=0;strokeColor=#555555;strokeWidth=1.8;" edge="1" parent="1" source="patient" target="UC05">
+          <mxGeometry as="geometry" relative="1" />
+        </mxCell>
+        <mxCell id="edge1" style="endArrow=none;startArrow=none;html=0;strokeColor=#555555;strokeWidth=1.8;" edge="1" parent="1" source="patient" target="UC06">
+          <mxGeometry as="geometry" relative="1" />
+        </mxCell>
+        <mxCell id="edge2" style="endArrow=none;startArrow=none;html=0;strokeColor=#555555;strokeWidth=1.8;" edge="1" parent="1" source="patient" target="UC07">
+          <mxGeometry as="geometry" relative="1" />
+        </mxCell>
+        <mxCell id="edge3" style="endArrow=none;startArrow=none;html=0;strokeColor=#555555;strokeWidth=1.8;" edge="1" parent="1" source="patient" target="UC08">
+          <mxGeometry as="geometry" relative="1" />
+        </mxCell>
+        <mxCell id="edge4" style="endArrow=none;startArrow=none;html=0;strokeColor=#555555;strokeWidth=1.8;" edge="1" parent="1" source="staff" target="UC05">
+          <mxGeometry as="geometry" relative="1" />
+        </mxCell>
+        <mxCell id="edge5" style="endArrow=none;startArrow=none;html=0;strokeColor=#555555;strokeWidth=1.8;" edge="1" parent="1" source="staff" target="UC06">
+          <mxGeometry as="geometry" relative="1" />
+        </mxCell>
+        <mxCell id="edge6" style="endArrow=none;startArrow=none;html=0;strokeColor=#555555;strokeWidth=1.8;" edge="1" parent="1" source="staff" target="UC07">
+          <mxGeometry as="geometry" relative="1" />
+        </mxCell>
+        <mxCell id="edge7" style="endArrow=none;startArrow=none;html=0;strokeColor=#555555;strokeWidth=1.8;" edge="1" parent="1" source="staff" target="UC08">
+          <mxGeometry as="geometry" relative="1" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+  <diagram id="page4" name="04. Lịch làm việc của bác sĩ">
+    <mxGraphModel dx="1500" dy="570" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1500" pageHeight="570" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="boundary" value="" style="html=0;fontFamily=Arial;fontColor=#111111;strokeColor=#222222;strokeWidth=2;fillColor=#FFFFFF;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="300" y="30" width="900" height="510" />
+        </mxCell>
+        <mxCell id="title" value="Lịch làm việc của bác sĩ" style="text;html=0;align=center;verticalAlign=middle;fontFamily=Arial;fontSize=25;fontStyle=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="320" y="45" width="860" height="45" />
+        </mxCell>
+        <mxCell id="UC09" value="UC09 Xem lịch làm việc" style="html=0;fontFamily=Arial;fontColor=#111111;strokeColor=#222222;strokeWidth=2;ellipse;whiteSpace=wrap;fillColor=#F7F8FA;fontSize=24;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="390" y="110" width="700" height="78" />
+        </mxCell>
+        <mxCell id="UC10" value="UC10 Tạo lịch làm việc" style="html=0;fontFamily=Arial;fontColor=#111111;strokeColor=#222222;strokeWidth=2;ellipse;whiteSpace=wrap;fillColor=#F7F8FA;fontSize=24;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="390" y="215" width="700" height="78" />
+        </mxCell>
+        <mxCell id="UC11" value="UC11 Điều chỉnh lịch làm việc" style="html=0;fontFamily=Arial;fontColor=#111111;strokeColor=#222222;strokeWidth=2;ellipse;whiteSpace=wrap;fillColor=#F7F8FA;fontSize=24;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="390" y="320" width="700" height="78" />
+        </mxCell>
+        <mxCell id="UC12" value="UC12 Đóng khung giờ" style="html=0;fontFamily=Arial;fontColor=#111111;strokeColor=#222222;strokeWidth=2;ellipse;whiteSpace=wrap;fillColor=#F7F8FA;fontSize=24;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="390" y="425" width="700" height="78" />
+        </mxCell>
+        <mxCell id="admin" value="Quản trị viên" style="html=0;fontFamily=Arial;fontColor=#111111;strokeColor=#222222;strokeWidth=2;shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;align=center;fontSize=23;fillColor=#FFFFFF;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="95" y="230" width="65" height="110" />
+        </mxCell>
+        <mxCell id="doctor" value="Bác sĩ" style="html=0;fontFamily=Arial;fontColor=#111111;strokeColor=#222222;strokeWidth=2;shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;align=center;fontSize=23;fillColor=#FFFFFF;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="1315" y="100" width="65" height="110" />
+        </mxCell>
+        <mxCell id="edge0" style="endArrow=none;startArrow=none;html=0;strokeColor=#555555;strokeWidth=1.8;" edge="1" parent="1" source="admin" target="UC09">
+          <mxGeometry as="geometry" relative="1" />
+        </mxCell>
+        <mxCell id="edge1" style="endArrow=none;startArrow=none;html=0;strokeColor=#555555;strokeWidth=1.8;" edge="1" parent="1" source="admin" target="UC10">
+          <mxGeometry as="geometry" relative="1" />
+        </mxCell>
+        <mxCell id="edge2" style="endArrow=none;startArrow=none;html=0;strokeColor=#555555;strokeWidth=1.8;" edge="1" parent="1" source="admin" target="UC11">
+          <mxGeometry as="geometry" relative="1" />
+        </mxCell>
+        <mxCell id="edge3" style="endArrow=none;startArrow=none;html=0;strokeColor=#555555;strokeWidth=1.8;" edge="1" parent="1" source="admin" target="UC12">
+          <mxGeometry as="geometry" relative="1" />
+        </mxCell>
+        <mxCell id="edge4" style="endArrow=none;startArrow=none;html=0;strokeColor=#555555;strokeWidth=1.8;" edge="1" parent="1" source="doctor" target="UC09">
+          <mxGeometry as="geometry" relative="1" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+  <diagram id="page5" name="05. Đặt lịch khám">
+    <mxGraphModel dx="1500" dy="450" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1500" pageHeight="450" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="boundary" value="" style="html=0;fontFamily=Arial;fontColor=#111111;strokeColor=#222222;strokeWidth=2;fillColor=#FFFFFF;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="300" y="30" width="900" height="390" />
+        </mxCell>
+        <mxCell id="title" value="Đặt lịch khám" style="text;html=0;align=center;verticalAlign=middle;fontFamily=Arial;fontSize=25;fontStyle=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="320" y="45" width="860" height="45" />
+        </mxCell>
+        <mxCell id="UC13" value="UC13 Đặt lịch khám" style="html=0;fontFamily=Arial;fontColor=#111111;strokeColor=#222222;strokeWidth=2;ellipse;whiteSpace=wrap;fillColor=#F7F8FA;fontSize=24;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="390" y="110" width="700" height="78" />
+        </mxCell>
+        <mxCell id="UC14" value="UC14 Kiểm tra điều kiện đặt" style="html=0;fontFamily=Arial;fontColor=#111111;strokeColor=#222222;strokeWidth=2;ellipse;whiteSpace=wrap;fillColor=#F7F8FA;fontSize=24;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="390" y="215" width="700" height="78" />
+        </mxCell>
+        <mxCell id="patient" value="Bệnh nhân" style="html=0;fontFamily=Arial;fontColor=#111111;strokeColor=#222222;strokeWidth=2;shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;align=center;fontSize=23;fillColor=#FFFFFF;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="95" y="100" width="65" height="110" />
+        </mxCell>
+        <mxCell id="staff" value="Nhân viên" style="html=0;fontFamily=Arial;fontColor=#111111;strokeColor=#222222;strokeWidth=2;shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;align=center;fontSize=23;fillColor=#FFFFFF;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="1315" y="100" width="65" height="110" />
+        </mxCell>
+        <mxCell id="edge0" style="endArrow=none;startArrow=none;html=0;strokeColor=#555555;strokeWidth=1.8;" edge="1" parent="1" source="patient" target="UC13">
+          <mxGeometry as="geometry" relative="1" />
+        </mxCell>
+        <mxCell id="edge1" style="endArrow=none;startArrow=none;html=0;strokeColor=#555555;strokeWidth=1.8;" edge="1" parent="1" source="staff" target="UC13">
+          <mxGeometry as="geometry" relative="1" />
+        </mxCell>
+        <mxCell id="include" value="«include»" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;dashed=1;endArrow=open;endFill=0;strokeColor=#444444;strokeWidth=2;fontFamily=Arial;fontSize=21;labelBackgroundColor=#FFFFFF;exitX=1;exitY=0.5;entryX=1;entryY=0.5;" edge="1" parent="1" source="UC13" target="UC14">
+          <mxGeometry as="geometry" relative="1">
+            <Array as="points">
+              <mxPoint x="1140" y="149" />
+              <mxPoint x="1140" y="254" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+  <diagram id="page6" name="06. Quản lý lịch hẹn">
+    <mxGraphModel dx="1500" dy="675" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1500" pageHeight="675" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="boundary" value="" style="html=0;fontFamily=Arial;fontColor=#111111;strokeColor=#222222;strokeWidth=2;fillColor=#FFFFFF;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="300" y="30" width="900" height="615" />
+        </mxCell>
+        <mxCell id="title" value="Quản lý lịch hẹn" style="text;html=0;align=center;verticalAlign=middle;fontFamily=Arial;fontSize=25;fontStyle=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="320" y="45" width="860" height="45" />
+        </mxCell>
+        <mxCell id="UC15" value="UC15 Xem lịch hẹn" style="html=0;fontFamily=Arial;fontColor=#111111;strokeColor=#222222;strokeWidth=2;ellipse;whiteSpace=wrap;fillColor=#F7F8FA;fontSize=24;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="390" y="110" width="700" height="78" />
+        </mxCell>
+        <mxCell id="UC16" value="UC16 Tra cứu lịch hẹn" style="html=0;fontFamily=Arial;fontColor=#111111;strokeColor=#222222;strokeWidth=2;ellipse;whiteSpace=wrap;fillColor=#F7F8FA;fontSize=24;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="390" y="215" width="700" height="78" />
+        </mxCell>
+        <mxCell id="UC17" value="UC17 Đổi lịch hẹn" style="html=0;fontFamily=Arial;fontColor=#111111;strokeColor=#222222;strokeWidth=2;ellipse;whiteSpace=wrap;fillColor=#F7F8FA;fontSize=24;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="390" y="320" width="700" height="78" />
+        </mxCell>
+        <mxCell id="UC18" value="UC18 Hủy lịch hẹn" style="html=0;fontFamily=Arial;fontColor=#111111;strokeColor=#222222;strokeWidth=2;ellipse;whiteSpace=wrap;fillColor=#F7F8FA;fontSize=24;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="390" y="425" width="700" height="78" />
+        </mxCell>
+        <mxCell id="UC14" value="UC14 Kiểm tra điều kiện đặt" style="html=0;fontFamily=Arial;fontColor=#111111;strokeColor=#222222;strokeWidth=2;ellipse;whiteSpace=wrap;fillColor=#F7F8FA;fontSize=24;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="390" y="530" width="700" height="78" />
+        </mxCell>
+        <mxCell id="patient" value="Bệnh nhân" style="html=0;fontFamily=Arial;fontColor=#111111;strokeColor=#222222;strokeWidth=2;shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;align=center;fontSize=23;fillColor=#FFFFFF;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="95" y="280" width="65" height="110" />
+        </mxCell>
+        <mxCell id="doctor" value="Bác sĩ" style="html=0;fontFamily=Arial;fontColor=#111111;strokeColor=#222222;strokeWidth=2;shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;align=center;fontSize=23;fillColor=#FFFFFF;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="1315" y="100" width="65" height="110" />
+        </mxCell>
+        <mxCell id="staff" value="Nhân viên" style="html=0;fontFamily=Arial;fontColor=#111111;strokeColor=#222222;strokeWidth=2;shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;align=center;fontSize=23;fillColor=#FFFFFF;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="1315" y="280" width="65" height="110" />
+        </mxCell>
+        <mxCell id="edge0" style="endArrow=none;startArrow=none;html=0;strokeColor=#555555;strokeWidth=1.8;" edge="1" parent="1" source="patient" target="UC15">
+          <mxGeometry as="geometry" relative="1" />
+        </mxCell>
+        <mxCell id="edge1" style="endArrow=none;startArrow=none;html=0;strokeColor=#555555;strokeWidth=1.8;" edge="1" parent="1" source="patient" target="UC17">
+          <mxGeometry as="geometry" relative="1" />
+        </mxCell>
+        <mxCell id="edge2" style="endArrow=none;startArrow=none;html=0;strokeColor=#555555;strokeWidth=1.8;" edge="1" parent="1" source="patient" target="UC18">
+          <mxGeometry as="geometry" relative="1" />
+        </mxCell>
+        <mxCell id="edge3" style="endArrow=none;startArrow=none;html=0;strokeColor=#555555;strokeWidth=1.8;" edge="1" parent="1" source="staff" target="UC15">
+          <mxGeometry as="geometry" relative="1" />
+        </mxCell>
+        <mxCell id="edge4" style="endArrow=none;startArrow=none;html=0;strokeColor=#555555;strokeWidth=1.8;" edge="1" parent="1" source="staff" target="UC16">
+          <mxGeometry as="geometry" relative="1" />
+        </mxCell>
+        <mxCell id="edge5" style="endArrow=none;startArrow=none;html=0;strokeColor=#555555;strokeWidth=1.8;" edge="1" parent="1" source="staff" target="UC17">
+          <mxGeometry as="geometry" relative="1" />
+        </mxCell>
+        <mxCell id="edge6" style="endArrow=none;startArrow=none;html=0;strokeColor=#555555;strokeWidth=1.8;" edge="1" parent="1" source="staff" target="UC18">
+          <mxGeometry as="geometry" relative="1" />
+        </mxCell>
+        <mxCell id="edge7" style="endArrow=none;startArrow=none;html=0;strokeColor=#555555;strokeWidth=1.8;" edge="1" parent="1" source="doctor" target="UC15">
+          <mxGeometry as="geometry" relative="1" />
+        </mxCell>
+        <mxCell id="include" value="«include»" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=0;dashed=1;endArrow=open;endFill=0;strokeColor=#444444;strokeWidth=2;fontFamily=Arial;fontSize=21;labelBackgroundColor=#FFFFFF;exitX=1;exitY=0.5;entryX=1;entryY=0.5;" edge="1" parent="1" source="UC17" target="UC14">
+          <mxGeometry as="geometry" relative="1">
+            <Array as="points">
+              <mxPoint x="1140" y="359" />
+              <mxPoint x="1140" y="569" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+  <diagram id="page7" name="07. Tiếp nhận bệnh nhân">
+    <mxGraphModel dx="1500" dy="465" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1500" pageHeight="465" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="boundary" value="" style="html=0;fontFamily=Arial;fontColor=#111111;strokeColor=#222222;strokeWidth=2;fillColor=#FFFFFF;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="300" y="30" width="900" height="405" />
+        </mxCell>
+        <mxCell id="title" value="Tiếp nhận bệnh nhân" style="text;html=0;align=center;verticalAlign=middle;fontFamily=Arial;fontSize=25;fontStyle=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="320" y="45" width="860" height="45" />
+        </mxCell>
+        <mxCell id="UC16" value="UC16 Tra cứu lịch hẹn" style="html=0;fontFamily=Arial;fontColor=#111111;strokeColor=#222222;strokeWidth=2;ellipse;whiteSpace=wrap;fillColor=#F7F8FA;fontSize=24;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="390" y="110" width="700" height="78" />
+        </mxCell>
+        <mxCell id="UC19" value="UC19 Tiếp nhận bệnh nhân" style="html=0;fontFamily=Arial;fontColor=#111111;strokeColor=#222222;strokeWidth=2;ellipse;whiteSpace=wrap;fillColor=#F7F8FA;fontSize=24;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="390" y="215" width="700" height="78" />
+        </mxCell>
+        <mxCell id="UC20" value="UC20 Ghi nhận bệnh nhân không đến" style="html=0;fontFamily=Arial;fontColor=#111111;strokeColor=#222222;strokeWidth=2;ellipse;whiteSpace=wrap;fillColor=#F7F8FA;fontSize=24;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="390" y="320" width="700" height="78" />
+        </mxCell>
+        <mxCell id="staff" value="Nhân viên" style="html=0;fontFamily=Arial;fontColor=#111111;strokeColor=#222222;strokeWidth=2;shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;align=center;fontSize=23;fillColor=#FFFFFF;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="95" y="190" width="65" height="110" />
+        </mxCell>
+        <mxCell id="edge0" style="endArrow=none;startArrow=none;html=0;strokeColor=#555555;strokeWidth=1.8;" edge="1" parent="1" source="staff" target="UC16">
+          <mxGeometry as="geometry" relative="1" />
+        </mxCell>
+        <mxCell id="edge1" style="endArrow=none;startArrow=none;html=0;strokeColor=#555555;strokeWidth=1.8;" edge="1" parent="1" source="staff" target="UC19">
+          <mxGeometry as="geometry" relative="1" />
+        </mxCell>
+        <mxCell id="edge2" style="endArrow=none;startArrow=none;html=0;strokeColor=#555555;strokeWidth=1.8;" edge="1" parent="1" source="staff" target="UC20">
+          <mxGeometry as="geometry" relative="1" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+  <diagram id="page8" name="08. Thông báo và nhắc lịch">
+    <mxGraphModel dx="1500" dy="450" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1500" pageHeight="450" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="boundary" value="" style="html=0;fontFamily=Arial;fontColor=#111111;strokeColor=#222222;strokeWidth=2;fillColor=#FFFFFF;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="300" y="30" width="900" height="390" />
+        </mxCell>
+        <mxCell id="title" value="Thông báo và nhắc lịch" style="text;html=0;align=center;verticalAlign=middle;fontFamily=Arial;fontSize=25;fontStyle=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="320" y="45" width="860" height="45" />
+        </mxCell>
+        <mxCell id="UC21" value="UC21 Xem thông báo" style="html=0;fontFamily=Arial;fontColor=#111111;strokeColor=#222222;strokeWidth=2;ellipse;whiteSpace=wrap;fillColor=#F7F8FA;fontSize=24;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="390" y="110" width="700" height="78" />
+        </mxCell>
+        <mxCell id="patient" value="Bệnh nhân" style="html=0;fontFamily=Arial;fontColor=#111111;strokeColor=#222222;strokeWidth=2;shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;align=center;fontSize=23;fillColor=#FFFFFF;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="95" y="100" width="65" height="110" />
+        </mxCell>
+        <mxCell id="edge0" style="endArrow=none;startArrow=none;html=0;strokeColor=#555555;strokeWidth=1.8;" edge="1" parent="1" source="patient" target="UC21">
+          <mxGeometry as="geometry" relative="1" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+  <diagram id="page9" name="09. Quản lý dữ liệu và phân quyền">
+    <mxGraphModel dx="1500" dy="885" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1500" pageHeight="885" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="boundary" value="" style="html=0;fontFamily=Arial;fontColor=#111111;strokeColor=#222222;strokeWidth=2;fillColor=#FFFFFF;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="300" y="30" width="900" height="825" />
+        </mxCell>
+        <mxCell id="title" value="Quản lý dữ liệu và phân quyền" style="text;html=0;align=center;verticalAlign=middle;fontFamily=Arial;fontSize=25;fontStyle=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="320" y="45" width="860" height="45" />
+        </mxCell>
+        <mxCell id="UC22" value="UC22 Cấp tài khoản" style="html=0;fontFamily=Arial;fontColor=#111111;strokeColor=#222222;strokeWidth=2;ellipse;whiteSpace=wrap;fillColor=#F7F8FA;fontSize=24;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="390" y="110" width="700" height="78" />
+        </mxCell>
+        <mxCell id="UC23" value="UC23 Cập nhật tài khoản" style="html=0;fontFamily=Arial;fontColor=#111111;strokeColor=#222222;strokeWidth=2;ellipse;whiteSpace=wrap;fillColor=#F7F8FA;fontSize=24;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="390" y="215" width="700" height="78" />
+        </mxCell>
+        <mxCell id="UC24" value="UC24 Phân quyền tài khoản" style="html=0;fontFamily=Arial;fontColor=#111111;strokeColor=#222222;strokeWidth=2;ellipse;whiteSpace=wrap;fillColor=#F7F8FA;fontSize=24;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="390" y="320" width="700" height="78" />
+        </mxCell>
+        <mxCell id="UC25" value="UC25 Thêm bác sĩ" style="html=0;fontFamily=Arial;fontColor=#111111;strokeColor=#222222;strokeWidth=2;ellipse;whiteSpace=wrap;fillColor=#F7F8FA;fontSize=24;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="390" y="425" width="700" height="78" />
+        </mxCell>
+        <mxCell id="UC26" value="UC26 Cập nhật bác sĩ" style="html=0;fontFamily=Arial;fontColor=#111111;strokeColor=#222222;strokeWidth=2;ellipse;whiteSpace=wrap;fillColor=#F7F8FA;fontSize=24;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="390" y="530" width="700" height="78" />
+        </mxCell>
+        <mxCell id="UC27" value="UC27 Thêm chuyên khoa" style="html=0;fontFamily=Arial;fontColor=#111111;strokeColor=#222222;strokeWidth=2;ellipse;whiteSpace=wrap;fillColor=#F7F8FA;fontSize=24;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="390" y="635" width="700" height="78" />
+        </mxCell>
+        <mxCell id="UC28" value="UC28 Cập nhật chuyên khoa" style="html=0;fontFamily=Arial;fontColor=#111111;strokeColor=#222222;strokeWidth=2;ellipse;whiteSpace=wrap;fillColor=#F7F8FA;fontSize=24;align=center;verticalAlign=middle;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="390" y="740" width="700" height="78" />
+        </mxCell>
+        <mxCell id="admin" value="Quản trị viên" style="html=0;fontFamily=Arial;fontColor=#111111;strokeColor=#222222;strokeWidth=2;shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;align=center;fontSize=23;fillColor=#FFFFFF;" vertex="1" parent="1">
+          <mxGeometry as="geometry" x="95" y="400" width="65" height="110" />
+        </mxCell>
+        <mxCell id="edge0" style="endArrow=none;startArrow=none;html=0;strokeColor=#555555;strokeWidth=1.8;" edge="1" parent="1" source="admin" target="UC22">
+          <mxGeometry as="geometry" relative="1" />
+        </mxCell>
+        <mxCell id="edge1" style="endArrow=none;startArrow=none;html=0;strokeColor=#555555;strokeWidth=1.8;" edge="1" parent="1" source="admin" target="UC23">
+          <mxGeometry as="geometry" relative="1" />
+        </mxCell>
+        <mxCell id="edge2" style="endArrow=none;startArrow=none;html=0;strokeColor=#555555;strokeWidth=1.8;" edge="1" parent="1" source="admin" target="UC24">
+          <mxGeometry as="geometry" relative="1" />
+        </mxCell>
+        <mxCell id="edge3" style="endArrow=none;startArrow=none;html=0;strokeColor=#555555;strokeWidth=1.8;" edge="1" parent="1" source="admin" target="UC25">
+          <mxGeometry as="geometry" relative="1" />
+        </mxCell>
+        <mxCell id="edge4" style="endArrow=none;startArrow=none;html=0;strokeColor=#555555;strokeWidth=1.8;" edge="1" parent="1" source="admin" target="UC26">
+          <mxGeometry as="geometry" relative="1" />
+        </mxCell>
+        <mxCell id="edge5" style="endArrow=none;startArrow=none;html=0;strokeColor=#555555;strokeWidth=1.8;" edge="1" parent="1" source="admin" target="UC27">
+          <mxGeometry as="geometry" relative="1" />
+        </mxCell>
+        <mxCell id="edge6" style="endArrow=none;startArrow=none;html=0;strokeColor=#555555;strokeWidth=1.8;" edge="1" parent="1" source="admin" target="UC28">
+          <mxGeometry as="geometry" relative="1" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
