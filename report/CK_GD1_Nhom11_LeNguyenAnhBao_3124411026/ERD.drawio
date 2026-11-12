@@ -1,0 +1,726 @@
+<mxfile host="app.diagrams.net" agent="ChatGPT" pages="13">
+  <diagram id="page_1" name="3.1 - 1. Tài khoản và chuyên khoa">
+    <mxGraphModel dx="2239" dy="1220" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1900" pageHeight="1220" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="pg1_Roles" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#111111;strokeWidth=2;fontColor=#111111;fontFamily=Arial;fontSize=20;align=left;verticalAlign=top;spacing=0;overflow=fill;shadow=0;" value="&lt;div style=&quot;font-size:21px; font-family:Arial,Helvetica,sans-serif&quot;&gt;&lt;div style=&quot;font-size:25px;text-align:center;font-weight:bold;border-bottom:2px solid #111;padding:7px 2px 10px&quot;&gt;&lt;b&gt;Roles&lt;/b&gt;&lt;/div&gt;&lt;div style=&quot;padding:10px 13px;line-height:1.36&quot;&gt;&lt;div style=&quot;padding:2px 0&quot;&gt;Mã vai trò&lt;/div&gt;&lt;div style=&quot;padding:2px 0&quot;&gt;Tên vai trò&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="130" width="280" x="95" y="240" as="geometry" />
+        </mxCell>
+        <mxCell id="pg1_Users" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#111111;strokeWidth=2;fontColor=#111111;fontFamily=Arial;fontSize=20;align=left;verticalAlign=top;spacing=0;overflow=fill;shadow=0;" value="&lt;div style=&quot;font-size:21px; font-family:Arial,Helvetica,sans-serif&quot;&gt;&lt;div style=&quot;font-size:25px;text-align:center;font-weight:bold;border-bottom:2px solid #111;padding:7px 2px 10px&quot;&gt;&lt;b&gt;Users&lt;/b&gt;&lt;/div&gt;&lt;div style=&quot;padding:10px 13px;line-height:1.36&quot;&gt;&lt;div style=&quot;padding:2px 0&quot;&gt;Mã tài khoản&lt;/div&gt;&lt;div style=&quot;padding:2px 0&quot;&gt;Tên đăng nhập&lt;/div&gt;&lt;div style=&quot;padding:2px 0&quot;&gt;Họ tên&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="215" width="365" x="580" y="200" as="geometry" />
+        </mxCell>
+        <mxCell id="pg1_Patients" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#111111;strokeWidth=2;fontColor=#111111;fontFamily=Arial;fontSize=20;align=left;verticalAlign=top;spacing=0;overflow=fill;shadow=0;" value="&lt;div style=&quot;font-size:21px; font-family:Arial,Helvetica,sans-serif&quot;&gt;&lt;div style=&quot;font-size:25px;text-align:center;font-weight:bold;border-bottom:2px solid #111;padding:7px 2px 10px&quot;&gt;&lt;b&gt;Patients&lt;/b&gt;&lt;/div&gt;&lt;div style=&quot;padding:10px 13px;line-height:1.36&quot;&gt;&lt;div style=&quot;padding:2px 0&quot;&gt;Mã bệnh nhân&lt;/div&gt;&lt;div style=&quot;padding:2px 0&quot;&gt;Ngày sinh&lt;/div&gt;&lt;div style=&quot;padding:2px 0&quot;&gt;Giới tính&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="215" width="400" x="1260" y="100" as="geometry" />
+        </mxCell>
+        <mxCell id="pg1_Doctors" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#111111;strokeWidth=2;fontColor=#111111;fontFamily=Arial;fontSize=20;align=left;verticalAlign=top;spacing=0;overflow=fill;shadow=0;" value="&lt;div style=&quot;font-size:21px; font-family:Arial,Helvetica,sans-serif&quot;&gt;&lt;div style=&quot;font-size:25px;text-align:center;font-weight:bold;border-bottom:2px solid #111;padding:7px 2px 10px&quot;&gt;&lt;b&gt;Doctors&lt;/b&gt;&lt;/div&gt;&lt;div style=&quot;padding:10px 13px;line-height:1.36&quot;&gt;&lt;div style=&quot;padding:2px 0&quot;&gt;Mã bác sĩ&lt;/div&gt;&lt;div style=&quot;padding:2px 0&quot;&gt;Họ tên&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="215" width="400" x="1260" y="465" as="geometry" />
+        </mxCell>
+        <mxCell id="pg1_Specialties" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#111111;strokeWidth=2;fontColor=#111111;fontFamily=Arial;fontSize=20;align=left;verticalAlign=top;spacing=0;overflow=fill;shadow=0;" value="&lt;div style=&quot;font-size:21px; font-family:Arial,Helvetica,sans-serif&quot;&gt;&lt;div style=&quot;font-size:25px;text-align:center;font-weight:bold;border-bottom:2px solid #111;padding:7px 2px 10px&quot;&gt;&lt;b&gt;Specialties&lt;/b&gt;&lt;/div&gt;&lt;div style=&quot;padding:10px 13px;line-height:1.36&quot;&gt;&lt;div style=&quot;padding:2px 0&quot;&gt;Mã chuyên khoa&lt;/div&gt;&lt;div style=&quot;padding:2px 0&quot;&gt;Tên chuyên khoa&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="190" width="400" x="1260" y="865" as="geometry" />
+        </mxCell>
+        <mxCell id="pg1_edge_0" edge="1" parent="1" source="pg1_Roles" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#111111;strokeWidth=2;startArrow=ERone;startFill=0;startSize=17;endArrow=ERzeroToMany;endFill=0;endSize=17;fontSize=16;fontColor=#111111;fontFamily=Arial;labelBackgroundColor=#FFFFFF;exitX=1;exitY=0.45;exitDx=0;exitDy=0;entryX=0;entryY=0.45;entryDx=0;entryDy=0;" target="pg1_Users" value="phân quyền">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="pg1_edge_1" edge="1" parent="1" source="pg1_Users" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#111111;strokeWidth=2;startArrow=ERone;startFill=0;startSize=17;endArrow=ERzeroToOne;endFill=0;endSize=17;fontSize=16;fontColor=#111111;fontFamily=Arial;labelBackgroundColor=#FFFFFF;exitX=1;exitY=0.3;exitDx=0;exitDy=0;entryX=0;entryY=0.55;entryDx=0;entryDy=0;" target="pg1_Patients" value="có hồ sơ">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="pg1_edge_2" edge="1" parent="1" source="pg1_Users" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#111111;strokeWidth=2;startArrow=ERzeroToOne;startFill=0;startSize=17;endArrow=ERzeroToOne;endFill=0;endSize=17;fontSize=16;fontColor=#111111;fontFamily=Arial;labelBackgroundColor=#FFFFFF;exitX=1;exitY=0.76;exitDx=0;exitDy=0;entryX=0;entryY=0.38;entryDx=0;entryDy=0;" target="pg1_Doctors" value="liên kết đăng nhập (tùy chọn)">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1100" y="362" />
+              <mxPoint x="1100" y="545" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="pg1_edge_3" edge="1" parent="1" source="pg1_Doctors" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#111111;strokeWidth=2;startArrow=ERmany;startFill=0;startSize=17;endArrow=ERzeroToMany;endFill=0;endSize=17;fontSize=16;fontColor=#111111;fontFamily=Arial;labelBackgroundColor=#FFFFFF;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="pg1_Specialties" value="thuộc chuyên khoa (N–N)">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+  <diagram id="page_2" name="3.1 - 2. Ca, khung giờ và lịch hẹn">
+    <mxGraphModel dx="2239" dy="1220" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1900" pageHeight="1220" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="pg2_Doctors" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#111111;strokeWidth=2;fontColor=#111111;fontFamily=Arial;fontSize=20;align=left;verticalAlign=top;spacing=0;overflow=fill;shadow=0;" value="&lt;div style=&quot;font-size:21px; font-family:Arial,Helvetica,sans-serif&quot;&gt;&lt;div style=&quot;font-size:25px;text-align:center;font-weight:bold;border-bottom:2px solid #111;padding:7px 2px 10px&quot;&gt;&lt;b&gt;Doctors&lt;/b&gt;&lt;/div&gt;&lt;div style=&quot;padding:10px 13px;line-height:1.36&quot;&gt;&lt;div style=&quot;padding:2px 0&quot;&gt;Mã bác sĩ&lt;/div&gt;&lt;div style=&quot;padding:2px 0&quot;&gt;Họ tên&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="205" width="350" x="70" y="185" as="geometry" />
+        </mxCell>
+        <mxCell id="pg2_WorkingSchedules" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#111111;strokeWidth=2;fontColor=#111111;fontFamily=Arial;fontSize=20;align=left;verticalAlign=top;spacing=0;overflow=fill;shadow=0;" value="&lt;div style=&quot;font-size:21px; font-family:Arial,Helvetica,sans-serif&quot;&gt;&lt;div style=&quot;font-size:25px;text-align:center;font-weight:bold;border-bottom:2px solid #111;padding:7px 2px 10px&quot;&gt;&lt;b&gt;WorkingSchedules&lt;/b&gt;&lt;/div&gt;&lt;div style=&quot;padding:10px 13px;line-height:1.36&quot;&gt;&lt;div style=&quot;padding:2px 0&quot;&gt;Mã ca&lt;/div&gt;&lt;div style=&quot;padding:2px 0&quot;&gt;Ngày làm&lt;/div&gt;&lt;div style=&quot;padding:2px 0&quot;&gt;Giờ bắt đầu&lt;/div&gt;&lt;div style=&quot;padding:2px 0&quot;&gt;Giờ kết thúc&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="255" width="405" x="605" y="185" as="geometry" />
+        </mxCell>
+        <mxCell id="pg2_TimeSlots" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#111111;strokeWidth=2;fontColor=#111111;fontFamily=Arial;fontSize=20;align=left;verticalAlign=top;spacing=0;overflow=fill;shadow=0;" value="&lt;div style=&quot;font-size:21px; font-family:Arial,Helvetica,sans-serif&quot;&gt;&lt;div style=&quot;font-size:25px;text-align:center;font-weight:bold;border-bottom:2px solid #111;padding:7px 2px 10px&quot;&gt;&lt;b&gt;TimeSlots&lt;/b&gt;&lt;/div&gt;&lt;div style=&quot;padding:10px 13px;line-height:1.36&quot;&gt;&lt;div style=&quot;padding:2px 0&quot;&gt;Mã khung&lt;/div&gt;&lt;div style=&quot;padding:2px 0&quot;&gt;Ngày khám&lt;/div&gt;&lt;div style=&quot;padding:2px 0&quot;&gt;Giờ bắt đầu&lt;/div&gt;&lt;div style=&quot;padding:2px 0&quot;&gt;Giờ kết thúc&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="270" width="430" x="1245" y="170" as="geometry" />
+        </mxCell>
+        <mxCell id="pg2_Specialties" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#111111;strokeWidth=2;fontColor=#111111;fontFamily=Arial;fontSize=20;align=left;verticalAlign=top;spacing=0;overflow=fill;shadow=0;" value="&lt;div style=&quot;font-size:21px; font-family:Arial,Helvetica,sans-serif&quot;&gt;&lt;div style=&quot;font-size:25px;text-align:center;font-weight:bold;border-bottom:2px solid #111;padding:7px 2px 10px&quot;&gt;&lt;b&gt;Specialties&lt;/b&gt;&lt;/div&gt;&lt;div style=&quot;padding:10px 13px;line-height:1.36&quot;&gt;&lt;div style=&quot;padding:2px 0&quot;&gt;Mã chuyên khoa&lt;/div&gt;&lt;div style=&quot;padding:2px 0&quot;&gt;Tên chuyên khoa&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="180" width="350" x="70" y="750" as="geometry" />
+        </mxCell>
+        <mxCell id="pg2_Patients" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#111111;strokeWidth=2;fontColor=#111111;fontFamily=Arial;fontSize=20;align=left;verticalAlign=top;spacing=0;overflow=fill;shadow=0;" value="&lt;div style=&quot;font-size:21px; font-family:Arial,Helvetica,sans-serif&quot;&gt;&lt;div style=&quot;font-size:25px;text-align:center;font-weight:bold;border-bottom:2px solid #111;padding:7px 2px 10px&quot;&gt;&lt;b&gt;Patients&lt;/b&gt;&lt;/div&gt;&lt;div style=&quot;padding:10px 13px;line-height:1.36&quot;&gt;&lt;div style=&quot;padding:2px 0&quot;&gt;Mã bệnh nhân&lt;/div&gt;&lt;div style=&quot;padding:2px 0&quot;&gt;Ngày sinh&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="210" width="370" x="605" y="750" as="geometry" />
+        </mxCell>
+        <mxCell id="pg2_Appointments" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#111111;strokeWidth=2;fontColor=#111111;fontFamily=Arial;fontSize=20;align=left;verticalAlign=top;spacing=0;overflow=fill;shadow=0;" value="&lt;div style=&quot;font-size:21px; font-family:Arial,Helvetica,sans-serif&quot;&gt;&lt;div style=&quot;font-size:25px;text-align:center;font-weight:bold;border-bottom:2px solid #111;padding:7px 2px 10px&quot;&gt;&lt;b&gt;Appointments&lt;/b&gt;&lt;/div&gt;&lt;div style=&quot;padding:10px 13px;line-height:1.36&quot;&gt;&lt;div style=&quot;padding:2px 0&quot;&gt;Mã lịch hẹn&lt;/div&gt;&lt;div style=&quot;padding:2px 0&quot;&gt;Trạng thái&lt;/div&gt;&lt;div style=&quot;padding:2px 0&quot;&gt;Ghi chú&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="240" width="445" x="1245" y="740" as="geometry" />
+        </mxCell>
+        <mxCell id="pg2_edge_0" edge="1" parent="1" source="pg2_Doctors" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#111111;strokeWidth=2;startArrow=ERone;startFill=0;startSize=17;endArrow=ERzeroToMany;endFill=0;endSize=17;fontSize=16;fontColor=#111111;fontFamily=Arial;labelBackgroundColor=#FFFFFF;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" target="pg2_WorkingSchedules" value="có ca">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="pg2_edge_1" edge="1" parent="1" source="pg2_WorkingSchedules" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#111111;strokeWidth=2;startArrow=ERone;startFill=0;startSize=17;endArrow=ERzeroToMany;endFill=0;endSize=17;fontSize=16;fontColor=#111111;fontFamily=Arial;labelBackgroundColor=#FFFFFF;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" target="pg2_TimeSlots" value="chia thành">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="pg2_edge_2" edge="1" parent="1" source="pg2_TimeSlots" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#111111;strokeWidth=2;startArrow=ERone;startFill=0;startSize=17;endArrow=ERzeroToMany;endFill=0;endSize=17;fontSize=16;fontColor=#111111;fontFamily=Arial;labelBackgroundColor=#FFFFFF;exitX=0.55;exitY=1;exitDx=0;exitDy=0;entryX=0.55;entryY=0;entryDx=0;entryDy=0;" target="pg2_Appointments" value="được đặt">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="pg2_edge_3" edge="1" parent="1" source="pg2_Patients" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#111111;strokeWidth=2;startArrow=ERone;startFill=0;startSize=17;endArrow=ERzeroToMany;endFill=0;endSize=17;fontSize=16;fontColor=#111111;fontFamily=Arial;labelBackgroundColor=#FFFFFF;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" target="pg2_Appointments" value="được khám">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="pg2_edge_4" edge="1" parent="1" source="pg2_Specialties" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#111111;strokeWidth=2;startArrow=ERone;startFill=0;startSize=17;endArrow=ERzeroToMany;endFill=0;endSize=17;fontSize=16;fontColor=#111111;fontFamily=Arial;labelBackgroundColor=#FFFFFF;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0;entryY=0.84;entryDx=0;entryDy=0;" target="pg2_Appointments" value="chuyên khoa được chọn">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="245" y="1035" />
+              <mxPoint x="1110" y="1035" />
+              <mxPoint x="1110" y="941" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="pg2_edge_5" edge="1" parent="1" source="pg2_Doctors" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#111111;strokeWidth=2;startArrow=ERone;startFill=0;startSize=17;endArrow=ERzeroToMany;endFill=0;endSize=17;fontSize=16;fontColor=#111111;fontFamily=Arial;labelBackgroundColor=#FFFFFF;exitX=0.4;exitY=1;exitDx=0;exitDy=0;entryX=1;entryY=0.31;entryDx=0;entryDy=0;" target="pg2_Appointments" value="bác sĩ phụ trách">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="210" y="560" />
+              <mxPoint x="1790" y="560" />
+              <mxPoint x="1790" y="814" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+  <diagram id="page_3" name="3.1 - 3. Lịch sử và thông báo">
+    <mxGraphModel dx="2239" dy="1220" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1900" pageHeight="1220" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="pg3_Users" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#111111;strokeWidth=2;fontColor=#111111;fontFamily=Arial;fontSize=20;align=left;verticalAlign=top;spacing=0;overflow=fill;shadow=0;" value="&lt;div style=&quot;font-size:21px; font-family:Arial,Helvetica,sans-serif&quot;&gt;&lt;div style=&quot;font-size:25px;text-align:center;font-weight:bold;border-bottom:2px solid #111;padding:7px 2px 10px&quot;&gt;&lt;b&gt;Users&lt;/b&gt;&lt;/div&gt;&lt;div style=&quot;padding:10px 13px;line-height:1.36&quot;&gt;&lt;div style=&quot;padding:2px 0&quot;&gt;Mã tài khoản&lt;/div&gt;&lt;div style=&quot;padding:2px 0&quot;&gt;Tên đăng nhập&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="210" width="345" x="90" y="185" as="geometry" />
+        </mxCell>
+        <mxCell id="pg3_Patients" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#111111;strokeWidth=2;fontColor=#111111;fontFamily=Arial;fontSize=20;align=left;verticalAlign=top;spacing=0;overflow=fill;shadow=0;" value="&lt;div style=&quot;font-size:21px; font-family:Arial,Helvetica,sans-serif&quot;&gt;&lt;div style=&quot;font-size:25px;text-align:center;font-weight:bold;border-bottom:2px solid #111;padding:7px 2px 10px&quot;&gt;&lt;b&gt;Patients&lt;/b&gt;&lt;/div&gt;&lt;div style=&quot;padding:10px 13px;line-height:1.36&quot;&gt;&lt;div style=&quot;padding:2px 0&quot;&gt;Mã bệnh nhân&lt;/div&gt;&lt;div style=&quot;padding:2px 0&quot;&gt;Ngày sinh&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="180" width="345" x="90" y="770" as="geometry" />
+        </mxCell>
+        <mxCell id="pg3_Appointments" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#111111;strokeWidth=2;fontColor=#111111;fontFamily=Arial;fontSize=20;align=left;verticalAlign=top;spacing=0;overflow=fill;shadow=0;" value="&lt;div style=&quot;font-size:21px; font-family:Arial,Helvetica,sans-serif&quot;&gt;&lt;div style=&quot;font-size:25px;text-align:center;font-weight:bold;border-bottom:2px solid #111;padding:7px 2px 10px&quot;&gt;&lt;b&gt;Appointments&lt;/b&gt;&lt;/div&gt;&lt;div style=&quot;padding:10px 13px;line-height:1.36&quot;&gt;&lt;div style=&quot;padding:2px 0&quot;&gt;Mã lịch hẹn&lt;/div&gt;&lt;div style=&quot;padding:2px 0&quot;&gt;Trạng thái&lt;/div&gt;&lt;div style=&quot;padding:2px 0&quot;&gt;Ghi chú&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="235" width="390" x="705" y="440" as="geometry" />
+        </mxCell>
+        <mxCell id="pg3_AppointmentStatusHistories" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#111111;strokeWidth=2;fontColor=#111111;fontFamily=Arial;fontSize=20;align=left;verticalAlign=top;spacing=0;overflow=fill;shadow=0;" value="&lt;div style=&quot;font-size:21px; font-family:Arial,Helvetica,sans-serif&quot;&gt;&lt;div style=&quot;font-size:25px;text-align:center;font-weight:bold;border-bottom:2px solid #111;padding:7px 2px 10px&quot;&gt;&lt;b&gt;AppointmentStatusHistories&lt;/b&gt;&lt;/div&gt;&lt;div style=&quot;padding:10px 13px;line-height:1.36&quot;&gt;&lt;div style=&quot;padding:2px 0&quot;&gt;Mã lịch sử&lt;/div&gt;&lt;div style=&quot;padding:2px 0&quot;&gt;Trạng thái cũ/mới&lt;/div&gt;&lt;div style=&quot;padding:2px 0&quot;&gt;Thời điểm&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="265" width="430" x="1390" y="165" as="geometry" />
+        </mxCell>
+        <mxCell id="pg3_Notifications" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#111111;strokeWidth=2;fontColor=#111111;fontFamily=Arial;fontSize=20;align=left;verticalAlign=top;spacing=0;overflow=fill;shadow=0;" value="&lt;div style=&quot;font-size:21px; font-family:Arial,Helvetica,sans-serif&quot;&gt;&lt;div style=&quot;font-size:25px;text-align:center;font-weight:bold;border-bottom:2px solid #111;padding:7px 2px 10px&quot;&gt;&lt;b&gt;Notifications&lt;/b&gt;&lt;/div&gt;&lt;div style=&quot;padding:10px 13px;line-height:1.36&quot;&gt;&lt;div style=&quot;padding:2px 0&quot;&gt;Mã thông báo&lt;/div&gt;&lt;div style=&quot;padding:2px 0&quot;&gt;Tiêu đề&lt;/div&gt;&lt;div style=&quot;padding:2px 0&quot;&gt;Đã đọc&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="215" width="430" x="1390" y="755" as="geometry" />
+        </mxCell>
+        <mxCell id="pg3_edge_0" edge="1" parent="1" source="pg3_Users" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#111111;strokeWidth=2;startArrow=ERone;startFill=0;startSize=17;endArrow=ERzeroToMany;endFill=0;endSize=17;fontSize=16;fontColor=#111111;fontFamily=Arial;labelBackgroundColor=#FFFFFF;exitX=1;exitY=0.7;exitDx=0;exitDy=0;entryX=0;entryY=0.3;entryDx=0;entryDy=0;" target="pg3_Appointments" value="người đặt">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="605" y="330" />
+              <mxPoint x="605" y="511" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="pg3_edge_1" edge="1" parent="1" source="pg3_Patients" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#111111;strokeWidth=2;startArrow=ERone;startFill=0;startSize=17;endArrow=ERzeroToMany;endFill=0;endSize=17;fontSize=16;fontColor=#111111;fontFamily=Arial;labelBackgroundColor=#FFFFFF;exitX=1;exitY=0.28;exitDx=0;exitDy=0;entryX=0;entryY=0.75;entryDx=0;entryDy=0;" target="pg3_Appointments" value="người được khám">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="600" y="820" />
+              <mxPoint x="600" y="616" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="pg3_edge_2" edge="1" parent="1" source="pg3_Appointments" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#111111;strokeWidth=2;startArrow=ERone;startFill=0;startSize=17;endArrow=ERzeroToMany;endFill=0;endSize=17;fontSize=16;fontColor=#111111;fontFamily=Arial;labelBackgroundColor=#FFFFFF;exitX=1;exitY=0.18;exitDx=0;exitDy=0;entryX=0;entryY=0.65;entryDx=0;entryDy=0;" target="pg3_AppointmentStatusHistories" value="ghi nhận thay đổi">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1230" y="482" />
+              <mxPoint x="1230" y="337" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="pg3_edge_3" edge="1" parent="1" source="pg3_Appointments" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#111111;strokeWidth=2;startArrow=ERzeroToOne;startFill=0;startSize=17;endArrow=ERzeroToMany;endFill=0;endSize=17;fontSize=16;fontColor=#111111;fontFamily=Arial;labelBackgroundColor=#FFFFFF;exitX=1;exitY=0.8;exitDx=0;exitDy=0;entryX=0;entryY=0.35;entryDx=0;entryDy=0;" target="pg3_Notifications" value="liên quan (0..1)">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1230" y="628" />
+              <mxPoint x="1230" y="830" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="pg3_edge_4" edge="1" parent="1" source="pg3_Patients" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#111111;strokeWidth=2;startArrow=ERone;startFill=0;startSize=17;endArrow=ERzeroToMany;endFill=0;endSize=17;fontSize=16;fontColor=#111111;fontFamily=Arial;labelBackgroundColor=#FFFFFF;exitX=1;exitY=0.9;exitDx=0;exitDy=0;entryX=0;entryY=0.85;entryDx=0;entryDy=0;" target="pg3_Notifications" value="nhận thông báo">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1060" y="932" />
+              <mxPoint x="1060" y="936" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="pg3_edge_5" edge="1" parent="1" source="pg3_Users" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#111111;strokeWidth=2;startArrow=ERone;startFill=0;startSize=17;endArrow=ERzeroToMany;endFill=0;endSize=17;fontSize=16;fontColor=#111111;fontFamily=Arial;labelBackgroundColor=#FFFFFF;exitX=0.6;exitY=0;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="pg3_AppointmentStatusHistories" value="người thay đổi">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="300" y="148" />
+              <mxPoint x="1605" y="148" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+  <diagram id="page_4" name="3.2 - 1. Tài khoản và danh mục">
+    <mxGraphModel dx="2575" dy="1403" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1900" pageHeight="1220" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="pg4_Roles" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#111111;strokeWidth=2;fontColor=#111111;fontFamily=Arial;fontSize=20;align=left;verticalAlign=top;spacing=0;overflow=fill;shadow=0;" value="&lt;div style=&quot;font-size:21px; font-family:Arial,Helvetica,sans-serif&quot;&gt;&lt;div style=&quot;font-size:25px;text-align:center;font-weight:bold;border-bottom:2px solid #111;padding:7px 2px 10px&quot;&gt;&lt;b&gt;Roles&lt;/b&gt;&lt;/div&gt;&lt;div style=&quot;padding:10px 13px;line-height:1.36&quot;&gt;&lt;div style=&quot;padding:2px 0&quot;&gt;&lt;b&gt;Id&lt;/b&gt; &lt;span style=&quot;font-size:15px&quot;&gt;[PK]&lt;/span&gt;&lt;/div&gt;&lt;div style=&quot;padding:2px 0&quot;&gt;&lt;b&gt;Name&lt;/b&gt; &lt;span style=&quot;font-size:15px&quot;&gt;[UK]&lt;/span&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="135" width="275" x="70" y="200" as="geometry" />
+        </mxCell>
+        <mxCell id="pg4_Users" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#111111;strokeWidth=2;fontColor=#111111;fontFamily=Arial;fontSize=20;align=left;verticalAlign=top;spacing=0;overflow=fill;shadow=0;" value="&lt;div style=&quot;font-size:21px; font-family:Arial,Helvetica,sans-serif&quot;&gt;&lt;div style=&quot;font-size:25px;text-align:center;font-weight:bold;border-bottom:2px solid #111;padding:7px 2px 10px&quot;&gt;&lt;b&gt;Users&lt;/b&gt;&lt;/div&gt;&lt;div style=&quot;padding:10px 13px;line-height:1.36&quot;&gt;&lt;div style=&quot;padding:2px 0&quot;&gt;&lt;b&gt;Id&lt;/b&gt; &lt;span style=&quot;font-size:15px&quot;&gt;[PK]&lt;/span&gt;&lt;/div&gt;&lt;div style=&quot;padding:2px 0&quot;&gt;&lt;b&gt;RoleId&lt;/b&gt; &lt;span style=&quot;font-size:15px&quot;&gt;[FK]&lt;/span&gt;&lt;/div&gt;&lt;div style=&quot;padding:2px 0&quot;&gt;&lt;b&gt;Username&lt;/b&gt; &lt;span style=&quot;font-size:15px&quot;&gt;[UK]&lt;/span&gt;&lt;/div&gt;&lt;div style=&quot;padding:2px 0&quot;&gt;&lt;b&gt;Email&lt;/b&gt; &lt;span style=&quot;font-size:15px&quot;&gt;[UK]&lt;/span&gt;&lt;/div&gt;&lt;div style=&quot;padding:2px 0&quot;&gt;&lt;b&gt;PasswordHash&lt;/b&gt; &lt;/div&gt;&lt;div style=&quot;padding:2px 0&quot;&gt;&lt;b&gt;TokenVersion&lt;/b&gt; &lt;/div&gt;&lt;/div&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="270" width="385" x="445" y="150" as="geometry" />
+        </mxCell>
+        <mxCell id="pg4_Patients" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#111111;strokeWidth=2;fontColor=#111111;fontFamily=Arial;fontSize=20;align=left;verticalAlign=top;spacing=0;overflow=fill;shadow=0;" value="&lt;div style=&quot;font-size:21px; font-family:Arial,Helvetica,sans-serif&quot;&gt;&lt;div style=&quot;font-size:25px;text-align:center;font-weight:bold;border-bottom:2px solid #111;padding:7px 2px 10px&quot;&gt;&lt;b&gt;Patients&lt;/b&gt;&lt;/div&gt;&lt;div style=&quot;padding:10px 13px;line-height:1.36&quot;&gt;&lt;div style=&quot;padding:2px 0&quot;&gt;&lt;b&gt;Id&lt;/b&gt; &lt;span style=&quot;font-size:15px&quot;&gt;[PK]&lt;/span&gt;&lt;/div&gt;&lt;div style=&quot;padding:2px 0&quot;&gt;&lt;b&gt;UserId&lt;/b&gt; &lt;span style=&quot;font-size:15px&quot;&gt;[FK, UK]&lt;/span&gt;&lt;/div&gt;&lt;div style=&quot;padding:2px 0&quot;&gt;&lt;b&gt;PatientCode&lt;/b&gt; &lt;span style=&quot;font-size:15px&quot;&gt;[UK]&lt;/span&gt;&lt;/div&gt;&lt;div style=&quot;padding:2px 0&quot;&gt;&lt;b&gt;DateOfBirth&lt;/b&gt; &lt;/div&gt;&lt;div style=&quot;padding:2px 0&quot;&gt;&lt;b&gt;Gender&lt;/b&gt; &lt;/div&gt;&lt;/div&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="235" width="395" x="1170" y="100" as="geometry" />
+        </mxCell>
+        <mxCell id="pg4_Doctors" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#111111;strokeWidth=2;fontColor=#111111;fontFamily=Arial;fontSize=20;align=left;verticalAlign=top;spacing=0;overflow=fill;shadow=0;" value="&lt;div style=&quot;font-size:21px; font-family:Arial,Helvetica,sans-serif&quot;&gt;&lt;div style=&quot;font-size:25px;text-align:center;font-weight:bold;border-bottom:2px solid #111;padding:7px 2px 10px&quot;&gt;&lt;b&gt;Doctors&lt;/b&gt;&lt;/div&gt;&lt;div style=&quot;padding:10px 13px;line-height:1.36&quot;&gt;&lt;div style=&quot;padding:2px 0&quot;&gt;&lt;b&gt;Id&lt;/b&gt; &lt;span style=&quot;font-size:15px&quot;&gt;[PK]&lt;/span&gt;&lt;/div&gt;&lt;div style=&quot;padding:2px 0&quot;&gt;&lt;b&gt;UserId&lt;/b&gt; &lt;span style=&quot;font-size:15px&quot;&gt;[FK, NULL]&lt;/span&gt;&lt;/div&gt;&lt;div style=&quot;padding:2px 0&quot;&gt;&lt;b&gt;DoctorCode&lt;/b&gt; &lt;span style=&quot;font-size:15px&quot;&gt;[UK]&lt;/span&gt;&lt;/div&gt;&lt;div style=&quot;padding:2px 0&quot;&gt;&lt;b&gt;FullName&lt;/b&gt; &lt;/div&gt;&lt;div style=&quot;padding:2px 0&quot;&gt;&lt;b&gt;CreatedBy&lt;/b&gt; &lt;span style=&quot;font-size:15px&quot;&gt;[FK, NULL]&lt;/span&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="280" width="395" x="1170" y="440" as="geometry" />
+        </mxCell>
+        <mxCell id="pg4_Specialties" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#111111;strokeWidth=2;fontColor=#111111;fontFamily=Arial;fontSize=20;align=left;verticalAlign=top;spacing=0;overflow=fill;shadow=0;" value="&lt;div style=&quot;font-size:21px; font-family:Arial,Helvetica,sans-serif&quot;&gt;&lt;div style=&quot;font-size:25px;text-align:center;font-weight:bold;border-bottom:2px solid #111;padding:7px 2px 10px&quot;&gt;&lt;b&gt;Specialties&lt;/b&gt;&lt;/div&gt;&lt;div style=&quot;padding:10px 13px;line-height:1.36&quot;&gt;&lt;div style=&quot;padding:2px 0&quot;&gt;&lt;b&gt;Id&lt;/b&gt; &lt;span style=&quot;font-size:15px&quot;&gt;[PK]&lt;/span&gt;&lt;/div&gt;&lt;div style=&quot;padding:2px 0&quot;&gt;&lt;b&gt;Code&lt;/b&gt; &lt;span style=&quot;font-size:15px&quot;&gt;[UK]&lt;/span&gt;&lt;/div&gt;&lt;div style=&quot;padding:2px 0&quot;&gt;&lt;b&gt;Name&lt;/b&gt; &lt;span style=&quot;font-size:15px&quot;&gt;[UK]&lt;/span&gt;&lt;/div&gt;&lt;div style=&quot;padding:2px 0&quot;&gt;&lt;b&gt;CreatedBy&lt;/b&gt; &lt;span style=&quot;font-size:15px&quot;&gt;[FK, NULL]&lt;/span&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="215" width="385" x="460" y="815" as="geometry" />
+        </mxCell>
+        <mxCell id="pg4_DoctorSpecialties" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#111111;strokeWidth=2;fontColor=#111111;fontFamily=Arial;fontSize=20;align=left;verticalAlign=top;spacing=0;overflow=fill;shadow=0;" value="&lt;div style=&quot;font-size:21px; font-family:Arial,Helvetica,sans-serif&quot;&gt;&lt;div style=&quot;font-size:25px;text-align:center;font-weight:bold;border-bottom:2px solid #111;padding:7px 2px 10px&quot;&gt;&lt;b&gt;DoctorSpecialties&lt;/b&gt;&lt;/div&gt;&lt;div style=&quot;padding:10px 13px;line-height:1.36&quot;&gt;&lt;div style=&quot;padding:2px 0&quot;&gt;&lt;b&gt;DoctorId&lt;/b&gt; &lt;span style=&quot;font-size:15px&quot;&gt;[PK, FK]&lt;/span&gt;&lt;/div&gt;&lt;div style=&quot;padding:2px 0&quot;&gt;&lt;b&gt;SpecialtyId&lt;/b&gt; &lt;span style=&quot;font-size:15px&quot;&gt;[PK, FK]&lt;/span&gt;&lt;/div&gt;&lt;div style=&quot;padding:2px 0&quot;&gt;&lt;b&gt;IsPrimary&lt;/b&gt; &lt;/div&gt;&lt;/div&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="210" width="445" x="1140" y="825" as="geometry" />
+        </mxCell>
+        <mxCell id="pg4_edge_0" edge="1" parent="1" source="pg4_Roles" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#111111;strokeWidth=2;startArrow=ERone;startFill=0;startSize=17;endArrow=ERzeroToMany;endFill=0;endSize=17;fontSize=16;fontColor=#111111;fontFamily=Arial;labelBackgroundColor=#FFFFFF;exitX=1;exitY=0.48;exitDx=0;exitDy=0;entryX=0;entryY=0.4;entryDx=0;entryDy=0;" target="pg4_Users" value="RoleId">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="pg4_edge_1" edge="1" parent="1" source="pg4_Users" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#111111;strokeWidth=2;startArrow=ERone;startFill=0;startSize=17;endArrow=ERzeroToOne;endFill=0;endSize=17;fontSize=16;fontColor=#111111;fontFamily=Arial;labelBackgroundColor=#FFFFFF;exitX=1;exitY=0.22;exitDx=0;exitDy=0;entryX=0;entryY=0.52;entryDx=0;entryDy=0;" target="pg4_Patients" value="UserId">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="980" y="210" />
+              <mxPoint x="980" y="222" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="pg4_edge_2" edge="1" parent="1" source="pg4_Users" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#111111;strokeWidth=2;startArrow=ERzeroToOne;startFill=0;startSize=17;endArrow=ERzeroToOne;endFill=0;endSize=17;fontSize=16;fontColor=#111111;fontFamily=Arial;labelBackgroundColor=#FFFFFF;exitX=1;exitY=0.62;exitDx=0;exitDy=0;entryX=0;entryY=0.26;entryDx=0;entryDy=0;" target="pg4_Doctors" value="UserId">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="970" y="318" />
+              <mxPoint x="970" y="513" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="pg4_edge_3" edge="1" parent="1" source="pg4_Users" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#111111;strokeWidth=2;startArrow=ERzeroToOne;startFill=0;startSize=17;endArrow=ERzeroToMany;endFill=0;endSize=17;fontSize=16;fontColor=#111111;fontFamily=Arial;labelBackgroundColor=#FFFFFF;exitX=1;exitY=0.9;exitDx=0;exitDy=0;entryX=0;entryY=0.82;entryDx=0;entryDy=0;" target="pg4_Doctors" value="CreatedBy">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1010" y="395" />
+              <mxPoint x="1010" y="670" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="pg4_edge_4" edge="1" parent="1" source="pg4_Users" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#111111;strokeWidth=2;startArrow=ERzeroToOne;startFill=0;startSize=17;endArrow=ERzeroToMany;endFill=0;endSize=17;fontSize=16;fontColor=#111111;fontFamily=Arial;labelBackgroundColor=#FFFFFF;exitX=0.2;exitY=1;exitDx=0;exitDy=0;entryX=0.28;entryY=0;entryDx=0;entryDy=0;" target="pg4_Specialties" value="CreatedBy">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="522" y="620" />
+              <mxPoint x="568" y="620" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="pg4_edge_5" edge="1" parent="1" source="pg4_Doctors" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#111111;strokeWidth=2;startArrow=ERone;startFill=0;startSize=17;endArrow=ERzeroToMany;endFill=0;endSize=17;fontSize=16;fontColor=#111111;fontFamily=Arial;labelBackgroundColor=#FFFFFF;exitX=0.58;exitY=1;exitDx=0;exitDy=0;entryX=0.6;entryY=0;entryDx=0;entryDy=0;" target="pg4_DoctorSpecialties" value="DoctorId">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1400" y="772" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="pg4_edge_6" edge="1" parent="1" source="pg4_Specialties" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#111111;strokeWidth=2;startArrow=ERone;startFill=0;startSize=17;endArrow=ERzeroToMany;endFill=0;endSize=17;fontSize=16;fontColor=#111111;fontFamily=Arial;labelBackgroundColor=#FFFFFF;exitX=1;exitY=0.57;exitDx=0;exitDy=0;entryX=0;entryY=0.56;entryDx=0;entryDy=0;" target="pg4_DoctorSpecialties" value="SpecialtyId">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+  <diagram id="page_5" name="3.2 - 2. Ca làm việc và khung giờ">
+    <mxGraphModel dx="2146" dy="1169" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1900" pageHeight="1220" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="pg5_Doctors" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#111111;strokeWidth=2;fontColor=#111111;fontFamily=Arial;fontSize=20;align=left;verticalAlign=top;spacing=0;overflow=fill;shadow=0;" value="&lt;div style=&quot;font-size:21px; font-family:Arial,Helvetica,sans-serif&quot;&gt;&lt;div style=&quot;font-size:25px;text-align:center;font-weight:bold;border-bottom:2px solid #111;padding:7px 2px 10px&quot;&gt;&lt;b&gt;Doctors&lt;/b&gt; &lt;span style=&quot;font-size:14px&quot;&gt;(tham chiếu)&lt;/span&gt;&lt;/div&gt;&lt;div style=&quot;padding:10px 13px;line-height:1.36&quot;&gt;&lt;div style=&quot;padding:2px 0&quot;&gt;&lt;b&gt;Id&lt;/b&gt; &lt;span style=&quot;font-size:15px&quot;&gt;[PK]&lt;/span&gt;&lt;/div&gt;&lt;div style=&quot;padding:2px 0&quot;&gt;&lt;b&gt;DoctorCode&lt;/b&gt; &lt;span style=&quot;font-size:15px&quot;&gt;[UK]&lt;/span&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="280" width="420" x="90" y="260" as="geometry" />
+        </mxCell>
+        <mxCell id="pg5_Users" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#111111;strokeWidth=2;fontColor=#111111;fontFamily=Arial;fontSize=20;align=left;verticalAlign=top;spacing=0;overflow=fill;shadow=0;" value="&lt;div style=&quot;font-size:21px; font-family:Arial,Helvetica,sans-serif&quot;&gt;&lt;div style=&quot;font-size:25px;text-align:center;font-weight:bold;border-bottom:2px solid #111;padding:7px 2px 10px&quot;&gt;&lt;b&gt;Users&lt;/b&gt; &lt;span style=&quot;font-size:14px&quot;&gt;(tham chiếu)&lt;/span&gt;&lt;/div&gt;&lt;div style=&quot;padding:10px 13px;line-height:1.36&quot;&gt;&lt;div style=&quot;padding:2px 0&quot;&gt;&lt;b&gt;Id&lt;/b&gt; &lt;span style=&quot;font-size:15px&quot;&gt;[PK]&lt;/span&gt;&lt;/div&gt;&lt;div style=&quot;padding:2px 0&quot;&gt;&lt;b&gt;Username&lt;/b&gt; &lt;span style=&quot;font-size:15px&quot;&gt;[UK]&lt;/span&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="265" width="420" x="90" y="795" as="geometry" />
+        </mxCell>
+        <mxCell id="pg5_WorkingSchedules" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#111111;strokeWidth=2;fontColor=#111111;fontFamily=Arial;fontSize=20;align=left;verticalAlign=top;spacing=0;overflow=fill;shadow=0;" value="&lt;div style=&quot;font-size:21px; font-family:Arial,Helvetica,sans-serif&quot;&gt;&lt;div style=&quot;font-size:25px;text-align:center;font-weight:bold;border-bottom:2px solid #111;padding:7px 2px 10px&quot;&gt;&lt;b&gt;WorkingSchedules&lt;/b&gt;&lt;/div&gt;&lt;div style=&quot;padding:10px 13px;line-height:1.36&quot;&gt;&lt;div style=&quot;padding:2px 0&quot;&gt;&lt;b&gt;Id&lt;/b&gt; &lt;span style=&quot;font-size:15px&quot;&gt;[PK]&lt;/span&gt;&lt;/div&gt;&lt;div style=&quot;padding:2px 0&quot;&gt;&lt;b&gt;DoctorId&lt;/b&gt; &lt;span style=&quot;font-size:15px&quot;&gt;[FK]&lt;/span&gt;&lt;/div&gt;&lt;div style=&quot;padding:2px 0&quot;&gt;&lt;b&gt;WorkDate&lt;/b&gt; &lt;/div&gt;&lt;div style=&quot;padding:2px 0&quot;&gt;&lt;b&gt;StartTime&lt;/b&gt; &lt;/div&gt;&lt;div style=&quot;padding:2px 0&quot;&gt;&lt;b&gt;EndTime&lt;/b&gt; &lt;/div&gt;&lt;div style=&quot;padding:2px 0&quot;&gt;&lt;b&gt;CreatedBy&lt;/b&gt; &lt;span style=&quot;font-size:15px&quot;&gt;[FK, NULL]&lt;/span&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="330" width="435" x="725" y="255" as="geometry" />
+        </mxCell>
+        <mxCell id="pg5_TimeSlots" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#111111;strokeWidth=2;fontColor=#111111;fontFamily=Arial;fontSize=20;align=left;verticalAlign=top;spacing=0;overflow=fill;shadow=0;" value="&lt;div style=&quot;font-size:21px; font-family:Arial,Helvetica,sans-serif&quot;&gt;&lt;div style=&quot;font-size:25px;text-align:center;font-weight:bold;border-bottom:2px solid #111;padding:7px 2px 10px&quot;&gt;&lt;b&gt;TimeSlots&lt;/b&gt;&lt;/div&gt;&lt;div style=&quot;padding:10px 13px;line-height:1.36&quot;&gt;&lt;div style=&quot;padding:2px 0&quot;&gt;&lt;b&gt;Id&lt;/b&gt; &lt;span style=&quot;font-size:15px&quot;&gt;[PK]&lt;/span&gt;&lt;/div&gt;&lt;div style=&quot;padding:2px 0&quot;&gt;&lt;b&gt;WorkingScheduleId&lt;/b&gt; &lt;span style=&quot;font-size:15px&quot;&gt;[FK]&lt;/span&gt;&lt;/div&gt;&lt;div style=&quot;padding:2px 0&quot;&gt;&lt;b&gt;DoctorId&lt;/b&gt; &lt;span style=&quot;font-size:15px&quot;&gt;[FK]&lt;/span&gt;&lt;/div&gt;&lt;div style=&quot;padding:2px 0&quot;&gt;&lt;b&gt;SlotDate&lt;/b&gt; &lt;/div&gt;&lt;div style=&quot;padding:2px 0&quot;&gt;&lt;b&gt;StartTime&lt;/b&gt; &lt;/div&gt;&lt;div style=&quot;padding:2px 0&quot;&gt;&lt;b&gt;EndTime&lt;/b&gt; &lt;/div&gt;&lt;div style=&quot;padding:2px 0&quot;&gt;&lt;b&gt;Status&lt;/b&gt; &lt;/div&gt;&lt;div style=&quot;padding:2px 0&quot;&gt;&lt;b&gt;ClosedBy&lt;/b&gt; &lt;span style=&quot;font-size:15px&quot;&gt;[FK, NULL]&lt;/span&gt;&lt;/div&gt;&lt;div style=&quot;padding:2px 0&quot;&gt;&lt;b&gt;RowVersion&lt;/b&gt; &lt;/div&gt;&lt;/div&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="455" width="455" x="1370" y="230" as="geometry" />
+        </mxCell>
+        <mxCell id="pg5_edge_0" edge="1" parent="1" source="pg5_Doctors" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#111111;strokeWidth=2;startArrow=ERone;startFill=0;startSize=17;endArrow=ERzeroToMany;endFill=0;endSize=17;fontSize=16;fontColor=#111111;fontFamily=Arial;labelBackgroundColor=#FFFFFF;exitX=1;exitY=0.4;exitDx=0;exitDy=0;entryX=0;entryY=0.37;entryDx=0;entryDy=0;" target="pg5_WorkingSchedules" value="DoctorId">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="pg5_edge_1" edge="1" parent="1" source="pg5_WorkingSchedules" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#111111;strokeWidth=2;startArrow=ERone;startFill=0;startSize=17;endArrow=ERzeroToMany;endFill=0;endSize=17;fontSize=16;fontColor=#111111;fontFamily=Arial;labelBackgroundColor=#FFFFFF;exitX=1;exitY=0.35;exitDx=0;exitDy=0;entryX=0;entryY=0.34;entryDx=0;entryDy=0;" target="pg5_TimeSlots" value="WorkingScheduleId">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="pg5_edge_2" edge="1" parent="1" source="pg5_Doctors" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#111111;strokeWidth=2;startArrow=ERone;startFill=0;startSize=17;endArrow=ERzeroToMany;endFill=0;endSize=17;fontSize=16;fontColor=#111111;fontFamily=Arial;labelBackgroundColor=#FFFFFF;exitX=0.45;exitY=0;exitDx=0;exitDy=0;entryX=0.48;entryY=0;entryDx=0;entryDy=0;" target="pg5_TimeSlots" value="DoctorId">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="280" y="180" />
+              <mxPoint x="1588" y="180" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="pg5_edge_3" edge="1" parent="1" source="pg5_Users" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#111111;strokeWidth=2;startArrow=ERzeroToOne;startFill=0;startSize=17;endArrow=ERzeroToMany;endFill=0;endSize=17;fontSize=16;fontColor=#111111;fontFamily=Arial;labelBackgroundColor=#FFFFFF;exitX=0.8;exitY=0;exitDx=0;exitDy=0;entryX=0.55;entryY=1;entryDx=0;entryDy=0;" target="pg5_WorkingSchedules" value="CreatedBy">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="425" y="710" />
+              <mxPoint x="965" y="710" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="pg5_edge_4" edge="1" parent="1" source="pg5_Users" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#111111;strokeWidth=2;startArrow=ERzeroToOne;startFill=0;startSize=17;endArrow=ERzeroToMany;endFill=0;endSize=17;fontSize=16;fontColor=#111111;fontFamily=Arial;labelBackgroundColor=#FFFFFF;exitX=1;exitY=0.72;exitDx=0;exitDy=0;entryX=0.8;entryY=1;entryDx=0;entryDy=0;" target="pg5_TimeSlots" value="ClosedBy">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1050" y="985" />
+              <mxPoint x="1050" y="785" />
+              <mxPoint x="1734" y="785" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+  <diagram id="page_6" name="3.2 - 3. Đặt lịch khám">
+    <mxGraphModel grid="0" page="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" pageScale="1" pageWidth="1900" pageHeight="1360" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="pg6_Users" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#111111;strokeWidth=2;fontColor=#111111;fontFamily=Arial;fontSize=20;align=left;verticalAlign=top;spacing=0;overflow=fill;shadow=0;" value="&lt;div style=&quot;font-size:21px; font-family:Arial,Helvetica,sans-serif&quot;&gt;&lt;div style=&quot;font-size:25px;text-align:center;font-weight:bold;border-bottom:2px solid #111;padding:7px 2px 10px&quot;&gt;&lt;b&gt;Users&lt;/b&gt; &lt;span style=&quot;font-size:14px&quot;&gt;(tham chiếu)&lt;/span&gt;&lt;/div&gt;&lt;div style=&quot;padding:10px 13px;line-height:1.36&quot;&gt;&lt;div style=&quot;padding:2px 0&quot;&gt;&lt;b&gt;Id&lt;/b&gt; &lt;span style=&quot;font-size:15px&quot;&gt;[PK]&lt;/span&gt;&lt;/div&gt;&lt;div style=&quot;padding:2px 0&quot;&gt;&lt;b&gt;Username&lt;/b&gt; &lt;span style=&quot;font-size:15px&quot;&gt;[UK]&lt;/span&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="290" width="360" x="75" y="115" as="geometry" />
+        </mxCell>
+        <mxCell id="pg6_Patients" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#111111;strokeWidth=2;fontColor=#111111;fontFamily=Arial;fontSize=20;align=left;verticalAlign=top;spacing=0;overflow=fill;shadow=0;" value="&lt;div style=&quot;font-size:21px; font-family:Arial,Helvetica,sans-serif&quot;&gt;&lt;div style=&quot;font-size:25px;text-align:center;font-weight:bold;border-bottom:2px solid #111;padding:7px 2px 10px&quot;&gt;&lt;b&gt;Patients&lt;/b&gt; &lt;span style=&quot;font-size:14px&quot;&gt;(tham chiếu)&lt;/span&gt;&lt;/div&gt;&lt;div style=&quot;padding:10px 13px;line-height:1.36&quot;&gt;&lt;div style=&quot;padding:2px 0&quot;&gt;&lt;b&gt;Id&lt;/b&gt; &lt;span style=&quot;font-size:15px&quot;&gt;[PK]&lt;/span&gt;&lt;/div&gt;&lt;div style=&quot;padding:2px 0&quot;&gt;&lt;b&gt;PatientCode&lt;/b&gt; &lt;span style=&quot;font-size:15px&quot;&gt;[UK]&lt;/span&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="255" width="360" x="70" y="540" as="geometry" />
+        </mxCell>
+        <mxCell id="pg6_Doctors" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#111111;strokeWidth=2;fontColor=#111111;fontFamily=Arial;fontSize=20;align=left;verticalAlign=top;spacing=0;overflow=fill;shadow=0;" value="&lt;div style=&quot;font-size:21px; font-family:Arial,Helvetica,sans-serif&quot;&gt;&lt;div style=&quot;font-size:25px;text-align:center;font-weight:bold;border-bottom:2px solid #111;padding:7px 2px 10px&quot;&gt;&lt;b&gt;Doctors&lt;/b&gt; &lt;span style=&quot;font-size:14px&quot;&gt;(tham chiếu)&lt;/span&gt;&lt;/div&gt;&lt;div style=&quot;padding:10px 13px;line-height:1.36&quot;&gt;&lt;div style=&quot;padding:2px 0&quot;&gt;&lt;b&gt;Id&lt;/b&gt; &lt;span style=&quot;font-size:15px&quot;&gt;[PK]&lt;/span&gt;&lt;/div&gt;&lt;div style=&quot;padding:2px 0&quot;&gt;&lt;b&gt;DoctorCode&lt;/b&gt; &lt;span style=&quot;font-size:15px&quot;&gt;[UK]&lt;/span&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="270" width="355" x="530" y="115" as="geometry" />
+        </mxCell>
+        <mxCell id="pg6_Specialties" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#111111;strokeWidth=2;fontColor=#111111;fontFamily=Arial;fontSize=20;align=left;verticalAlign=top;spacing=0;overflow=fill;shadow=0;" value="&lt;div style=&quot;font-size:21px; font-family:Arial,Helvetica,sans-serif&quot;&gt;&lt;div style=&quot;font-size:25px;text-align:center;font-weight:bold;border-bottom:2px solid #111;padding:7px 2px 10px&quot;&gt;&lt;b&gt;Specialties&lt;/b&gt; &lt;span style=&quot;font-size:14px&quot;&gt;(tham chiếu)&lt;/span&gt;&lt;/div&gt;&lt;div style=&quot;padding:10px 13px;line-height:1.36&quot;&gt;&lt;div style=&quot;padding:2px 0&quot;&gt;&lt;b&gt;Id&lt;/b&gt; &lt;span style=&quot;font-size:15px&quot;&gt;[PK]&lt;/span&gt;&lt;/div&gt;&lt;div style=&quot;padding:2px 0&quot;&gt;&lt;b&gt;Code&lt;/b&gt; &lt;span style=&quot;font-size:15px&quot;&gt;[UK]&lt;/span&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="210" width="340" x="250" y="910" as="geometry" />
+        </mxCell>
+        <mxCell id="pg6_TimeSlots" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#111111;strokeWidth=2;fontColor=#111111;fontFamily=Arial;fontSize=20;align=left;verticalAlign=top;spacing=0;overflow=fill;shadow=0;" value="&lt;div style=&quot;font-size:21px; font-family:Arial,Helvetica,sans-serif&quot;&gt;&lt;div style=&quot;font-size:25px;text-align:center;font-weight:bold;border-bottom:2px solid #111;padding:7px 2px 10px&quot;&gt;&lt;b&gt;TimeSlots&lt;/b&gt; &lt;span style=&quot;font-size:14px&quot;&gt;(tham chiếu)&lt;/span&gt;&lt;/div&gt;&lt;div style=&quot;padding:10px 13px;line-height:1.36&quot;&gt;&lt;div style=&quot;padding:2px 0&quot;&gt;&lt;b&gt;Id&lt;/b&gt; &lt;span style=&quot;font-size:15px&quot;&gt;[PK]&lt;/span&gt;&lt;/div&gt;&lt;div style=&quot;padding:2px 0&quot;&gt;&lt;b&gt;WorkingScheduleId&lt;/b&gt; &lt;span style=&quot;font-size:15px&quot;&gt;[FK]&lt;/span&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="370" width="370" x="1470" y="120" as="geometry" />
+        </mxCell>
+        <mxCell id="pg6_Appointments" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#111111;strokeWidth=2;fontColor=#111111;fontFamily=Arial;fontSize=20;align=left;verticalAlign=top;spacing=0;overflow=fill;shadow=0;" value="&lt;div style=&quot;font-size:21px; font-family:Arial,Helvetica,sans-serif&quot;&gt;&lt;div style=&quot;font-size:25px;text-align:center;font-weight:bold;border-bottom:2px solid #111;padding:7px 2px 10px&quot;&gt;&lt;b&gt;Appointments&lt;/b&gt;&lt;/div&gt;&lt;div style=&quot;padding:10px 13px;line-height:1.36&quot;&gt;&lt;div style=&quot;padding:2px 0&quot;&gt;&lt;b&gt;Id&lt;/b&gt; &lt;span style=&quot;font-size:15px&quot;&gt;[PK]&lt;/span&gt;&lt;/div&gt;&lt;div style=&quot;padding:2px 0&quot;&gt;&lt;b&gt;AppointmentCode&lt;/b&gt; &lt;span style=&quot;font-size:15px&quot;&gt;[UK]&lt;/span&gt;&lt;/div&gt;&lt;div style=&quot;padding:2px 0&quot;&gt;&lt;b&gt;PatientId&lt;/b&gt; &lt;span style=&quot;font-size:15px&quot;&gt;[FK]&lt;/span&gt;&lt;/div&gt;&lt;div style=&quot;padding:2px 0&quot;&gt;&lt;b&gt;DoctorId&lt;/b&gt; &lt;span style=&quot;font-size:15px&quot;&gt;[FK]&lt;/span&gt;&lt;/div&gt;&lt;div style=&quot;padding:2px 0&quot;&gt;&lt;b&gt;SpecialtyId&lt;/b&gt; &lt;span style=&quot;font-size:15px&quot;&gt;[FK]&lt;/span&gt;&lt;/div&gt;&lt;div style=&quot;padding:2px 0&quot;&gt;&lt;b&gt;TimeSlotId&lt;/b&gt; &lt;span style=&quot;font-size:15px&quot;&gt;[FK]&lt;/span&gt;&lt;/div&gt;&lt;div style=&quot;padding:2px 0&quot;&gt;&lt;b&gt;AppointmentDate&lt;/b&gt; &lt;/div&gt;&lt;div style=&quot;padding:2px 0&quot;&gt;&lt;b&gt;StartTime&lt;/b&gt; &lt;/div&gt;&lt;div style=&quot;padding:2px 0&quot;&gt;&lt;b&gt;EndTime&lt;/b&gt; &lt;/div&gt;&lt;div style=&quot;padding:2px 0&quot;&gt;&lt;b&gt;Status&lt;/b&gt; &lt;/div&gt;&lt;div style=&quot;padding:2px 0&quot;&gt;&lt;b&gt;BookedBy&lt;/b&gt; &lt;span style=&quot;font-size:15px&quot;&gt;[FK]&lt;/span&gt;&lt;/div&gt;&lt;div style=&quot;padding:2px 0&quot;&gt;&lt;b&gt;CheckedInBy&lt;/b&gt; &lt;span style=&quot;font-size:15px&quot;&gt;[FK, NULL]&lt;/span&gt;&lt;/div&gt;&lt;div style=&quot;padding:2px 0&quot;&gt;&lt;b&gt;MarkedNoShowBy&lt;/b&gt; &lt;span style=&quot;font-size:15px&quot;&gt;[FK, NULL]&lt;/span&gt;&lt;/div&gt;&lt;div style=&quot;padding:2px 0&quot;&gt;&lt;b&gt;RequestKey&lt;/b&gt; &lt;span style=&quot;font-size:15px&quot;&gt;[NULL]&lt;/span&gt;&lt;/div&gt;&lt;div style=&quot;padding:2px 0&quot;&gt;&lt;b&gt;RequestFingerprint&lt;/b&gt; &lt;span style=&quot;font-size:15px&quot;&gt;[NULL]&lt;/span&gt;&lt;/div&gt;&lt;div style=&quot;padding:2px 0&quot;&gt;&lt;b&gt;RowVersion&lt;/b&gt; &lt;/div&gt;&lt;/div&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="710" width="435" x="980" y="355" as="geometry" />
+        </mxCell>
+        <mxCell id="pg6_edge_0" edge="1" parent="1" source="pg6_Users" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#111111;strokeWidth=2;startArrow=ERone;startFill=0;startSize=17;endArrow=ERzeroToMany;endFill=0;endSize=17;fontSize=16;fontColor=#111111;fontFamily=Arial;labelBackgroundColor=#FFFFFF;exitX=1;exitY=0.68;exitDx=0;exitDy=0;entryX=0;entryY=0.15;entryDx=0;entryDy=0;" target="pg6_Appointments" value="BookedBy / CheckedInBy / MarkedNoShowBy (3 FK)">
+          <mxGeometry relative="1" x="-0.0004" as="geometry">
+            <Array as="points">
+              <mxPoint x="480" y="312.2" />
+              <mxPoint x="480" y="461.5" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="pg6_edge_1" edge="1" parent="1" source="pg6_Patients" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#111111;strokeWidth=2;startArrow=ERone;startFill=0;startSize=17;endArrow=ERzeroToMany;endFill=0;endSize=17;fontSize=16;fontColor=#111111;fontFamily=Arial;labelBackgroundColor=#FFFFFF;exitX=1;exitY=0.34;exitDx=0;exitDy=0;entryX=0;entryY=0.4;entryDx=0;entryDy=0;" target="pg6_Appointments" value="PatientId">
+          <mxGeometry relative="1" x="-0.0254" as="geometry">
+            <Array as="points">
+              <mxPoint x="570" y="626.7" />
+              <mxPoint x="570" y="639" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="pg6_edge_2" edge="1" parent="1" source="pg6_Doctors" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#111111;strokeWidth=2;startArrow=ERone;startFill=0;startSize=17;endArrow=ERzeroToMany;endFill=0;endSize=17;fontSize=16;fontColor=#111111;fontFamily=Arial;labelBackgroundColor=#FFFFFF;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0.3;entryY=0;entryDx=0;entryDy=0;" target="pg6_Appointments" value="DoctorId">
+          <mxGeometry relative="1" x="0.366" as="geometry" />
+        </mxCell>
+        <mxCell id="pg6_edge_3" edge="1" parent="1" source="pg6_Specialties" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#111111;strokeWidth=2;startArrow=ERone;startFill=0;startSize=17;endArrow=ERzeroToMany;endFill=0;endSize=17;fontSize=16;fontColor=#111111;fontFamily=Arial;labelBackgroundColor=#FFFFFF;exitX=1;exitY=0.45;exitDx=0;exitDy=0;entryX=0;entryY=0.87;entryDx=0;entryDy=0;" target="pg6_Appointments" value="SpecialtyId">
+          <mxGeometry relative="1" x="0.0431" as="geometry">
+            <Array as="points">
+              <mxPoint x="810" y="1004.5" />
+              <mxPoint x="810" y="972.7" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="pg6_edge_4" edge="1" parent="1" source="pg6_TimeSlots" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#111111;strokeWidth=2;startArrow=ERone;startFill=0;startSize=17;endArrow=ERzeroToMany;endFill=0;endSize=17;fontSize=16;fontColor=#111111;fontFamily=Arial;labelBackgroundColor=#FFFFFF;exitX=0.4;exitY=1;exitDx=0;exitDy=0;entryX=1;entryY=0.27;entryDx=0;entryDy=0;" target="pg6_Appointments" value="TimeSlotId">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1618" y="546" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+  <diagram id="page_7" name="3.2 - 4. Lịch sử và audit">
+    <mxGraphModel dx="2239" dy="1220" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1900" pageHeight="1220" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="pg7_Users" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#111111;strokeWidth=2;fontColor=#111111;fontFamily=Arial;fontSize=20;align=left;verticalAlign=top;spacing=0;overflow=fill;shadow=0;" value="&lt;div style=&quot;font-size:21px; font-family:Arial,Helvetica,sans-serif&quot;&gt;&lt;div style=&quot;font-size:25px;text-align:center;font-weight:bold;border-bottom:2px solid #111;padding:7px 2px 10px&quot;&gt;&lt;b&gt;Users&lt;/b&gt; &lt;span style=&quot;font-size:14px&quot;&gt;(tham chiếu)&lt;/span&gt;&lt;/div&gt;&lt;div style=&quot;padding:10px 13px;line-height:1.36&quot;&gt;&lt;div style=&quot;padding:2px 0&quot;&gt;&lt;b&gt;Id&lt;/b&gt; &lt;span style=&quot;font-size:15px&quot;&gt;[PK]&lt;/span&gt;&lt;/div&gt;&lt;div style=&quot;padding:2px 0&quot;&gt;&lt;b&gt;Username&lt;/b&gt; &lt;span style=&quot;font-size:15px&quot;&gt;[UK]&lt;/span&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="265" width="410" x="80" y="235" as="geometry" />
+        </mxCell>
+        <mxCell id="pg7_Appointments" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#111111;strokeWidth=2;fontColor=#111111;fontFamily=Arial;fontSize=20;align=left;verticalAlign=top;spacing=0;overflow=fill;shadow=0;" value="&lt;div style=&quot;font-size:21px; font-family:Arial,Helvetica,sans-serif&quot;&gt;&lt;div style=&quot;font-size:25px;text-align:center;font-weight:bold;border-bottom:2px solid #111;padding:7px 2px 10px&quot;&gt;&lt;b&gt;Appointments&lt;/b&gt; &lt;span style=&quot;font-size:14px&quot;&gt;(tham chiếu)&lt;/span&gt;&lt;/div&gt;&lt;div style=&quot;padding:10px 13px;line-height:1.36&quot;&gt;&lt;div style=&quot;padding:2px 0&quot;&gt;&lt;b&gt;Id&lt;/b&gt; &lt;span style=&quot;font-size:15px&quot;&gt;[PK]&lt;/span&gt;&lt;/div&gt;&lt;div style=&quot;padding:2px 0&quot;&gt;&lt;b&gt;Status&lt;/b&gt; &lt;/div&gt;&lt;/div&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="305" width="455" x="640" y="99" as="geometry" />
+        </mxCell>
+        <mxCell id="pg7_AppointmentStatusHistories" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#111111;strokeWidth=2;fontColor=#111111;fontFamily=Arial;fontSize=20;align=left;verticalAlign=top;spacing=0;overflow=fill;shadow=0;" value="&lt;div style=&quot;font-size:21px; font-family:Arial,Helvetica,sans-serif&quot;&gt;&lt;div style=&quot;font-size:25px;text-align:center;font-weight:bold;border-bottom:2px solid #111;padding:7px 2px 10px&quot;&gt;&lt;b&gt;AppointmentStatusHistories&lt;/b&gt;&lt;/div&gt;&lt;div style=&quot;padding:10px 13px;line-height:1.36&quot;&gt;&lt;div style=&quot;padding:2px 0&quot;&gt;&lt;b&gt;Id&lt;/b&gt; &lt;span style=&quot;font-size:15px&quot;&gt;[PK]&lt;/span&gt;&lt;/div&gt;&lt;div style=&quot;padding:2px 0&quot;&gt;&lt;b&gt;AppointmentId&lt;/b&gt; &lt;span style=&quot;font-size:15px&quot;&gt;[FK]&lt;/span&gt;&lt;/div&gt;&lt;div style=&quot;padding:2px 0&quot;&gt;&lt;b&gt;ChangedBy&lt;/b&gt; &lt;span style=&quot;font-size:15px&quot;&gt;[FK]&lt;/span&gt;&lt;/div&gt;&lt;div style=&quot;padding:2px 0&quot;&gt;&lt;b&gt;OldStatus&lt;/b&gt; &lt;span style=&quot;font-size:15px&quot;&gt;[NULL]&lt;/span&gt;&lt;/div&gt;&lt;div style=&quot;padding:2px 0&quot;&gt;&lt;b&gt;NewStatus&lt;/b&gt; &lt;/div&gt;&lt;div style=&quot;padding:2px 0&quot;&gt;&lt;b&gt;OldTimeSlotId&lt;/b&gt; &lt;span style=&quot;font-size:15px&quot;&gt;[no FK]&lt;/span&gt;&lt;/div&gt;&lt;div style=&quot;padding:2px 0&quot;&gt;&lt;b&gt;NewTimeSlotId&lt;/b&gt; &lt;span style=&quot;font-size:15px&quot;&gt;[no FK]&lt;/span&gt;&lt;/div&gt;&lt;div style=&quot;padding:2px 0&quot;&gt;&lt;b&gt;ChangedAt&lt;/b&gt; &lt;/div&gt;&lt;/div&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="435" width="505" x="1280" y="183" as="geometry" />
+        </mxCell>
+        <mxCell id="pg7_AuditLogs" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#111111;strokeWidth=2;fontColor=#111111;fontFamily=Arial;fontSize=20;align=left;verticalAlign=top;spacing=0;overflow=fill;shadow=0;" value="&lt;div style=&quot;font-size:21px; font-family:Arial,Helvetica,sans-serif&quot;&gt;&lt;div style=&quot;font-size:25px;text-align:center;font-weight:bold;border-bottom:2px solid #111;padding:7px 2px 10px&quot;&gt;&lt;b&gt;AuditLogs&lt;/b&gt;&lt;/div&gt;&lt;div style=&quot;padding:10px 13px;line-height:1.36&quot;&gt;&lt;div style=&quot;padding:2px 0&quot;&gt;&lt;b&gt;Id&lt;/b&gt; &lt;span style=&quot;font-size:15px&quot;&gt;[PK]&lt;/span&gt;&lt;/div&gt;&lt;div style=&quot;padding:2px 0&quot;&gt;&lt;b&gt;UserId&lt;/b&gt; &lt;span style=&quot;font-size:15px&quot;&gt;[FK, NULL]&lt;/span&gt;&lt;/div&gt;&lt;div style=&quot;padding:2px 0&quot;&gt;&lt;b&gt;EntityType&lt;/b&gt; &lt;/div&gt;&lt;div style=&quot;padding:2px 0&quot;&gt;&lt;b&gt;EntityId&lt;/b&gt; &lt;span style=&quot;font-size:15px&quot;&gt;[no FK]&lt;/span&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="255" width="450" x="399" y="749" as="geometry" />
+        </mxCell>
+        <mxCell id="pg7_edge_0" edge="1" parent="1" source="pg7_Appointments" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#111111;strokeWidth=2;startArrow=ERone;startFill=0;startSize=17;endArrow=ERzeroToMany;endFill=0;endSize=17;fontSize=16;fontColor=#111111;fontFamily=Arial;labelBackgroundColor=#FFFFFF;exitX=1;exitY=0.35;exitDx=0;exitDy=0;entryX=0;entryY=0.38;entryDx=0;entryDy=0;" target="pg7_AppointmentStatusHistories" value="AppointmentId">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="pg7_edge_1" edge="1" parent="1" source="pg7_Users" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#111111;strokeWidth=2;startArrow=ERone;startFill=0;startSize=17;endArrow=ERzeroToMany;endFill=0;endSize=17;fontSize=16;fontColor=#111111;fontFamily=Arial;labelBackgroundColor=#FFFFFF;exitX=1;exitY=0.75;exitDx=0;exitDy=0;entryX=0;entryY=0.82;entryDx=0;entryDy=0;" target="pg7_AppointmentStatusHistories" value="ChangedBy">
+          <mxGeometry relative="1" x="-0.0555" as="geometry">
+            <Array as="points">
+              <mxPoint x="564.5" y="433.8" />
+              <mxPoint x="564.5" y="539.7" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="pg7_edge_2" edge="1" parent="1" source="pg7_Users" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#111111;strokeWidth=2;startArrow=ERzeroToOne;startFill=0;startSize=17;endArrow=ERzeroToMany;endFill=0;endSize=17;fontSize=16;fontColor=#111111;fontFamily=Arial;labelBackgroundColor=#FFFFFF;exitX=0.25;exitY=1;exitDx=0;exitDy=0;entryX=0;entryY=0.45;entryDx=0;entryDy=0;" target="pg7_AuditLogs" value="UserId">
+          <mxGeometry relative="1" x="-0.1888" as="geometry">
+            <mxPoint as="offset" />
+            <Array as="points">
+              <mxPoint x="182.5" y="865" />
+              <mxPoint x="194" y="865" />
+              <mxPoint x="194" y="863.8" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+  <diagram id="page_8" name="3.2 - 5. Thông báo và outbox">
+    <mxGraphModel grid="0" page="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" pageScale="1" pageWidth="1900" pageHeight="1220" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="pg8_Patients" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#111111;strokeWidth=2;fontColor=#111111;fontFamily=Arial;fontSize=20;align=left;verticalAlign=top;spacing=0;overflow=fill;shadow=0;" value="&lt;div style=&quot;font-size:21px; font-family:Arial,Helvetica,sans-serif&quot;&gt;&lt;div style=&quot;font-size:25px;text-align:center;font-weight:bold;border-bottom:2px solid #111;padding:7px 2px 10px&quot;&gt;&lt;b&gt;Patients&lt;/b&gt; &lt;span style=&quot;font-size:14px&quot;&gt;(tham chiếu)&lt;/span&gt;&lt;/div&gt;&lt;div style=&quot;padding:10px 13px;line-height:1.36&quot;&gt;&lt;div style=&quot;padding:2px 0&quot;&gt;&lt;b&gt;Id&lt;/b&gt; &lt;span style=&quot;font-size:15px&quot;&gt;[PK]&lt;/span&gt;&lt;/div&gt;&lt;div style=&quot;padding:2px 0&quot;&gt;&lt;b&gt;PatientCode&lt;/b&gt; &lt;span style=&quot;font-size:15px&quot;&gt;[UK]&lt;/span&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="265" width="415" x="85" y="180" as="geometry" />
+        </mxCell>
+        <mxCell id="pg8_Appointments" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#111111;strokeWidth=2;fontColor=#111111;fontFamily=Arial;fontSize=20;align=left;verticalAlign=top;spacing=0;overflow=fill;shadow=0;" value="&lt;div style=&quot;font-size:21px; font-family:Arial,Helvetica,sans-serif&quot;&gt;&lt;div style=&quot;font-size:25px;text-align:center;font-weight:bold;border-bottom:2px solid #111;padding:7px 2px 10px&quot;&gt;&lt;b&gt;Appointments&lt;/b&gt; &lt;span style=&quot;font-size:14px&quot;&gt;(tham chiếu)&lt;/span&gt;&lt;/div&gt;&lt;div style=&quot;padding:10px 13px;line-height:1.36&quot;&gt;&lt;div style=&quot;padding:2px 0&quot;&gt;&lt;b&gt;Id&lt;/b&gt; &lt;span style=&quot;font-size:15px&quot;&gt;[PK]&lt;/span&gt;&lt;/div&gt;&lt;div style=&quot;padding:2px 0&quot;&gt;&lt;b&gt;Status&lt;/b&gt; &lt;/div&gt;&lt;/div&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="300" width="460" x="1020" y="660" as="geometry" />
+        </mxCell>
+        <mxCell id="pg8_Notifications" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#111111;strokeWidth=2;fontColor=#111111;fontFamily=Arial;fontSize=20;align=left;verticalAlign=top;spacing=0;overflow=fill;shadow=0;" value="&lt;div style=&quot;font-size:21px; font-family:Arial,Helvetica,sans-serif&quot;&gt;&lt;div style=&quot;font-size:25px;text-align:center;font-weight:bold;border-bottom:2px solid #111;padding:7px 2px 10px&quot;&gt;&lt;b&gt;Notifications&lt;/b&gt;&lt;/div&gt;&lt;div style=&quot;padding:10px 13px;line-height:1.36&quot;&gt;&lt;div style=&quot;padding:2px 0&quot;&gt;&lt;b&gt;Id&lt;/b&gt; &lt;span style=&quot;font-size:15px&quot;&gt;[PK]&lt;/span&gt;&lt;/div&gt;&lt;div style=&quot;padding:2px 0&quot;&gt;&lt;b&gt;PatientId&lt;/b&gt; &lt;span style=&quot;font-size:15px&quot;&gt;[FK]&lt;/span&gt;&lt;/div&gt;&lt;div style=&quot;padding:2px 0&quot;&gt;&lt;b&gt;AppointmentId&lt;/b&gt; &lt;span style=&quot;font-size:15px&quot;&gt;[FK, NULL]&lt;/span&gt;&lt;/div&gt;&lt;div style=&quot;padding:2px 0&quot;&gt;&lt;b&gt;OutboxId&lt;/b&gt; &lt;span style=&quot;font-size:15px&quot;&gt;[no FK, NULL]&lt;/span&gt;&lt;/div&gt;&lt;div style=&quot;padding:2px 0&quot;&gt;&lt;b&gt;Type&lt;/b&gt; &lt;/div&gt;&lt;div style=&quot;padding:2px 0&quot;&gt;&lt;b&gt;IsRead&lt;/b&gt; &lt;/div&gt;&lt;/div&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="340" width="500" x="1190" y="150" as="geometry" />
+        </mxCell>
+        <mxCell id="pg8_NotificationOutbox" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#111111;strokeWidth=2;fontColor=#111111;fontFamily=Arial;fontSize=20;align=left;verticalAlign=top;spacing=0;overflow=fill;shadow=0;" value="&lt;div style=&quot;font-size:21px; font-family:Arial,Helvetica,sans-serif&quot;&gt;&lt;div style=&quot;font-size:25px;text-align:center;font-weight:bold;border-bottom:2px solid #111;padding:7px 2px 10px&quot;&gt;&lt;b&gt;NotificationOutbox&lt;/b&gt;&lt;/div&gt;&lt;div style=&quot;padding:10px 13px;line-height:1.36&quot;&gt;&lt;div style=&quot;padding:2px 0&quot;&gt;&lt;b&gt;Id&lt;/b&gt; &lt;span style=&quot;font-size:15px&quot;&gt;[PK]&lt;/span&gt;&lt;/div&gt;&lt;div style=&quot;padding:2px 0&quot;&gt;&lt;b&gt;PatientId&lt;/b&gt; &lt;span style=&quot;font-size:15px&quot;&gt;[FK]&lt;/span&gt;&lt;/div&gt;&lt;div style=&quot;padding:2px 0&quot;&gt;&lt;b&gt;AppointmentId&lt;/b&gt; &lt;span style=&quot;font-size:15px&quot;&gt;[FK]&lt;/span&gt;&lt;/div&gt;&lt;div style=&quot;padding:2px 0&quot;&gt;&lt;b&gt;ScheduledFor&lt;/b&gt; &lt;/div&gt;&lt;div style=&quot;padding:2px 0&quot;&gt;&lt;b&gt;DeliveredAt&lt;/b&gt; &lt;span style=&quot;font-size:15px&quot;&gt;[NULL]&lt;/span&gt;&lt;/div&gt;&lt;div style=&quot;padding:2px 0&quot;&gt;&lt;b&gt;SuppressedAt&lt;/b&gt; &lt;span style=&quot;font-size:15px&quot;&gt;[NULL]&lt;/span&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="350" width="500" x="50" y="670" as="geometry" />
+        </mxCell>
+        <mxCell id="pg8_edge_0" edge="1" parent="1" source="pg8_Patients" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#111111;strokeWidth=2;startArrow=ERone;startFill=0;startSize=17;endArrow=ERzeroToMany;endFill=0;endSize=17;fontSize=16;fontColor=#111111;fontFamily=Arial;labelBackgroundColor=#FFFFFF;exitX=1;exitY=0.42;exitDx=0;exitDy=0;entryX=0;entryY=0.36;entryDx=0;entryDy=0;" target="pg8_Notifications" value="PatientId">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="pg8_edge_1" edge="1" parent="1" source="pg8_Appointments" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#111111;strokeWidth=2;startArrow=ERzeroToOne;startFill=0;startSize=17;endArrow=ERzeroToMany;endFill=0;endSize=17;fontSize=16;fontColor=#111111;fontFamily=Arial;labelBackgroundColor=#FFFFFF;exitX=0;exitY=0.25;exitDx=0;exitDy=0;entryX=0;entryY=0.83;entryDx=0;entryDy=0;" target="pg8_Notifications" value="AppointmentId">
+          <mxGeometry relative="1" x="-0.2507" as="geometry">
+            <Array as="points">
+              <mxPoint x="840" y="735" />
+              <mxPoint x="840" y="432.2" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="pg8_edge_2" edge="1" parent="1" source="pg8_Patients" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#111111;strokeWidth=2;startArrow=ERone;startFill=0;startSize=17;endArrow=ERzeroToMany;endFill=0;endSize=17;fontSize=16;fontColor=#111111;fontFamily=Arial;labelBackgroundColor=#FFFFFF;exitX=0.34;exitY=1;exitDx=0;exitDy=0;entryX=0.25;entryY=0;entryDx=0;entryDy=0;" target="pg8_NotificationOutbox" value="PatientId">
+          <mxGeometry relative="1" x="-0.2539" as="geometry">
+            <Array as="points">
+              <mxPoint x="226.1" y="570" />
+              <mxPoint x="175" y="570" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="pg8_edge_3" edge="1" parent="1" source="pg8_Appointments" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#111111;strokeWidth=2;startArrow=ERone;startFill=0;startSize=17;endArrow=ERzeroToMany;endFill=0;endSize=17;fontSize=16;fontColor=#111111;fontFamily=Arial;labelBackgroundColor=#FFFFFF;exitX=-0.007;exitY=0.799;exitDx=0;exitDy=0;entryX=1.001;entryY=0.626;entryDx=0;entryDy=0;entryPerimeter=0;exitPerimeter=0;" target="pg8_NotificationOutbox" value="AppointmentId">
+          <mxGeometry relative="1" x="0.1633" as="geometry">
+            <mxPoint as="offset" />
+            <Array as="points">
+              <mxPoint x="880" y="899.7" />
+              <mxPoint x="880" y="889.1" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+  <diagram id="page_9" name="3.3 - 1. Tài khoản và danh mục">
+    <mxGraphModel dx="2060" dy="1122" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1900" pageHeight="1220" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="pg9_Roles" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#111111;strokeWidth=2;fontColor=#111111;fontFamily=Arial;fontSize=20;align=left;verticalAlign=top;spacing=0;overflow=fill;shadow=0;" value="&lt;div style=&quot;font-size:21px; font-family:Arial,Helvetica,sans-serif&quot;&gt;&lt;div style=&quot;font-size:25px;text-align:center;font-weight:bold;border-bottom:2px solid #111;padding:7px 2px 10px&quot;&gt;&lt;b&gt;Roles&lt;/b&gt;&lt;/div&gt;&lt;div style=&quot;padding:10px 13px;line-height:1.36&quot;&gt;&lt;div style=&quot;padding:2px 0&quot;&gt;&lt;b&gt;Id&lt;/b&gt;: int &lt;span style=&quot;font-size:14px&quot;&gt;[PK]&lt;/span&gt;&lt;/div&gt;&lt;div style=&quot;padding:2px 0&quot;&gt;&lt;b&gt;Name&lt;/b&gt;: nvarchar(50) &lt;span style=&quot;font-size:14px&quot;&gt;[UK]&lt;/span&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="135" width="275" x="59" y="347" as="geometry" />
+        </mxCell>
+        <mxCell id="pg9_Users" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#111111;strokeWidth=2;fontColor=#111111;fontFamily=Arial;fontSize=20;align=left;verticalAlign=top;spacing=0;overflow=fill;shadow=0;" value="&lt;div style=&quot;font-size:21px; font-family:Arial,Helvetica,sans-serif&quot;&gt;&lt;div style=&quot;font-size:25px;text-align:center;font-weight:bold;border-bottom:2px solid #111;padding:7px 2px 10px&quot;&gt;&lt;b&gt;Users&lt;/b&gt;&lt;/div&gt;&lt;div style=&quot;padding:10px 13px;line-height:1.36&quot;&gt;&lt;div style=&quot;padding:2px 0&quot;&gt;&lt;b&gt;Id&lt;/b&gt;: uniqueidentifier &lt;span style=&quot;font-size:14px&quot;&gt;[PK]&lt;/span&gt;&lt;/div&gt;&lt;div style=&quot;padding:2px 0&quot;&gt;&lt;b&gt;RoleId&lt;/b&gt;: int &lt;span style=&quot;font-size:14px&quot;&gt;[FK]&lt;/span&gt;&lt;/div&gt;&lt;div style=&quot;padding:2px 0&quot;&gt;&lt;b&gt;Username&lt;/b&gt;: nvarchar(50) &lt;span style=&quot;font-size:14px&quot;&gt;[UK]&lt;/span&gt;&lt;/div&gt;&lt;div style=&quot;padding:2px 0&quot;&gt;&lt;b&gt;Email&lt;/b&gt;: nvarchar(100) &lt;span style=&quot;font-size:14px&quot;&gt;[UK]&lt;/span&gt;&lt;/div&gt;&lt;div style=&quot;padding:2px 0&quot;&gt;&lt;b&gt;PasswordHash&lt;/b&gt;: nvarchar(256)&lt;/div&gt;&lt;div style=&quot;padding:2px 0&quot;&gt;&lt;b&gt;TokenVersion&lt;/b&gt;: int&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="270" width="385" x="445" y="150" as="geometry" />
+        </mxCell>
+        <mxCell id="pg9_Patients" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#111111;strokeWidth=2;fontColor=#111111;fontFamily=Arial;fontSize=20;align=left;verticalAlign=top;spacing=0;overflow=fill;shadow=0;" value="&lt;div style=&quot;font-size:21px; font-family:Arial,Helvetica,sans-serif&quot;&gt;&lt;div style=&quot;font-size:25px;text-align:center;font-weight:bold;border-bottom:2px solid #111;padding:7px 2px 10px&quot;&gt;&lt;b&gt;Patients&lt;/b&gt;&lt;/div&gt;&lt;div style=&quot;padding:10px 13px;line-height:1.36&quot;&gt;&lt;div style=&quot;padding:2px 0&quot;&gt;&lt;b&gt;Id&lt;/b&gt;: uniqueidentifier &lt;span style=&quot;font-size:14px&quot;&gt;[PK]&lt;/span&gt;&lt;/div&gt;&lt;div style=&quot;padding:2px 0&quot;&gt;&lt;b&gt;UserId&lt;/b&gt;: uniqueidentifier &lt;span style=&quot;font-size:14px&quot;&gt;[FK, UK]&lt;/span&gt;&lt;/div&gt;&lt;div style=&quot;padding:2px 0&quot;&gt;&lt;b&gt;PatientCode&lt;/b&gt;: nvarchar(20) &lt;span style=&quot;font-size:14px&quot;&gt;[UK]&lt;/span&gt;&lt;/div&gt;&lt;div style=&quot;padding:2px 0&quot;&gt;&lt;b&gt;DateOfBirth&lt;/b&gt;: date&lt;/div&gt;&lt;div style=&quot;padding:2px 0&quot;&gt;&lt;b&gt;Gender&lt;/b&gt;: tinyint&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="235" width="395" x="1170" y="100" as="geometry" />
+        </mxCell>
+        <mxCell id="pg9_Doctors" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#111111;strokeWidth=2;fontColor=#111111;fontFamily=Arial;fontSize=20;align=left;verticalAlign=top;spacing=0;overflow=fill;shadow=0;" value="&lt;div style=&quot;font-size:21px; font-family:Arial,Helvetica,sans-serif&quot;&gt;&lt;div style=&quot;font-size:25px;text-align:center;font-weight:bold;border-bottom:2px solid #111;padding:7px 2px 10px&quot;&gt;&lt;b&gt;Doctors&lt;/b&gt;&lt;/div&gt;&lt;div style=&quot;padding:10px 13px;line-height:1.36&quot;&gt;&lt;div style=&quot;padding:2px 0&quot;&gt;&lt;b&gt;Id&lt;/b&gt;: uniqueidentifier &lt;span style=&quot;font-size:14px&quot;&gt;[PK]&lt;/span&gt;&lt;/div&gt;&lt;div style=&quot;padding:2px 0&quot;&gt;&lt;b&gt;UserId&lt;/b&gt;: uniqueidentifier &lt;span style=&quot;font-size:14px&quot;&gt;[FK, NULL]&lt;/span&gt;&lt;/div&gt;&lt;div style=&quot;padding:2px 0&quot;&gt;&lt;b&gt;DoctorCode&lt;/b&gt;: nvarchar(20) &lt;span style=&quot;font-size:14px&quot;&gt;[UK]&lt;/span&gt;&lt;/div&gt;&lt;div style=&quot;padding:2px 0&quot;&gt;&lt;b&gt;FullName&lt;/b&gt;: nvarchar(100)&lt;/div&gt;&lt;div style=&quot;padding:2px 0&quot;&gt;&lt;b&gt;CreatedBy&lt;/b&gt;: uniqueidentifier &lt;span style=&quot;font-size:14px&quot;&gt;[FK, NULL]&lt;/span&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="280" width="395" x="1170" y="440" as="geometry" />
+        </mxCell>
+        <mxCell id="pg9_Specialties" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#111111;strokeWidth=2;fontColor=#111111;fontFamily=Arial;fontSize=20;align=left;verticalAlign=top;spacing=0;overflow=fill;shadow=0;" value="&lt;div style=&quot;font-size:21px; font-family:Arial,Helvetica,sans-serif&quot;&gt;&lt;div style=&quot;font-size:25px;text-align:center;font-weight:bold;border-bottom:2px solid #111;padding:7px 2px 10px&quot;&gt;&lt;b&gt;Specialties&lt;/b&gt;&lt;/div&gt;&lt;div style=&quot;padding:10px 13px;line-height:1.36&quot;&gt;&lt;div style=&quot;padding:2px 0&quot;&gt;&lt;b&gt;Id&lt;/b&gt;: int &lt;span style=&quot;font-size:14px&quot;&gt;[PK]&lt;/span&gt;&lt;/div&gt;&lt;div style=&quot;padding:2px 0&quot;&gt;&lt;b&gt;Code&lt;/b&gt;: nvarchar(20) &lt;span style=&quot;font-size:14px&quot;&gt;[UK]&lt;/span&gt;&lt;/div&gt;&lt;div style=&quot;padding:2px 0&quot;&gt;&lt;b&gt;Name&lt;/b&gt;: nvarchar(100) &lt;span style=&quot;font-size:14px&quot;&gt;[UK]&lt;/span&gt;&lt;/div&gt;&lt;div style=&quot;padding:2px 0&quot;&gt;&lt;b&gt;CreatedBy&lt;/b&gt;: uniqueidentifier &lt;span style=&quot;font-size:14px&quot;&gt;[FK, NULL]&lt;/span&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="215" width="385" x="460" y="815" as="geometry" />
+        </mxCell>
+        <mxCell id="pg9_DoctorSpecialties" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#111111;strokeWidth=2;fontColor=#111111;fontFamily=Arial;fontSize=20;align=left;verticalAlign=top;spacing=0;overflow=fill;shadow=0;" value="&lt;div style=&quot;font-size:21px; font-family:Arial,Helvetica,sans-serif&quot;&gt;&lt;div style=&quot;font-size:25px;text-align:center;font-weight:bold;border-bottom:2px solid #111;padding:7px 2px 10px&quot;&gt;&lt;b&gt;DoctorSpecialties&lt;/b&gt;&lt;/div&gt;&lt;div style=&quot;padding:10px 13px;line-height:1.36&quot;&gt;&lt;div style=&quot;padding:2px 0&quot;&gt;&lt;b&gt;DoctorId&lt;/b&gt;: uniqueidentifier &lt;span style=&quot;font-size:14px&quot;&gt;[PK, FK]&lt;/span&gt;&lt;/div&gt;&lt;div style=&quot;padding:2px 0&quot;&gt;&lt;b&gt;SpecialtyId&lt;/b&gt;: int &lt;span style=&quot;font-size:14px&quot;&gt;[PK, FK]&lt;/span&gt;&lt;/div&gt;&lt;div style=&quot;padding:2px 0&quot;&gt;&lt;b&gt;IsPrimary&lt;/b&gt;: bit&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="210" width="445" x="1140" y="825" as="geometry" />
+        </mxCell>
+        <mxCell id="pg9_edge_0" edge="1" parent="1" source="pg9_Roles" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#111111;strokeWidth=2;startArrow=ERone;startFill=0;startSize=17;endArrow=ERzeroToMany;endFill=0;endSize=17;fontSize=16;fontColor=#111111;fontFamily=Arial;labelBackgroundColor=#FFFFFF;exitX=1;exitY=0.48;exitDx=0;exitDy=0;entryX=0;entryY=0.4;entryDx=0;entryDy=0;" target="pg9_Users" value="RoleId">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="pg9_edge_1" edge="1" parent="1" source="pg9_Users" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#111111;strokeWidth=2;startArrow=ERone;startFill=0;startSize=17;endArrow=ERzeroToOne;endFill=0;endSize=17;fontSize=16;fontColor=#111111;fontFamily=Arial;labelBackgroundColor=#FFFFFF;exitX=1;exitY=0.22;exitDx=0;exitDy=0;entryX=0;entryY=0.52;entryDx=0;entryDy=0;" target="pg9_Patients" value="UserId">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="980" y="210" />
+              <mxPoint x="980" y="222" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="pg9_edge_2" edge="1" parent="1" source="pg9_Users" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#111111;strokeWidth=2;startArrow=ERzeroToOne;startFill=0;startSize=17;endArrow=ERzeroToOne;endFill=0;endSize=17;fontSize=16;fontColor=#111111;fontFamily=Arial;labelBackgroundColor=#FFFFFF;exitX=1;exitY=0.62;exitDx=0;exitDy=0;entryX=0;entryY=0.26;entryDx=0;entryDy=0;" target="pg9_Doctors" value="UserId">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="970" y="318" />
+              <mxPoint x="970" y="513" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="pg9_edge_3" edge="1" parent="1" source="pg9_Users" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#111111;strokeWidth=2;startArrow=ERzeroToOne;startFill=0;startSize=17;endArrow=ERzeroToMany;endFill=0;endSize=17;fontSize=16;fontColor=#111111;fontFamily=Arial;labelBackgroundColor=#FFFFFF;exitX=1;exitY=0.9;exitDx=0;exitDy=0;entryX=0;entryY=0.82;entryDx=0;entryDy=0;" target="pg9_Doctors" value="CreatedBy">
+          <mxGeometry relative="1" x="0.02" as="geometry">
+            <Array as="points">
+              <mxPoint x="884.3" y="393" />
+              <mxPoint x="884.3" y="395" />
+              <mxPoint x="877.7" y="395" />
+              <mxPoint x="877.7" y="669.6" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="pg9_edge_4" edge="1" parent="1" source="pg9_Users" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#111111;strokeWidth=2;startArrow=ERzeroToOne;startFill=0;startSize=17;endArrow=ERzeroToMany;endFill=0;endSize=17;fontSize=16;fontColor=#111111;fontFamily=Arial;labelBackgroundColor=#FFFFFF;exitX=0.2;exitY=1;exitDx=0;exitDy=0;entryX=0.28;entryY=0;entryDx=0;entryDy=0;" target="pg9_Specialties" value="CreatedBy">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="522" y="620" />
+              <mxPoint x="568" y="620" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="pg9_edge_5" edge="1" parent="1" source="pg9_Doctors" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#111111;strokeWidth=2;startArrow=ERone;startFill=0;startSize=17;endArrow=ERzeroToMany;endFill=0;endSize=17;fontSize=16;fontColor=#111111;fontFamily=Arial;labelBackgroundColor=#FFFFFF;exitX=0.58;exitY=1;exitDx=0;exitDy=0;entryX=0.6;entryY=0;entryDx=0;entryDy=0;" target="pg9_DoctorSpecialties" value="DoctorId">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1400" y="772" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="pg9_edge_6" edge="1" parent="1" source="pg9_Specialties" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#111111;strokeWidth=2;startArrow=ERone;startFill=0;startSize=17;endArrow=ERzeroToMany;endFill=0;endSize=17;fontSize=16;fontColor=#111111;fontFamily=Arial;labelBackgroundColor=#FFFFFF;exitX=1;exitY=0.57;exitDx=0;exitDy=0;entryX=0;entryY=0.56;entryDx=0;entryDy=0;" target="pg9_DoctorSpecialties" value="SpecialtyId">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+  <diagram id="page_10" name="3.3 - 2. Ca làm việc và khung giờ">
+    <mxGraphModel grid="0" page="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" pageScale="1" pageWidth="1900" pageHeight="1220" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="pg10_Doctors" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#111111;strokeWidth=2;fontColor=#111111;fontFamily=Arial;fontSize=20;align=left;verticalAlign=top;spacing=0;overflow=fill;shadow=0;" value="&lt;div style=&quot;font-size:21px; font-family:Arial,Helvetica,sans-serif&quot;&gt;&lt;div style=&quot;font-size:25px;text-align:center;font-weight:bold;border-bottom:2px solid #111;padding:7px 2px 10px&quot;&gt;&lt;b&gt;Doctors&lt;/b&gt; &lt;span style=&quot;font-size:14px&quot;&gt;(tham chiếu)&lt;/span&gt;&lt;/div&gt;&lt;div style=&quot;padding:10px 13px;line-height:1.36&quot;&gt;&lt;div style=&quot;padding:2px 0&quot;&gt;&lt;b&gt;Id&lt;/b&gt;: uniqueidentifier &lt;span style=&quot;font-size:14px&quot;&gt;[PK]&lt;/span&gt;&lt;/div&gt;&lt;div style=&quot;padding:2px 0&quot;&gt;&lt;b&gt;DoctorCode&lt;/b&gt;: nvarchar(20) &lt;span style=&quot;font-size:14px&quot;&gt;[UK]&lt;/span&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="280" width="420" x="77" y="264" as="geometry" />
+        </mxCell>
+        <mxCell id="pg10_Users" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#111111;strokeWidth=2;fontColor=#111111;fontFamily=Arial;fontSize=20;align=left;verticalAlign=top;spacing=0;overflow=fill;shadow=0;" value="&lt;div style=&quot;font-size:21px; font-family:Arial,Helvetica,sans-serif&quot;&gt;&lt;div style=&quot;font-size:25px;text-align:center;font-weight:bold;border-bottom:2px solid #111;padding:7px 2px 10px&quot;&gt;&lt;b&gt;Users&lt;/b&gt; &lt;span style=&quot;font-size:14px&quot;&gt;(tham chiếu)&lt;/span&gt;&lt;/div&gt;&lt;div style=&quot;padding:10px 13px;line-height:1.36&quot;&gt;&lt;div style=&quot;padding:2px 0&quot;&gt;&lt;b&gt;Id&lt;/b&gt;: uniqueidentifier &lt;span style=&quot;font-size:14px&quot;&gt;[PK]&lt;/span&gt;&lt;/div&gt;&lt;div style=&quot;padding:2px 0&quot;&gt;&lt;b&gt;Username&lt;/b&gt;: nvarchar(50) &lt;span style=&quot;font-size:14px&quot;&gt;[UK]&lt;/span&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="265" width="420" x="90" y="795" as="geometry" />
+        </mxCell>
+        <mxCell id="pg10_WorkingSchedules" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#111111;strokeWidth=2;fontColor=#111111;fontFamily=Arial;fontSize=20;align=left;verticalAlign=top;spacing=0;overflow=fill;shadow=0;" value="&lt;div style=&quot;font-size:21px; font-family:Arial,Helvetica,sans-serif&quot;&gt;&lt;div style=&quot;font-size:25px;text-align:center;font-weight:bold;border-bottom:2px solid #111;padding:7px 2px 10px&quot;&gt;&lt;b&gt;WorkingSchedules&lt;/b&gt;&lt;/div&gt;&lt;div style=&quot;padding:10px 13px;line-height:1.36&quot;&gt;&lt;div style=&quot;padding:2px 0&quot;&gt;&lt;b&gt;Id&lt;/b&gt;: uniqueidentifier &lt;span style=&quot;font-size:14px&quot;&gt;[PK]&lt;/span&gt;&lt;/div&gt;&lt;div style=&quot;padding:2px 0&quot;&gt;&lt;b&gt;DoctorId&lt;/b&gt;: uniqueidentifier &lt;span style=&quot;font-size:14px&quot;&gt;[FK]&lt;/span&gt;&lt;/div&gt;&lt;div style=&quot;padding:2px 0&quot;&gt;&lt;b&gt;WorkDate&lt;/b&gt;: date&lt;/div&gt;&lt;div style=&quot;padding:2px 0&quot;&gt;&lt;b&gt;StartTime&lt;/b&gt;: time(7)&lt;/div&gt;&lt;div style=&quot;padding:2px 0&quot;&gt;&lt;b&gt;EndTime&lt;/b&gt;: time(7)&lt;/div&gt;&lt;div style=&quot;padding:2px 0&quot;&gt;&lt;b&gt;CreatedBy&lt;/b&gt;: uniqueidentifier &lt;span style=&quot;font-size:14px&quot;&gt;[FK, NULL]&lt;/span&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="330" width="435" x="720" y="255" as="geometry" />
+        </mxCell>
+        <mxCell id="pg10_TimeSlots" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#111111;strokeWidth=2;fontColor=#111111;fontFamily=Arial;fontSize=20;align=left;verticalAlign=top;spacing=0;overflow=fill;shadow=0;" value="&lt;div style=&quot;font-size:21px; font-family:Arial,Helvetica,sans-serif&quot;&gt;&lt;div style=&quot;font-size:25px;text-align:center;font-weight:bold;border-bottom:2px solid #111;padding:7px 2px 10px&quot;&gt;&lt;b&gt;TimeSlots&lt;/b&gt;&lt;/div&gt;&lt;div style=&quot;padding:10px 13px;line-height:1.36&quot;&gt;&lt;div style=&quot;padding:2px 0&quot;&gt;&lt;b&gt;Id&lt;/b&gt;: uniqueidentifier &lt;span style=&quot;font-size:14px&quot;&gt;[PK]&lt;/span&gt;&lt;/div&gt;&lt;div style=&quot;padding:2px 0&quot;&gt;&lt;b&gt;WorkingScheduleId&lt;/b&gt;: uniqueidentifier &lt;span style=&quot;font-size:14px&quot;&gt;[FK]&lt;/span&gt;&lt;/div&gt;&lt;div style=&quot;padding:2px 0&quot;&gt;&lt;b&gt;DoctorId&lt;/b&gt;: uniqueidentifier &lt;span style=&quot;font-size:14px&quot;&gt;[FK]&lt;/span&gt;&lt;/div&gt;&lt;div style=&quot;padding:2px 0&quot;&gt;&lt;b&gt;SlotDate&lt;/b&gt;: date&lt;/div&gt;&lt;div style=&quot;padding:2px 0&quot;&gt;&lt;b&gt;StartTime&lt;/b&gt;: time(7)&lt;/div&gt;&lt;div style=&quot;padding:2px 0&quot;&gt;&lt;b&gt;EndTime&lt;/b&gt;: time(7)&lt;/div&gt;&lt;div style=&quot;padding:2px 0&quot;&gt;&lt;b&gt;Status&lt;/b&gt;: tinyint&lt;/div&gt;&lt;div style=&quot;padding:2px 0&quot;&gt;&lt;b&gt;ClosedBy&lt;/b&gt;: uniqueidentifier &lt;span style=&quot;font-size:14px&quot;&gt;[FK, NULL]&lt;/span&gt;&lt;/div&gt;&lt;div style=&quot;padding:2px 0&quot;&gt;&lt;b&gt;RowVersion&lt;/b&gt;: rowversion&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="455" width="455" x="1490" y="227" as="geometry" />
+        </mxCell>
+        <mxCell id="pg10_edge_0" edge="1" parent="1" source="pg10_Doctors" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#111111;strokeWidth=2;startArrow=ERone;startFill=0;startSize=17;endArrow=ERzeroToMany;endFill=0;endSize=17;fontSize=16;fontColor=#111111;fontFamily=Arial;labelBackgroundColor=#FFFFFF;exitX=1;exitY=0.4;exitDx=0;exitDy=0;entryX=0;entryY=0.37;entryDx=0;entryDy=0;" target="pg10_WorkingSchedules" value="DoctorId">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="pg10_edge_1" edge="1" parent="1" source="pg10_WorkingSchedules" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#111111;strokeWidth=2;startArrow=ERone;startFill=0;startSize=17;endArrow=ERzeroToMany;endFill=0;endSize=17;fontSize=16;fontColor=#111111;fontFamily=Arial;labelBackgroundColor=#FFFFFF;exitX=1;exitY=0.25;exitDx=0;exitDy=0;entryX=0;entryY=0.25;entryDx=0;entryDy=0;" target="pg10_TimeSlots" value="WorkingScheduleId">
+          <mxGeometry relative="1" x="0.0865" as="geometry" />
+        </mxCell>
+        <mxCell id="pg10_edge_2" edge="1" parent="1" source="pg10_Doctors" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#111111;strokeWidth=2;startArrow=ERone;startFill=0;startSize=17;endArrow=ERzeroToMany;endFill=0;endSize=17;fontSize=16;fontColor=#111111;fontFamily=Arial;labelBackgroundColor=#FFFFFF;entryX=0.48;entryY=0;entryDx=0;entryDy=0;exitX=1;exitY=0.25;exitDx=0;exitDy=0;" target="pg10_TimeSlots" value="DoctorId">
+          <mxGeometry relative="1" x="-0.1082" as="geometry">
+            <Array as="points">
+              <mxPoint x="578.1" y="334" />
+              <mxPoint x="578.1" y="160" />
+              <mxPoint x="1708.4" y="160" />
+            </Array>
+            <mxPoint x="260" y="160" as="sourcePoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="pg10_edge_3" edge="1" parent="1" source="pg10_Users" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#111111;strokeWidth=2;startArrow=ERzeroToOne;startFill=0;startSize=17;endArrow=ERzeroToMany;endFill=0;endSize=17;fontSize=16;fontColor=#111111;fontFamily=Arial;labelBackgroundColor=#FFFFFF;exitX=0.8;exitY=0;exitDx=0;exitDy=0;entryX=0.55;entryY=1;entryDx=0;entryDy=0;" target="pg10_WorkingSchedules" value="CreatedBy">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="425" y="710" />
+              <mxPoint x="965" y="710" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="pg10_edge_4" edge="1" parent="1" source="pg10_Users" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#111111;strokeWidth=2;startArrow=ERzeroToOne;startFill=0;startSize=17;endArrow=ERzeroToMany;endFill=0;endSize=17;fontSize=16;fontColor=#111111;fontFamily=Arial;labelBackgroundColor=#FFFFFF;exitX=1.013;exitY=0.333;exitDx=0;exitDy=0;entryX=0.005;entryY=0.686;entryDx=0;entryDy=0;entryPerimeter=0;exitPerimeter=0;" target="pg10_TimeSlots" value="ClosedBy">
+          <mxGeometry relative="1" x="0.2249" as="geometry">
+            <Array as="points">
+              <mxPoint x="1255.3" y="883.2" />
+              <mxPoint x="1255.3" y="539.1" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+  <diagram id="page_11" name="3.3 - 3. Đặt lịch khám">
+    <mxGraphModel dx="3920" dy="1100" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1900" pageHeight="1360" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="pg11_Users" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#111111;strokeWidth=2;fontColor=#111111;fontFamily=Arial;fontSize=20;align=left;verticalAlign=top;spacing=0;overflow=fill;shadow=0;" value="&lt;div style=&quot;font-size:21px; font-family:Arial,Helvetica,sans-serif&quot;&gt;&lt;div style=&quot;font-size:25px;text-align:center;font-weight:bold;border-bottom:2px solid #111;padding:7px 2px 10px&quot;&gt;&lt;b&gt;Users&lt;/b&gt; &lt;span style=&quot;font-size:14px&quot;&gt;(tham chiếu)&lt;/span&gt;&lt;/div&gt;&lt;div style=&quot;padding:10px 13px;line-height:1.36&quot;&gt;&lt;div style=&quot;padding:2px 0&quot;&gt;&lt;b&gt;Id&lt;/b&gt;: uniqueidentifier &lt;span style=&quot;font-size:14px&quot;&gt;[PK]&lt;/span&gt;&lt;/div&gt;&lt;div style=&quot;padding:2px 0&quot;&gt;&lt;b&gt;Username&lt;/b&gt;: nvarchar(50) &lt;span style=&quot;font-size:14px&quot;&gt;[UK]&lt;/span&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="160" width="360" x="-80" y="770" as="geometry" />
+        </mxCell>
+        <mxCell id="pg11_Patients" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#111111;strokeWidth=2;fontColor=#111111;fontFamily=Arial;fontSize=20;align=left;verticalAlign=top;spacing=0;overflow=fill;shadow=0;" value="&lt;div style=&quot;font-size:21px; font-family:Arial,Helvetica,sans-serif&quot;&gt;&lt;div style=&quot;font-size:25px;text-align:center;font-weight:bold;border-bottom:2px solid #111;padding:7px 2px 10px&quot;&gt;&lt;b&gt;Patients&lt;/b&gt; &lt;span style=&quot;font-size:14px&quot;&gt;(tham chiếu)&lt;/span&gt;&lt;/div&gt;&lt;div style=&quot;padding:10px 13px;line-height:1.36&quot;&gt;&lt;div style=&quot;padding:2px 0&quot;&gt;&lt;b&gt;Id&lt;/b&gt;: uniqueidentifier &lt;span style=&quot;font-size:14px&quot;&gt;[PK]&lt;/span&gt;&lt;/div&gt;&lt;div style=&quot;padding:2px 0&quot;&gt;&lt;b&gt;PatientCode&lt;/b&gt;: nvarchar(20) &lt;span style=&quot;font-size:14px&quot;&gt;[UK]&lt;/span&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="255" width="360" x="-90" y="200" as="geometry" />
+        </mxCell>
+        <mxCell id="pg11_Doctors" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#111111;strokeWidth=2;fontColor=#111111;fontFamily=Arial;fontSize=20;align=left;verticalAlign=top;spacing=0;overflow=fill;shadow=0;" value="&lt;div style=&quot;font-size:21px; font-family:Arial,Helvetica,sans-serif&quot;&gt;&lt;div style=&quot;font-size:25px;text-align:center;font-weight:bold;border-bottom:2px solid #111;padding:7px 2px 10px&quot;&gt;&lt;b&gt;Doctors&lt;/b&gt; &lt;span style=&quot;font-size:14px&quot;&gt;(tham chiếu)&lt;/span&gt;&lt;/div&gt;&lt;div style=&quot;padding:10px 13px;line-height:1.36&quot;&gt;&lt;div style=&quot;padding:2px 0&quot;&gt;&lt;b&gt;Id&lt;/b&gt;: uniqueidentifier &lt;span style=&quot;font-size:14px&quot;&gt;[PK]&lt;/span&gt;&lt;/div&gt;&lt;div style=&quot;padding:2px 0&quot;&gt;&lt;b&gt;DoctorCode&lt;/b&gt;: nvarchar(20) &lt;span style=&quot;font-size:14px&quot;&gt;[UK]&lt;/span&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="270" width="355" x="1440" y="160" as="geometry" />
+        </mxCell>
+        <mxCell id="pg11_Specialties" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#111111;strokeWidth=2;fontColor=#111111;fontFamily=Arial;fontSize=20;align=left;verticalAlign=top;spacing=0;overflow=fill;shadow=0;" value="&lt;div style=&quot;font-size:21px; font-family:Arial,Helvetica,sans-serif&quot;&gt;&lt;div style=&quot;font-size:25px;text-align:center;font-weight:bold;border-bottom:2px solid #111;padding:7px 2px 10px&quot;&gt;&lt;b&gt;Specialties&lt;/b&gt; &lt;span style=&quot;font-size:14px&quot;&gt;(tham chiếu)&lt;/span&gt;&lt;/div&gt;&lt;div style=&quot;padding:10px 13px;line-height:1.36&quot;&gt;&lt;div style=&quot;padding:2px 0&quot;&gt;&lt;b&gt;Id&lt;/b&gt;: int &lt;span style=&quot;font-size:14px&quot;&gt;[PK]&lt;/span&gt;&lt;/div&gt;&lt;div style=&quot;padding:2px 0&quot;&gt;&lt;b&gt;Code&lt;/b&gt;: nvarchar(20) &lt;span style=&quot;font-size:14px&quot;&gt;[UK]&lt;/span&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="210" width="340" x="-60" y="520" as="geometry" />
+        </mxCell>
+        <mxCell id="pg11_TimeSlots" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#111111;strokeWidth=2;fontColor=#111111;fontFamily=Arial;fontSize=20;align=left;verticalAlign=top;spacing=0;overflow=fill;shadow=0;" value="&lt;div style=&quot;font-size:21px; font-family:Arial,Helvetica,sans-serif&quot;&gt;&lt;div style=&quot;font-size:25px;text-align:center;font-weight:bold;border-bottom:2px solid #111;padding:7px 2px 10px&quot;&gt;&lt;b&gt;TimeSlots&lt;/b&gt; &lt;span style=&quot;font-size:14px&quot;&gt;(tham chiếu)&lt;/span&gt;&lt;/div&gt;&lt;div style=&quot;padding:10px 13px;line-height:1.36&quot;&gt;&lt;div style=&quot;padding:2px 0&quot;&gt;&lt;b&gt;Id&lt;/b&gt;: uniqueidentifier &lt;span style=&quot;font-size:14px&quot;&gt;[PK]&lt;/span&gt;&lt;/div&gt;&lt;div style=&quot;padding:2px 0&quot;&gt;&lt;b&gt;WorkingScheduleId&lt;/b&gt;: uniqueidentifier &lt;span style=&quot;font-size:14px&quot;&gt;[FK]&lt;/span&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="370" width="370" x="1400" y="610" as="geometry" />
+        </mxCell>
+        <mxCell id="pg11_Appointments" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#111111;strokeWidth=2;fontColor=#111111;fontFamily=Arial;fontSize=20;align=left;verticalAlign=top;spacing=0;overflow=fill;shadow=0;" value="&lt;div style=&quot;font-size:21px; font-family:Arial,Helvetica,sans-serif&quot;&gt;&lt;div style=&quot;font-size:25px;text-align:center;font-weight:bold;border-bottom:2px solid #111;padding:7px 2px 10px&quot;&gt;&lt;b&gt;Appointments&lt;/b&gt;&lt;/div&gt;&lt;div style=&quot;padding:10px 13px;line-height:1.36&quot;&gt;&lt;div style=&quot;padding:2px 0&quot;&gt;&lt;b&gt;Id&lt;/b&gt;: uniqueidentifier &lt;span style=&quot;font-size:14px&quot;&gt;[PK]&lt;/span&gt;&lt;/div&gt;&lt;div style=&quot;padding:2px 0&quot;&gt;&lt;b&gt;AppointmentCode&lt;/b&gt;: nvarchar(20) &lt;span style=&quot;font-size:14px&quot;&gt;[UK]&lt;/span&gt;&lt;/div&gt;&lt;div style=&quot;padding:2px 0&quot;&gt;&lt;b&gt;PatientId&lt;/b&gt;: uniqueidentifier &lt;span style=&quot;font-size:14px&quot;&gt;[FK]&lt;/span&gt;&lt;/div&gt;&lt;div style=&quot;padding:2px 0&quot;&gt;&lt;b&gt;DoctorId&lt;/b&gt;: uniqueidentifier &lt;span style=&quot;font-size:14px&quot;&gt;[FK]&lt;/span&gt;&lt;/div&gt;&lt;div style=&quot;padding:2px 0&quot;&gt;&lt;b&gt;SpecialtyId&lt;/b&gt;: int &lt;span style=&quot;font-size:14px&quot;&gt;[FK]&lt;/span&gt;&lt;/div&gt;&lt;div style=&quot;padding:2px 0&quot;&gt;&lt;b&gt;TimeSlotId&lt;/b&gt;: uniqueidentifier &lt;span style=&quot;font-size:14px&quot;&gt;[FK]&lt;/span&gt;&lt;/div&gt;&lt;div style=&quot;padding:2px 0&quot;&gt;&lt;b&gt;AppointmentDate&lt;/b&gt;: date&lt;/div&gt;&lt;div style=&quot;padding:2px 0&quot;&gt;&lt;b&gt;StartTime&lt;/b&gt;: time(7)&lt;/div&gt;&lt;div style=&quot;padding:2px 0&quot;&gt;&lt;b&gt;EndTime&lt;/b&gt;: time(7)&lt;/div&gt;&lt;div style=&quot;padding:2px 0&quot;&gt;&lt;b&gt;Status&lt;/b&gt;: tinyint&lt;/div&gt;&lt;div style=&quot;padding:2px 0&quot;&gt;&lt;b&gt;BookedBy&lt;/b&gt;: uniqueidentifier &lt;span style=&quot;font-size:14px&quot;&gt;[FK]&lt;/span&gt;&lt;/div&gt;&lt;div style=&quot;padding:2px 0&quot;&gt;&lt;b&gt;CheckedInBy&lt;/b&gt;: uniqueidentifier &lt;span style=&quot;font-size:14px&quot;&gt;[FK, NULL]&lt;/span&gt;&lt;/div&gt;&lt;div style=&quot;padding:2px 0&quot;&gt;&lt;b&gt;MarkedNoShowBy&lt;/b&gt;: uniqueidentifier &lt;span style=&quot;font-size:14px&quot;&gt;[FK, NULL]&lt;/span&gt;&lt;/div&gt;&lt;div style=&quot;padding:2px 0&quot;&gt;&lt;b&gt;RequestKey&lt;/b&gt;: uniqueidentifier &lt;span style=&quot;font-size:14px&quot;&gt;[NULL]&lt;/span&gt;&lt;/div&gt;&lt;div style=&quot;padding:2px 0&quot;&gt;&lt;b&gt;RequestFingerprint&lt;/b&gt;: nvarchar(64) &lt;span style=&quot;font-size:14px&quot;&gt;[NULL]&lt;/span&gt;&lt;/div&gt;&lt;div style=&quot;padding:2px 0&quot;&gt;&lt;b&gt;RowVersion&lt;/b&gt;: rowversion&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="710" width="435" x="700" y="290" as="geometry" />
+        </mxCell>
+        <mxCell id="pg11_edge_0" edge="1" parent="1" source="pg11_Users" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#111111;strokeWidth=2;startArrow=ERone;startFill=0;startSize=17;endArrow=ERzeroToMany;endFill=0;endSize=17;fontSize=16;fontColor=#111111;fontFamily=Arial;labelBackgroundColor=#FFFFFF;entryX=-0.001;entryY=0.61;entryDx=0;entryDy=0;entryPerimeter=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;" target="pg11_Appointments" value="BookedBy / CheckedInBy / MarkedNoShowBy (3 FK)">
+          <mxGeometry relative="1" x="0.1964" y="-47" as="geometry">
+            <mxPoint as="offset" />
+            <Array as="points">
+              <mxPoint x="400" y="850" />
+              <mxPoint x="400" y="723.1" />
+            </Array>
+            <mxPoint x="400" y="230" as="sourcePoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="pg11_edge_1" edge="1" parent="1" source="pg11_Patients" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#111111;strokeWidth=2;startArrow=ERone;startFill=0;startSize=17;endArrow=ERzeroToMany;endFill=0;endSize=17;fontSize=16;fontColor=#111111;fontFamily=Arial;labelBackgroundColor=#FFFFFF;exitX=1;exitY=0.34;exitDx=0;exitDy=0;entryX=0.009;entryY=0.194;entryDx=0;entryDy=0;entryPerimeter=0;" target="pg11_Appointments" value="PatientId">
+          <mxGeometry relative="1" x="-0.3008" as="geometry">
+            <Array as="points">
+              <mxPoint x="390" y="286.7" />
+              <mxPoint x="390" y="427.7" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="pg11_edge_2" edge="1" parent="1" source="pg11_Doctors" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#111111;strokeWidth=2;startArrow=ERone;startFill=0;startSize=17;endArrow=ERzeroToMany;endFill=0;endSize=17;fontSize=16;fontColor=#111111;fontFamily=Arial;labelBackgroundColor=#FFFFFF;exitX=0;exitY=0.25;exitDx=0;exitDy=0;entryX=1;entryY=0.25;entryDx=0;entryDy=0;" target="pg11_Appointments" value="DoctorId">
+          <mxGeometry relative="1" x="-0.0734" as="geometry">
+            <mxPoint y="1" as="offset" />
+            <Array as="points">
+              <mxPoint x="1310" y="227.5" />
+              <mxPoint x="1310" y="467.5" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="pg11_edge_3" edge="1" parent="1" source="pg11_Specialties" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#111111;strokeWidth=2;startArrow=ERone;startFill=0;startSize=17;endArrow=ERzeroToMany;endFill=0;endSize=17;fontSize=16;fontColor=#111111;fontFamily=Arial;labelBackgroundColor=#FFFFFF;exitX=1;exitY=0.45;exitDx=0;exitDy=0;entryX=0.006;entryY=0.293;entryDx=0;entryDy=0;entryPerimeter=0;" target="pg11_Appointments" value="SpecialtyId">
+          <mxGeometry relative="1" x="-0.3389" as="geometry">
+            <Array as="points">
+              <mxPoint x="450" y="614.5" />
+              <mxPoint x="450" y="498" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="pg11_edge_4" edge="1" parent="1" source="pg11_TimeSlots" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#111111;strokeWidth=2;startArrow=ERone;startFill=0;startSize=17;endArrow=ERzeroToMany;endFill=0;endSize=17;fontSize=16;fontColor=#111111;fontFamily=Arial;labelBackgroundColor=#FFFFFF;exitX=0.002;exitY=0.197;exitDx=0;exitDy=0;exitPerimeter=0;" value="TimeSlotId">
+          <mxGeometry relative="1" x="0.009" as="geometry">
+            <mxPoint as="offset" />
+            <Array as="points">
+              <mxPoint x="1260" y="682.9" />
+              <mxPoint x="1260" y="530" />
+            </Array>
+            <mxPoint x="1150" y="530" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+  <diagram id="page_12" name="3.3 - 4. Lịch sử và audit">
+    <mxGraphModel grid="0" page="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" pageScale="1" pageWidth="1900" pageHeight="1220" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="pg12_Users" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#111111;strokeWidth=2;fontColor=#111111;fontFamily=Arial;fontSize=20;align=left;verticalAlign=top;spacing=0;overflow=fill;shadow=0;" value="&lt;div style=&quot;font-size:21px; font-family:Arial,Helvetica,sans-serif&quot;&gt;&lt;div style=&quot;font-size:25px;text-align:center;font-weight:bold;border-bottom:2px solid #111;padding:7px 2px 10px&quot;&gt;&lt;b&gt;Users&lt;/b&gt; &lt;span style=&quot;font-size:14px&quot;&gt;(tham chiếu)&lt;/span&gt;&lt;/div&gt;&lt;div style=&quot;padding:10px 13px;line-height:1.36&quot;&gt;&lt;div style=&quot;padding:2px 0&quot;&gt;&lt;b&gt;Id&lt;/b&gt;: uniqueidentifier &lt;span style=&quot;font-size:14px&quot;&gt;[PK]&lt;/span&gt;&lt;/div&gt;&lt;div style=&quot;padding:2px 0&quot;&gt;&lt;b&gt;Username&lt;/b&gt;: nvarchar(50) &lt;span style=&quot;font-size:14px&quot;&gt;[UK]&lt;/span&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="265" width="410" x="545" y="560" as="geometry" />
+        </mxCell>
+        <mxCell id="pg12_Appointments" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#111111;strokeWidth=2;fontColor=#111111;fontFamily=Arial;fontSize=20;align=left;verticalAlign=top;spacing=0;overflow=fill;shadow=0;" value="&lt;div style=&quot;font-size:21px; font-family:Arial,Helvetica,sans-serif&quot;&gt;&lt;div style=&quot;font-size:25px;text-align:center;font-weight:bold;border-bottom:2px solid #111;padding:7px 2px 10px&quot;&gt;&lt;b&gt;Appointments&lt;/b&gt; &lt;span style=&quot;font-size:14px&quot;&gt;(tham chiếu)&lt;/span&gt;&lt;/div&gt;&lt;div style=&quot;padding:10px 13px;line-height:1.36&quot;&gt;&lt;div style=&quot;padding:2px 0&quot;&gt;&lt;b&gt;Id&lt;/b&gt;: uniqueidentifier &lt;span style=&quot;font-size:14px&quot;&gt;[PK]&lt;/span&gt;&lt;/div&gt;&lt;div style=&quot;padding:2px 0&quot;&gt;&lt;b&gt;Status&lt;/b&gt;: tinyint&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="305" width="455" x="500" y="210" as="geometry" />
+        </mxCell>
+        <mxCell id="pg12_AppointmentStatusHistories" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#111111;strokeWidth=2;fontColor=#111111;fontFamily=Arial;fontSize=20;align=left;verticalAlign=top;spacing=0;overflow=fill;shadow=0;" value="&lt;div style=&quot;font-size:21px; font-family:Arial,Helvetica,sans-serif&quot;&gt;&lt;div style=&quot;font-size:25px;text-align:center;font-weight:bold;border-bottom:2px solid #111;padding:7px 2px 10px&quot;&gt;&lt;b&gt;AppointmentStatusHistories&lt;/b&gt;&lt;/div&gt;&lt;div style=&quot;padding:10px 13px;line-height:1.36&quot;&gt;&lt;div style=&quot;padding:2px 0&quot;&gt;&lt;b&gt;Id&lt;/b&gt;: bigint &lt;span style=&quot;font-size:14px&quot;&gt;[PK]&lt;/span&gt;&lt;/div&gt;&lt;div style=&quot;padding:2px 0&quot;&gt;&lt;b&gt;AppointmentId&lt;/b&gt;: uniqueidentifier &lt;span style=&quot;font-size:14px&quot;&gt;[FK]&lt;/span&gt;&lt;/div&gt;&lt;div style=&quot;padding:2px 0&quot;&gt;&lt;b&gt;ChangedBy&lt;/b&gt;: uniqueidentifier &lt;span style=&quot;font-size:14px&quot;&gt;[FK]&lt;/span&gt;&lt;/div&gt;&lt;div style=&quot;padding:2px 0&quot;&gt;&lt;b&gt;OldStatus&lt;/b&gt;: tinyint &lt;span style=&quot;font-size:14px&quot;&gt;[NULL]&lt;/span&gt;&lt;/div&gt;&lt;div style=&quot;padding:2px 0&quot;&gt;&lt;b&gt;NewStatus&lt;/b&gt;: tinyint&lt;/div&gt;&lt;div style=&quot;padding:2px 0&quot;&gt;&lt;b&gt;OldTimeSlotId&lt;/b&gt;: uniqueidentifier &lt;span style=&quot;font-size:14px&quot;&gt;[no FK]&lt;/span&gt;&lt;/div&gt;&lt;div style=&quot;padding:2px 0&quot;&gt;&lt;b&gt;NewTimeSlotId&lt;/b&gt;: uniqueidentifier &lt;span style=&quot;font-size:14px&quot;&gt;[no FK]&lt;/span&gt;&lt;/div&gt;&lt;div style=&quot;padding:2px 0&quot;&gt;&lt;b&gt;ChangedAt&lt;/b&gt;: datetime2(7)&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="435" width="505" x="1280" y="150" as="geometry" />
+        </mxCell>
+        <mxCell id="pg12_AuditLogs" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#111111;strokeWidth=2;fontColor=#111111;fontFamily=Arial;fontSize=20;align=left;verticalAlign=top;spacing=0;overflow=fill;shadow=0;" value="&lt;div style=&quot;font-size:21px; font-family:Arial,Helvetica,sans-serif&quot;&gt;&lt;div style=&quot;font-size:25px;text-align:center;font-weight:bold;border-bottom:2px solid #111;padding:7px 2px 10px&quot;&gt;&lt;b&gt;AuditLogs&lt;/b&gt;&lt;/div&gt;&lt;div style=&quot;padding:10px 13px;line-height:1.36&quot;&gt;&lt;div style=&quot;padding:2px 0&quot;&gt;&lt;b&gt;Id&lt;/b&gt;: bigint &lt;span style=&quot;font-size:14px&quot;&gt;[PK]&lt;/span&gt;&lt;/div&gt;&lt;div style=&quot;padding:2px 0&quot;&gt;&lt;b&gt;UserId&lt;/b&gt;: uniqueidentifier &lt;span style=&quot;font-size:14px&quot;&gt;[FK, NULL]&lt;/span&gt;&lt;/div&gt;&lt;div style=&quot;padding:2px 0&quot;&gt;&lt;b&gt;EntityType&lt;/b&gt;: nvarchar(100)&lt;/div&gt;&lt;div style=&quot;padding:2px 0&quot;&gt;&lt;b&gt;EntityId&lt;/b&gt;: nvarchar(50) &lt;span style=&quot;font-size:14px&quot;&gt;[no FK]&lt;/span&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="255" width="450" x="-140" y="310" as="geometry" />
+        </mxCell>
+        <mxCell id="pg12_edge_0" edge="1" parent="1" source="pg12_Appointments" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#111111;strokeWidth=2;startArrow=ERone;startFill=0;startSize=17;endArrow=ERzeroToMany;endFill=0;endSize=17;fontSize=16;fontColor=#111111;fontFamily=Arial;labelBackgroundColor=#FFFFFF;exitX=1;exitY=0.25;exitDx=0;exitDy=0;entryX=-0.009;entryY=0.167;entryDx=0;entryDy=0;entryPerimeter=0;" target="pg12_AppointmentStatusHistories" value="AppointmentId">
+          <mxGeometry relative="1" x="-0.2138" as="geometry" />
+        </mxCell>
+        <mxCell id="pg12_edge_1" edge="1" parent="1" source="pg12_Users" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#111111;strokeWidth=2;startArrow=ERone;startFill=0;startSize=17;endArrow=ERzeroToMany;endFill=0;endSize=17;fontSize=16;fontColor=#111111;fontFamily=Arial;labelBackgroundColor=#FFFFFF;exitX=1;exitY=0.25;exitDx=0;exitDy=0;entryX=0.002;entryY=0.689;entryDx=0;entryDy=0;entryPerimeter=0;" target="pg12_AppointmentStatusHistories" value="ChangedBy">
+          <mxGeometry relative="1" x="-0.0483" as="geometry">
+            <Array as="points">
+              <mxPoint x="1175" y="626.3" />
+              <mxPoint x="1175" y="449.7" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="pg12_edge_2" edge="1" parent="1" source="pg12_Users" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#111111;strokeWidth=2;startArrow=ERzeroToOne;startFill=0;startSize=17;endArrow=ERzeroToMany;endFill=0;endSize=17;fontSize=16;fontColor=#111111;fontFamily=Arial;labelBackgroundColor=#FFFFFF;exitX=0;exitY=0.25;exitDx=0;exitDy=0;" target="pg12_AuditLogs" value="UserId">
+          <mxGeometry relative="1" x="0.26" as="geometry">
+            <Array as="points">
+              <mxPoint x="380" y="626.3" />
+              <mxPoint x="380" y="424.8" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+  <diagram id="page_13" name="3.3 - 5. Thông báo và outbox">
+    <mxGraphModel dx="2172" dy="967" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1900" pageHeight="1220" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="pg13_Patients" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#111111;strokeWidth=2;fontColor=#111111;fontFamily=Arial;fontSize=20;align=left;verticalAlign=top;spacing=0;overflow=fill;shadow=0;" value="&lt;div style=&quot;font-size:21px; font-family:Arial,Helvetica,sans-serif&quot;&gt;&lt;div style=&quot;font-size:25px;text-align:center;font-weight:bold;border-bottom:2px solid #111;padding:7px 2px 10px&quot;&gt;&lt;b&gt;Patients&lt;/b&gt; &lt;span style=&quot;font-size:14px&quot;&gt;(tham chiếu)&lt;/span&gt;&lt;/div&gt;&lt;div style=&quot;padding:10px 13px;line-height:1.36&quot;&gt;&lt;div style=&quot;padding:2px 0&quot;&gt;&lt;b&gt;Id&lt;/b&gt;: uniqueidentifier &lt;span style=&quot;font-size:14px&quot;&gt;[PK]&lt;/span&gt;&lt;/div&gt;&lt;div style=&quot;padding:2px 0&quot;&gt;&lt;b&gt;PatientCode&lt;/b&gt;: nvarchar(20) &lt;span style=&quot;font-size:14px&quot;&gt;[UK]&lt;/span&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="265" width="415" x="215" y="187.5" as="geometry" />
+        </mxCell>
+        <mxCell id="pg13_Appointments" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#111111;strokeWidth=2;fontColor=#111111;fontFamily=Arial;fontSize=20;align=left;verticalAlign=top;spacing=0;overflow=fill;shadow=0;" value="&lt;div style=&quot;font-size:21px; font-family:Arial,Helvetica,sans-serif&quot;&gt;&lt;div style=&quot;font-size:25px;text-align:center;font-weight:bold;border-bottom:2px solid #111;padding:7px 2px 10px&quot;&gt;&lt;b&gt;Appointments&lt;/b&gt; &lt;span style=&quot;font-size:14px&quot;&gt;(tham chiếu)&lt;/span&gt;&lt;/div&gt;&lt;div style=&quot;padding:10px 13px;line-height:1.36&quot;&gt;&lt;div style=&quot;padding:2px 0&quot;&gt;&lt;b&gt;Id&lt;/b&gt;: uniqueidentifier &lt;span style=&quot;font-size:14px&quot;&gt;[PK]&lt;/span&gt;&lt;/div&gt;&lt;div style=&quot;padding:2px 0&quot;&gt;&lt;b&gt;Status&lt;/b&gt;: tinyint&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="300" width="460" x="1070" y="590" as="geometry" />
+        </mxCell>
+        <mxCell id="pg13_Notifications" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#111111;strokeWidth=2;fontColor=#111111;fontFamily=Arial;fontSize=20;align=left;verticalAlign=top;spacing=0;overflow=fill;shadow=0;" value="&lt;div style=&quot;font-size:21px; font-family:Arial,Helvetica,sans-serif&quot;&gt;&lt;div style=&quot;font-size:25px;text-align:center;font-weight:bold;border-bottom:2px solid #111;padding:7px 2px 10px&quot;&gt;&lt;b&gt;Notifications&lt;/b&gt;&lt;/div&gt;&lt;div style=&quot;padding:10px 13px;line-height:1.36&quot;&gt;&lt;div style=&quot;padding:2px 0&quot;&gt;&lt;b&gt;Id&lt;/b&gt;: uniqueidentifier &lt;span style=&quot;font-size:14px&quot;&gt;[PK]&lt;/span&gt;&lt;/div&gt;&lt;div style=&quot;padding:2px 0&quot;&gt;&lt;b&gt;PatientId&lt;/b&gt;: uniqueidentifier &lt;span style=&quot;font-size:14px&quot;&gt;[FK]&lt;/span&gt;&lt;/div&gt;&lt;div style=&quot;padding:2px 0&quot;&gt;&lt;b&gt;AppointmentId&lt;/b&gt;: uniqueidentifier &lt;span style=&quot;font-size:14px&quot;&gt;[FK, NULL]&lt;/span&gt;&lt;/div&gt;&lt;div style=&quot;padding:2px 0&quot;&gt;&lt;b&gt;OutboxId&lt;/b&gt;: uniqueidentifier &lt;span style=&quot;font-size:14px&quot;&gt;[no FK, NULL]&lt;/span&gt;&lt;/div&gt;&lt;div style=&quot;padding:2px 0&quot;&gt;&lt;b&gt;Type&lt;/b&gt;: tinyint&lt;/div&gt;&lt;div style=&quot;padding:2px 0&quot;&gt;&lt;b&gt;IsRead&lt;/b&gt;: bit&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="340" width="500" x="1190" y="150" as="geometry" />
+        </mxCell>
+        <mxCell id="pg13_NotificationOutbox" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#111111;strokeWidth=2;fontColor=#111111;fontFamily=Arial;fontSize=20;align=left;verticalAlign=top;spacing=0;overflow=fill;shadow=0;" value="&lt;div style=&quot;font-size:21px; font-family:Arial,Helvetica,sans-serif&quot;&gt;&lt;div style=&quot;font-size:25px;text-align:center;font-weight:bold;border-bottom:2px solid #111;padding:7px 2px 10px&quot;&gt;&lt;b&gt;NotificationOutbox&lt;/b&gt;&lt;/div&gt;&lt;div style=&quot;padding:10px 13px;line-height:1.36&quot;&gt;&lt;div style=&quot;padding:2px 0&quot;&gt;&lt;b&gt;Id&lt;/b&gt;: uniqueidentifier &lt;span style=&quot;font-size:14px&quot;&gt;[PK]&lt;/span&gt;&lt;/div&gt;&lt;div style=&quot;padding:2px 0&quot;&gt;&lt;b&gt;PatientId&lt;/b&gt;: uniqueidentifier &lt;span style=&quot;font-size:14px&quot;&gt;[FK]&lt;/span&gt;&lt;/div&gt;&lt;div style=&quot;padding:2px 0&quot;&gt;&lt;b&gt;AppointmentId&lt;/b&gt;: uniqueidentifier &lt;span style=&quot;font-size:14px&quot;&gt;[FK]&lt;/span&gt;&lt;/div&gt;&lt;div style=&quot;padding:2px 0&quot;&gt;&lt;b&gt;ScheduledFor&lt;/b&gt;: datetime2(7)&lt;/div&gt;&lt;div style=&quot;padding:2px 0&quot;&gt;&lt;b&gt;DeliveredAt&lt;/b&gt;: datetime2(7) &lt;span style=&quot;font-size:14px&quot;&gt;[NULL]&lt;/span&gt;&lt;/div&gt;&lt;div style=&quot;padding:2px 0&quot;&gt;&lt;b&gt;SuppressedAt&lt;/b&gt;: datetime2(7) &lt;span style=&quot;font-size:14px&quot;&gt;[NULL]&lt;/span&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="350" width="500" x="172.5" y="700" as="geometry" />
+        </mxCell>
+        <mxCell id="pg13_edge_0" edge="1" parent="1" source="pg13_Patients" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#111111;strokeWidth=2;startArrow=ERone;startFill=0;startSize=17;endArrow=ERzeroToMany;endFill=0;endSize=17;fontSize=16;fontColor=#111111;fontFamily=Arial;labelBackgroundColor=#FFFFFF;exitX=0.989;exitY=0.308;exitDx=0;exitDy=0;entryX=0.004;entryY=0.312;entryDx=0;entryDy=0;exitPerimeter=0;entryPerimeter=0;" target="pg13_Notifications" value="PatientId">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="pg13_edge_1" edge="1" parent="1" source="pg13_Appointments" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#111111;strokeWidth=2;startArrow=ERzeroToOne;startFill=0;startSize=17;endArrow=ERzeroToMany;endFill=0;endSize=17;fontSize=16;fontColor=#111111;fontFamily=Arial;labelBackgroundColor=#FFFFFF;exitX=0;exitY=0.25;exitDx=0;exitDy=0;entryX=-0.001;entryY=0.426;entryDx=0;entryDy=0;entryPerimeter=0;" target="pg13_Notifications" value="AppointmentId">
+          <mxGeometry relative="1" x="0.1728" as="geometry">
+            <Array as="points">
+              <mxPoint x="950" y="665" />
+              <mxPoint x="950" y="294.8" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="pg13_edge_2" edge="1" parent="1" source="pg13_Patients" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#111111;strokeWidth=2;startArrow=ERone;startFill=0;startSize=17;endArrow=ERzeroToMany;endFill=0;endSize=17;fontSize=16;fontColor=#111111;fontFamily=Arial;labelBackgroundColor=#FFFFFF;exitX=0;exitY=0.25;exitDx=0;exitDy=0;entryX=0;entryY=0.27;entryDx=0;entryDy=0;" target="pg13_NotificationOutbox" value="PatientId">
+          <mxGeometry relative="1" x="0.2721" as="geometry">
+            <Array as="points">
+              <mxPoint x="60" y="253.8" />
+              <mxPoint x="60" y="790" />
+              <mxPoint x="130" y="790" />
+              <mxPoint x="130" y="794.5" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="pg13_edge_3" edge="1" parent="1" source="pg13_Appointments" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#111111;strokeWidth=2;startArrow=ERone;startFill=0;startSize=17;endArrow=ERzeroToMany;endFill=0;endSize=17;fontSize=16;fontColor=#111111;fontFamily=Arial;labelBackgroundColor=#FFFFFF;exitX=1;exitY=0.25;exitDx=0;exitDy=0;entryX=1.007;entryY=0.399;entryDx=0;entryDy=0;entryPerimeter=0;" target="pg13_NotificationOutbox" value="AppointmentId">
+          <mxGeometry relative="1" x="-0.0353" as="geometry">
+            <Array as="points">
+              <mxPoint x="1660" y="665" />
+              <mxPoint x="1660" y="970" />
+              <mxPoint x="855" y="970" />
+              <mxPoint x="855" y="839.7" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
