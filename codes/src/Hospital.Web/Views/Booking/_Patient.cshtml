@@ -1,0 +1,5 @@
+@model BookingPage
+<div class="booking-patient"><ui-icon name="user" /><div><strong>@Model.Patient.FullName</strong><span>@Model.Patient.PatientCode · @(Model.Patient.DateOfBirth?.ToString("dd/MM/yyyy") ?? "Chưa có ngày sinh") · @(Model.Patient.PhoneNumber ?? "Chưa có số điện thoại")</span></div>
+@if (Model.State.AppointmentId.HasValue) { <a asp-controller="Appointments" asp-action="Detail" asp-route-id="@Model.State.AppointmentId">Xem lịch đang đổi</a> }
+else if (User.IsInRole("Staff")) { <a asp-controller="Patients" asp-action="Index">Chọn bệnh nhân khác</a> }
+</div>

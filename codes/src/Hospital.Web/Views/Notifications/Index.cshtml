@@ -1,0 +1,6 @@
+@model PagedResult<NotificationDto>
+@{ ViewData["Title"] = "Thông báo"; }
+<div class="page-heading"><div><h1>Thông báo của bạn</h1><p>Cập nhật liên quan đến lịch hẹn và thời gian khám.</p></div></div><section class="card">
+@if (Model.Items.Count == 0) { <partial name="_EmptyState" model='new EmptyState("Bạn chưa có thông báo", "Thông báo về lịch hẹn sẽ xuất hiện tại đây.", "bell")' /> }
+@foreach (var item in Model.Items) { <article class="notification"><span class="empty-icon"><ui-icon name="bell" /></span><div class="notification-content"><h2>@item.Title @if (!item.IsRead) { <span class="badge badge-confirmed">Mới</span> }</h2><p>@item.Message</p><small>@item.CreatedAt.AddHours(7).ToString("HH:mm · dd/MM/yyyy")</small><div class="notification-actions button-row">@if (item.AppointmentId != null) { <a class="btn btn-secondary btn-small" asp-controller="Appointments" asp-action="Detail" asp-route-id="@item.AppointmentId">Xem lịch hẹn</a> } @if (!item.IsRead) { <form asp-action="Read" asp-route-id="@item.Id" method="post"><button class="btn btn-secondary btn-small" type="submit">Đánh dấu đã đọc</button></form> }</div></div></article> }
+<partial name="_Pagination" model="new Pagination(Model.Page, Model.TotalCount, Model.PageSize)" /></section>

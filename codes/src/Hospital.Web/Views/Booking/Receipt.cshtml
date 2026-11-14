@@ -1,0 +1,9 @@
+@model AppointmentDto
+@{ ViewData["Title"] = "Phiếu hẹn"; }
+<div class="page-heading"><div><h1>Phiếu hẹn</h1><p>Giữ mã lịch hẹn để đối chiếu khi đến tiếp nhận.</p></div><button class="btn btn-secondary" type="button" data-print>In phiếu hẹn</button></div>
+<partial name="_Progress" model="7" />
+<section class="card receipt"><div class="card-header"><div><span class="eyebrow">MÃ LỊCH HẸN</span><h2>@Model.AppointmentCode</h2></div><partial name="_StatusBadge" model="Model.Status" /></div><div class="card-body">
+<dl><dt>Bệnh nhân</dt><dd>@Model.PatientName</dd><dt>Số điện thoại</dt><dd>@(Model.PatientPhone ?? "Chưa cập nhật")</dd><dt>Bác sĩ</dt><dd>@Model.DoctorName</dd><dt>Chuyên khoa</dt><dd>@Model.SpecialtyName</dd><dt>Thời gian</dt><dd>@Model.StartTime.ToString("HH:mm") – @Model.EndTime.ToString("HH:mm"), @Model.AppointmentDate.ToString("dd/MM/yyyy") (giờ Việt Nam)</dd><dt>Ghi chú</dt><dd>@(Model.Notes ?? "Không có ghi chú")</dd></dl>
+<p>Thông tin phản ánh trạng thái hiện tại của lịch hẹn. Khi đến, vui lòng cung cấp mã lịch hẹn và thông tin bệnh nhân cho nhân viên tiếp nhận.</p>
+<div class="button-row"><a class="btn btn-primary" asp-controller="Appointments" asp-action="Detail" asp-route-id="@Model.Id">Quản lý lịch hẹn</a><a class="btn btn-secondary" asp-controller="Appointments" asp-action="Index">Về danh sách lịch hẹn</a></div>
+</div></section>

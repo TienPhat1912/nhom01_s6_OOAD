@@ -1,0 +1,18 @@
+@{
+    var controller = ViewContext.RouteData.Values["controller"]?.ToString();
+    var action = ViewContext.RouteData.Values["action"]?.ToString();
+    var links = new List<(string Controller, string Action, string Title, string Icon)> { ("Dashboard", "Index", "Tổng quan", "grid") };
+    if (!User.IsInRole("Admin")) links.Add(("Appointments", "Index", User.IsInRole("Patient") ? "Lịch hẹn của tôi" : "Lịch hẹn", "calendar"));
+    if (User.IsInRole("Patient") || User.IsInRole("Staff")) links.Add(("Booking", "Index", "Đặt lịch khám", "calendar"));
+    if (User.IsInRole("Staff")) links.Add(("Patients", "Index", "Tìm bệnh nhân", "users"));
+    if (User.IsInRole("Doctor")) links.Add(("Schedule", "Index", "Lịch làm việc", "clock"));
+    else { links.Add(("Catalog", "Index", "Đội ngũ bác sĩ", "users")); links.Add(("Catalog", "Specialties", "Chuyên khoa", "heart")); }
+    if (User.IsInRole("Patient")) links.Add(("Notifications", "Index", "Thông báo", "bell"));
+    links.Add(("Account", "Profile", "Hồ sơ cá nhân", "user"));
+}
+<nav class="side-nav" aria-label="Điều hướng chính"><span class="nav-caption">KHÔNG GIAN CỦA BẠN</span>
+@foreach (var link in links) {
+    var active = (controller == "Reception" && link.Controller == "Appointments") || controller == link.Controller && (action == link.Action || controller == "Booking" || (controller == "Appointments" && action == "Detail") || (controller == "Catalog" && action == "Doctor" && link.Action == "Index"));
+    <a asp-controller="@link.Controller" asp-action="@link.Action" class="@(active ? "active" : "")" aria-current="@(active ? "page" : null)"><ui-icon name="@link.Icon" />@link.Title</a>
+}
+</nav>

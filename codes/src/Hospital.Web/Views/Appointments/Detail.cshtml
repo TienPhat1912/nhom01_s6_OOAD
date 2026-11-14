@@ -1,0 +1,6 @@
+@model AppointmentDto
+@{ ViewData["Title"] = "Chi tiết lịch hẹn"; }
+<div class="page-heading"><div><span class="eyebrow">@Model.AppointmentCode</span><h1>Chi tiết lịch hẹn</h1><p>Thông tin và lịch sử thay đổi của lịch khám.</p></div><a class="btn btn-secondary" asp-action="Index">Về danh sách</a></div>
+<div class="detail-grid"><section class="card"><div class="card-header"><h2>Thông tin lịch khám</h2><partial name="_StatusBadge" model="Model.Status" /></div><div class="card-body"><dl><dt>Thời gian</dt><dd>@Model.StartTime.ToString("HH:mm") – @Model.EndTime.ToString("HH:mm"), @Model.AppointmentDate.ToString("dd/MM/yyyy")</dd><dt>Bệnh nhân</dt><dd>@Model.PatientName</dd><dt>Bác sĩ phụ trách</dt><dd>@Model.DoctorName</dd><dt>Chuyên khoa</dt><dd>@Model.SpecialtyName</dd><dt>Ghi chú</dt><dd>@(string.IsNullOrWhiteSpace(Model.Notes) ? "Không có ghi chú" : Model.Notes)</dd></dl></div></section><section class="card"><div class="card-header"><h2>Lịch sử cập nhật</h2></div><div class="card-body"><ol class="timeline">@foreach (var entry in Model.History) { <li><strong>@DisplayText.Status(entry.NewStatus)</strong><small>@entry.ChangedAt.AddHours(7).ToString("HH:mm · dd/MM/yyyy")</small><p>@entry.Reason</p></li> }</ol></div></section></div>
+
+<partial name="_Actions" model="Model" />

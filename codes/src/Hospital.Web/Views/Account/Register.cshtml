@@ -1,0 +1,18 @@
+@model RegisterModel
+@{ ViewData["Title"] = "Đăng ký tài khoản"; }
+<div class="public-form-page"><section class="card"><div class="card-header"><div><span class="eyebrow">CHÀO MỪNG ĐẾN AN TÂM</span><h1>Đăng ký tài khoản</h1><p>Tạo hồ sơ bệnh nhân để đặt và quản lý lịch khám của bạn.</p></div></div>
+<div class="card-body"><form asp-action="Register" method="post">
+<div asp-validation-summary="All" role="alert"></div>
+@if (ViewData["TraceId"] is string trace) { <p>Mã hỗ trợ: @trace</p> }
+<div class="form-grid">
+<div class="field"><label asp-for="Username">Tên đăng nhập</label><input asp-for="Username" autocomplete="username" required minlength="3" maxlength="50" /><span asp-validation-for="Username"></span></div>
+<div class="field"><label asp-for="FullName">Họ và tên</label><input asp-for="FullName" autocomplete="name" required maxlength="100" /><span asp-validation-for="FullName"></span></div>
+<div class="field"><label asp-for="Email">Email</label><input asp-for="Email" type="email" autocomplete="email" required maxlength="100" /><span asp-validation-for="Email"></span></div>
+<div class="field"><label asp-for="PhoneNumber">Số điện thoại</label><input asp-for="PhoneNumber" type="tel" autocomplete="tel" maxlength="20" /><span asp-validation-for="PhoneNumber"></span></div>
+<div class="field"><label asp-for="DateOfBirth">Ngày sinh</label><input asp-for="DateOfBirth" type="date" value="@(Model.DateOfBirth == default ? "" : Model.DateOfBirth.ToString("yyyy-MM-dd"))" min="@DisplayText.Today.AddYears(-130).ToString("yyyy-MM-dd")" max="@DisplayText.Today.ToString("yyyy-MM-dd")" required /><span asp-validation-for="DateOfBirth"></span></div>
+<div class="field"><label asp-for="Gender">Giới tính</label><select asp-for="Gender"><option value="Male">Nam</option><option value="Female">Nữ</option><option value="Other">Khác</option></select></div>
+<div class="field span-all"><label asp-for="Address">Địa chỉ liên hệ</label><input asp-for="Address" autocomplete="street-address" maxlength="300" /><span asp-validation-for="Address"></span></div>
+<div class="field"><label asp-for="Password">Mật khẩu</label><input asp-for="Password" type="password" autocomplete="new-password" required minlength="8" maxlength="72" aria-describedby="password-help" /><small id="password-help">8–72 ký tự, tối đa 72 byte UTF-8.</small><span asp-validation-for="Password"></span></div>
+<div class="field"><label asp-for="ConfirmPassword">Nhập lại mật khẩu</label><input asp-for="ConfirmPassword" type="password" autocomplete="new-password" required minlength="8" maxlength="72" /><span asp-validation-for="ConfirmPassword"></span></div>
+</div><div class="form-footer"><a asp-action="Login">Đã có tài khoản? Đăng nhập</a><button class="btn btn-primary" type="submit">Tạo tài khoản <ui-icon name="arrow" /></button></div>
+</form></div></section></div>

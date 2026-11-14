@@ -1,0 +1,18 @@
+@model ProfileModel
+@{ ViewData["Title"] = "Hồ sơ cá nhân"; }
+<div class="page-heading"><div><h1>Hồ sơ cá nhân</h1><p>Giữ thông tin chính xác để được hỗ trợ tốt hơn.</p></div><a class="btn btn-secondary" asp-action="ChangePassword">Đổi mật khẩu</a></div>
+<div class="profile-grid"><aside class="card profile-card"><span class="avatar avatar-large">@DisplayText.Initials(Model.FullName)</span><div><h2>@Model.FullName</h2><p>@Model.Username</p><span class="badge">@DisplayText.Role(Model.Role)</span></div></aside>
+<section class="card"><div class="card-header"><h2>Thông tin của bạn</h2></div><div class="card-body"><form asp-action="Profile" method="post" data-confirm="Lưu thông tin cá nhân vừa chỉnh sửa?">
+<div asp-validation-summary="All" role="alert"></div>
+@if (ViewData["TraceId"] is string trace) { <p>Mã hỗ trợ: @trace</p> }
+<div class="form-grid">
+<div class="field"><label asp-for="FullName">Họ và tên <span aria-hidden="true">*</span></label><input asp-for="FullName" autocomplete="name" required maxlength="100" aria-describedby="name-error" /><span asp-validation-for="FullName" id="name-error"></span></div>
+<div class="field"><label asp-for="Email">Email <span aria-hidden="true">*</span></label><input asp-for="Email" type="email" autocomplete="email" required maxlength="100" aria-describedby="email-error" /><span asp-validation-for="Email" id="email-error"></span></div>
+<div class="field"><label asp-for="PhoneNumber">Số điện thoại</label><input asp-for="PhoneNumber" type="tel" autocomplete="tel" maxlength="20" aria-describedby="phone-error" /><span asp-validation-for="PhoneNumber" id="phone-error"></span></div>
+@if (Model.Role == "Patient") {
+<div class="field"><label asp-for="DateOfBirth">Ngày sinh</label><input asp-for="DateOfBirth" type="date" max="@DisplayText.Today.ToString("yyyy-MM-dd")" /><span asp-validation-for="DateOfBirth"></span></div>
+<div class="field"><label asp-for="Gender">Giới tính</label><select asp-for="Gender"><option value="Male">Nam</option><option value="Female">Nữ</option><option value="Other">Khác</option></select></div>
+<div class="field span-all"><label asp-for="Address">Địa chỉ liên hệ</label><textarea asp-for="Address" autocomplete="street-address" maxlength="300"></textarea><span asp-validation-for="Address"></span></div>
+}
+@if (Model.Role == "Doctor") { <div class="field"><label asp-for="Title">Chức danh</label><input asp-for="Title" maxlength="50" /></div><div class="field span-all"><label asp-for="Bio">Giới thiệu</label><textarea asp-for="Bio" maxlength="1000"></textarea><span asp-validation-for="Bio"></span></div> }
+</div><div class="form-footer"><a class="btn btn-secondary" asp-action="Profile">Bỏ thay đổi</a><button class="btn btn-primary" type="submit">Lưu thông tin <ui-icon name="check" /></button></div></form></div></section></div>

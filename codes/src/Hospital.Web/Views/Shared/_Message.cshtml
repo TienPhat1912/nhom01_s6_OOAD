@@ -1,0 +1,7 @@
+@model UiMessage
+<div class="alert alert-@Model.Tone" role="@(Model.Tone == "error" ? "alert" : "status")">
+    <ui-icon name="@(Model.Tone == "success" ? "check" : "info")" />
+    <div><strong>@Model.Title</strong><p>@Model.Message</p>
+        @if (!string.IsNullOrEmpty(Model.TraceId)) { <small>Mã hỗ trợ: @Model.TraceId</small> }
+    </div>
+</div>

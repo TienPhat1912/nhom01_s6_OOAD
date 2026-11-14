@@ -1,0 +1,15 @@
+@model AppointmentDto
+@inject Hospital.Web.Services.AppointmentActions Actions
+@if (User.IsInRole("Patient") || User.IsInRole("Staff")) {
+<section class="card action-panel"><div class="card-body"><h2>Quản lý lịch hẹn</h2><div class="button-row">
+@if (Actions.CanChange(Model, User.IsInRole("Staff"))) {
+<a class="btn btn-primary" asp-controller="Booking" asp-action="Start" asp-route-appointmentId="@Model.Id">Đổi lịch</a>
+<a class="btn btn-danger" asp-controller="Reception" asp-action="Cancel" asp-route-id="@Model.Id">Hủy lịch</a>
+} else { <button class="btn btn-secondary" disabled>Đổi / hủy không khả dụng</button> }
+@if (User.IsInRole("Staff")) {
+@if (Actions.CanCheckIn(Model)) { <a class="btn btn-primary" asp-controller="Reception" asp-action="CheckIn" asp-route-id="@Model.Id">Tiếp nhận bệnh nhân</a> } else { <button class="btn btn-secondary" disabled>Tiếp nhận không khả dụng</button> }
+@if (Actions.CanMarkNoShow(Model)) { <a class="btn btn-secondary" asp-controller="Reception" asp-action="NoShow" asp-route-id="@Model.Id">Ghi nhận không đến</a> } else { <button class="btn btn-secondary" disabled>Chưa thể ghi nhận không đến</button> }
+}
+<a class="btn btn-secondary" asp-controller="Booking" asp-action="Receipt" asp-route-id="@Model.Id">Xem phiếu hẹn</a>
+</div><p>@(User.IsInRole("Staff") ? "Nhân viên đổi/hủy lịch đã xác nhận trước giờ bắt đầu, kèm lý do. Tiếp nhận trong ngày hẹn, trước khi hết khung giờ; ghi nhận không đến sau khi khung giờ kết thúc." : "Bạn có thể đổi hoặc hủy lịch đã xác nhận trước giờ khám ít nhất 2 giờ.")</p></div></section>
+}

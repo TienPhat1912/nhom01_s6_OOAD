@@ -1,0 +1,15 @@
+@model BookingReview
+@{ ViewData["Title"] = "Kiểm tra và xác nhận"; var draft = Model.Draft; }
+<div class="page-heading"><div><h1>Kiểm tra và xác nhận</h1><p>Đối chiếu thông tin bên dưới trước khi @(draft.State.AppointmentId.HasValue ? "đổi lịch" : "đặt lịch").</p></div></div>
+<partial name="_Progress" model="5" />
+<section class="card narrow-card"><div class="card-header"><h2>Thông tin lịch khám</h2></div><div class="card-body">
+<div asp-validation-summary="All" role="alert"></div>
+@if (ViewData["TraceId"] is string trace) { <p>Mã hỗ trợ: @trace</p> }
+@if (ViewData["OutcomeUncertain"] is true) { <partial name="_Message" model='new UiMessage("Chưa xác định được kết quả", "Bạn có thể xác nhận lại ngay trên trang này hoặc kiểm tra danh sách lịch hẹn. Không bắt đầu yêu cầu đặt mới khi chưa biết kết quả.", "warning")' /> }
+<dl><dt>Bệnh nhân</dt><dd>@draft.PatientName · @(draft.PatientPhone ?? "Chưa có số điện thoại")</dd><dt>Bác sĩ</dt><dd>@draft.DoctorName</dd><dt>Chuyên khoa</dt><dd>@draft.SpecialtyName</dd><dt>Ngày khám</dt><dd>@draft.Date.ToString("dd/MM/yyyy")</dd><dt>Khung giờ</dt><dd>@draft.StartTime.ToString("HH:mm") – @draft.EndTime.ToString("HH:mm")</dd>
+@if (draft.State.AppointmentId.HasValue) { <dt>Lý do đổi</dt><dd>@(draft.Reason ?? "Không ghi lý do")</dd> } else { <dt>Ghi chú</dt><dd>@(draft.Notes ?? "Không có ghi chú")</dd> }</dl>
+<p>Bệnh nhân có thể tự đổi hoặc hủy lịch đã xác nhận trước giờ khám ít nhất 2 giờ. Nhân viên hỗ trợ trước giờ bắt đầu và cần ghi lý do.</p>
+<form asp-action="Confirm" method="post" data-confirm="Xác nhận thông tin và lưu lịch khám này?"><input type="hidden" name="draftToken" value="@Model.DraftToken" />
+<div class="form-footer"><a class="btn btn-secondary" asp-action="Start" asp-route-patientId="@draft.State.PatientId" asp-route-appointmentId="@draft.State.AppointmentId">Chọn lại</a><button class="btn btn-primary" type="submit">@(draft.State.AppointmentId.HasValue ? "Xác nhận đổi lịch" : "Xác nhận đặt lịch") <ui-icon name="check" /></button></div></form>
+<p><a asp-controller="Appointments" asp-action="Index">Kiểm tra danh sách lịch hẹn</a></p>
+</div></section>

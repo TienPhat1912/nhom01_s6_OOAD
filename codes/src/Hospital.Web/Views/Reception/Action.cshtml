@@ -1,0 +1,16 @@
+@model AppointmentActionModel
+@inject Hospital.Web.Services.AppointmentActions Actions
+@{ ViewData["Title"] = Model.Title; var appointment = Model.Appointment;
+   var allowed = Model.Operation switch { "Cancel" => Actions.CanChange(appointment, User.IsInRole("Staff")), "CheckIn" => Actions.CanCheckIn(appointment), _ => Actions.CanMarkNoShow(appointment) }; }
+<div class="page-heading"><div><span class="eyebrow">@appointment.AppointmentCode</span><h1>@Model.Title</h1><p>Kiểm tra thông tin và xác nhận thao tác.</p></div></div>
+<section class="card narrow-card"><div class="card-body">
+<dl><dt>Bệnh nhân</dt><dd>@appointment.PatientName · @(appointment.PatientPhone ?? "Chưa có số điện thoại")</dd><dt>Bác sĩ / chuyên khoa</dt><dd>@appointment.DoctorName · @appointment.SpecialtyName</dd><dt>Thời gian</dt><dd>@appointment.StartTime.ToString("HH:mm") – @appointment.EndTime.ToString("HH:mm"), @appointment.AppointmentDate.ToString("dd/MM/yyyy")</dd><dt>Trạng thái hiện tại</dt><dd><partial name="_StatusBadge" model="appointment.Status" /></dd></dl>
+<form asp-action="@Model.Operation" asp-route-id="@appointment.Id" method="post" data-confirm="@Model.Title cho lịch hẹn này?">
+<input asp-for="RowVersion" type="hidden" /><div asp-validation-summary="All" role="alert"></div>
+@if (ViewData["TraceId"] is string trace) { <p>Mã hỗ trợ: @trace</p> }
+@if (!allowed) { <partial name="_Message" model='new UiMessage("Lịch hẹn không còn đủ điều kiện", "Vui lòng xem trạng thái và thời gian hiện tại trong chi tiết lịch hẹn.", "warning")' /> }
+@if (Model.Operation == "CheckIn") { <label class="check-row"><input asp-for="PatientVerified" required />Tôi đã đối chiếu mã lịch hẹn, họ tên và thông tin liên hệ với bệnh nhân.</label><span asp-validation-for="PatientVerified"></span><p>Đã tiếp nhận ghi nhận bệnh nhân đến cơ sở y tế, chưa xác nhận hoàn tất khám.</p> }
+<div class="field"><label asp-for="Reason">Lý do / ghi chú @(Model.Operation == "Cancel" && User.IsInRole("Staff") ? "(bắt buộc)" : "(không bắt buộc)")</label><textarea asp-for="Reason" maxlength="500" required="@(Model.Operation == "Cancel" && User.IsInRole("Staff"))"></textarea><span asp-validation-for="Reason"></span></div>
+<div class="form-footer"><a class="btn btn-secondary" asp-controller="Appointments" asp-action="Detail" asp-route-id="@appointment.Id">Về chi tiết</a><button class="btn @(Model.Operation == "Cancel" ? "btn-danger" : "btn-primary")" type="submit" disabled="@(!allowed)">@Model.Title</button></div>
+<p><a asp-action="@Model.Operation" asp-route-id="@appointment.Id">Tải lại dữ liệu trước khi xác nhận lại</a></p>
+</form></div></section>

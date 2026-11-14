@@ -1,0 +1,5 @@
+@model PagedResult<SpecialtyDto>
+@{ ViewData["Title"] = "Chuyên khoa"; }
+<div class="page-heading"><div><h1>Các chuyên khoa</h1><p>Thông tin các chuyên khoa đang hoạt động.</p></div><a class="btn btn-secondary" asp-action="Index">Xem đội ngũ bác sĩ</a></div>
+@if (Model.Items.Count == 0) { <partial name="_EmptyState" model='new EmptyState("Chưa có chuyên khoa", "Danh mục sẽ hiển thị khi được cập nhật.", "heart")' /> }
+<div class="catalog-grid">@foreach (var item in Model.Items) { <article class="card doctor-card"><span class="empty-icon"><ui-icon name="heart" /></span><h2>@item.Name</h2><p>@item.Description</p><span class="badge">@item.DoctorCount bác sĩ</span><a class="btn btn-secondary" asp-action="Index" asp-route-specialtyId="@item.Id">Xem bác sĩ @item.Name</a></article> }</div><partial name="_Pagination" model="new Pagination(Model.Page, Model.TotalCount, Model.PageSize)" />
