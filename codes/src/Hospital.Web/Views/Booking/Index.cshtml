@@ -1,0 +1,8 @@
+@model BookingPage
+@{ ViewData["Title"] = Model.State.AppointmentId.HasValue ? "Đổi lịch khám" : "Đặt lịch khám"; }
+<div class="page-heading"><div><h1>@ViewData["Title"]</h1><p>Bắt đầu bằng chuyên khoa bạn muốn khám.</p></div></div>
+<partial name="_Progress" model="1" /><partial name="_Patient" model="Model" />
+<form method="get" class="toolbar"><input type="hidden" name="context" value="@Model.Context" /><div class="field"><label for="keyword">Tìm chuyên khoa</label><input id="keyword" name="keyword" value="@ViewData["Keyword"]" maxlength="100" /></div><button class="btn btn-secondary" type="submit">Tìm kiếm</button></form>
+@if (Model.Specialties.Items.Count == 0) { <partial name="_EmptyState" model='new EmptyState("Chưa có chuyên khoa phù hợp", "Thử tìm bằng từ khóa khác.", "heart")' /> }
+else { <div class="catalog-grid">@foreach (var specialty in Model.Specialties.Items) { <article class="card doctor-card"><ui-icon name="heart" /><h2>@specialty.Name</h2><p>@specialty.Description</p><small>@specialty.DoctorCount bác sĩ</small><a class="btn btn-primary" asp-action="Doctors" asp-route-context="@Model.Context" asp-route-specialtyId="@specialty.Id">Chọn @specialty.Name <ui-icon name="arrow" /></a></article> }</div> }
+<partial name="_Pagination" model="new Pagination(Model.Specialties.Page, Model.Specialties.TotalCount, Model.Specialties.PageSize)" />

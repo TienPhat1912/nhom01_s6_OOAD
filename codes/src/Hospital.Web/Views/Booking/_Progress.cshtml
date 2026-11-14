@@ -1,0 +1,5 @@
+@model int
+@{ var steps = new[] { "Chuyên khoa", "Bác sĩ", "Ngày khám", "Khung giờ", "Kiểm tra", "Xác nhận", "Kết quả" }; }
+<ol class="booking-progress" aria-label="Tiến trình đặt lịch">
+@for (var i = 0; i < steps.Length; i++) { <li class="@(i + 1 <= Model ? "reached" : "")" aria-current="@(i + 1 == Model ? "step" : null)"><span>@(i + 1)</span>@steps[i]</li> }
+</ol>

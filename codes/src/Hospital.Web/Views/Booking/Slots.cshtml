@@ -1,0 +1,20 @@
+@model BookingPage
+@{ ViewData["Title"] = "Chọn ngày và khung giờ"; }
+<div class="page-heading"><div><h1>Chọn ngày và khung giờ</h1><p>@Model.Doctor.FullName · @Model.Specialty.Name</p></div><a class="btn btn-secondary" asp-action="Doctors" asp-route-context="@Model.Context" asp-route-specialtyId="@Model.SpecialtyId">Đổi bác sĩ</a></div>
+<partial name="_Progress" model="4" /><partial name="_Patient" model="Model" />
+<div class="detail-grid"><section class="card"><div class="card-header"><h2>Ngày khám</h2></div><div class="card-body">
+<form asp-action="Slots" method="get"><input type="hidden" name="context" value="@Model.Context" /><input asp-for="SpecialtyId" type="hidden" /><input asp-for="DoctorId" type="hidden" />
+<div class="field"><label for="date">Chọn ngày còn lịch trống</label><select id="date" name="date" required disabled="@(Model.Doctor.AvailableDates.Count == 0)">
+@if (!Model.Doctor.AvailableDates.Contains(Model.Date)) { <option value="@Model.Date.ToString("yyyy-MM-dd")" selected>@Model.Date.ToString("dd/MM/yyyy") — chưa có giờ trống</option> }
+@foreach (var date in Model.Doctor.AvailableDates) { <option value="@date.ToString("yyyy-MM-dd")" selected="@(date == Model.Date)">@date.ToString("dd/MM/yyyy")</option> }
+</select></div><button class="btn btn-secondary" type="submit" disabled="@(Model.Doctor.AvailableDates.Count == 0)">Xem khung giờ</button></form>
+<p class="auth-footnote">Chỉ hiện ngày còn khung giờ trống. Lựa chọn của bạn chưa giữ chỗ; lịch sẽ được kiểm tra lại khi xác nhận.</p>
+</div></section><section class="card"><div class="card-header"><h2>Khung giờ ngày @Model.Date.ToString("dd/MM/yyyy")</h2></div><div class="card-body">
+<form asp-action="Review" method="post"><input asp-for="Context" type="hidden" /><input asp-for="SpecialtyId" type="hidden" /><input asp-for="DoctorId" type="hidden" /><input name="Date" type="hidden" value="@Model.Date.ToString("yyyy-MM-dd")" />
+<div asp-validation-summary="All" role="alert"></div>
+@if (Model.Slots.Count == 0) { <partial name="_EmptyState" model='new EmptyState("Chưa có khung giờ trống", "Chọn ngày hoặc bác sĩ khác để tiếp tục.")' /> }
+else { <fieldset class="slot-fieldset"><legend>Chọn một khung giờ</legend><div class="slot-grid">@foreach (var slot in Model.Slots) { <label class="slot-option"><input asp-for="TimeSlotId" type="radio" value="@slot.Id" required /><span>@slot.StartTime.ToString("HH:mm") – @slot.EndTime.ToString("HH:mm")</span></label> }</div></fieldset> }
+@if (Model.State.AppointmentId.HasValue) { <div class="field"><label asp-for="Reason">Lý do đổi lịch @(User.IsInRole("Staff") ? "(bắt buộc)" : "(không bắt buộc)")</label><textarea asp-for="Reason" maxlength="500" required="@User.IsInRole("Staff")"></textarea><span asp-validation-for="Reason"></span></div> }
+else { <div class="field"><label asp-for="Notes">Ghi chú cho lịch khám (không bắt buộc)</label><textarea asp-for="Notes" maxlength="1000" placeholder="Thông tin bạn muốn nhân viên tiếp nhận biết"></textarea><span asp-validation-for="Notes"></span></div> }
+<button class="btn btn-primary" type="submit" disabled="@(Model.Slots.Count == 0)">Kiểm tra thông tin <ui-icon name="arrow" /></button>
+</form></div></section></div>

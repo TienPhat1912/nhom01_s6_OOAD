@@ -6,16 +6,9 @@ namespace Hospital.Web.Controllers;
 
 public class HomeController : Controller
 {
-    private readonly ILogger<HomeController> _logger;
-
-    public HomeController(ILogger<HomeController> logger)
-    {
-        _logger = logger;
-    }
-
     public IActionResult Index()
     {
-        return View();
+        return User.Identity?.IsAuthenticated == true ? RedirectToAction("Index", "Dashboard") : View();
     }
 
     public IActionResult Privacy()
@@ -26,6 +19,7 @@ public class HomeController : Controller
     [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
     public IActionResult Error()
     {
-        return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+        Response.StatusCode = 500;
+        return View("ApiError", new UiMessage("Đã xảy ra lỗi", "Vui lòng thử lại. Nếu lỗi tiếp tục, cung cấp mã hỗ trợ cho người phụ trách.", "error", Activity.Current?.Id ?? HttpContext.TraceIdentifier));
     }
 }

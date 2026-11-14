@@ -1,8 +1,6 @@
-﻿@{
-    ViewData["Title"] = "Home Page";
-}
+@{ ViewData["Title"] = "Chủ động lịch khám"; }
+<section class="hero"><div><span class="hero-tag"><ui-icon name="heart" />Đồng hành cùng sức khỏe của bạn</span><h1>Chủ động lịch khám.<br /><em>An tâm mỗi ngày.</em></h1><p>Một nơi để theo dõi lịch hẹn, tìm hiểu đội ngũ bác sĩ và chuẩn bị cho lần thăm khám tiếp theo.</p><a class="btn btn-primary" asp-controller="Booking" asp-action="Start">Đặt lịch khám <ui-icon name="arrow" /></a></div>
+<div class="hero-aside"><span class="eyebrow">HÀNH TRÌNH CHĂM SÓC</span><h2>Mọi thứ rõ ràng,<br />từ trước khi đến khám.</h2><div class="journey-row"><span>01</span><div><strong>Tìm hiểu bác sĩ</strong><small>Thông tin và chuyên khoa phù hợp</small></div><ui-icon name="users" /></div><div class="journey-row"><span>02</span><div><strong>Chọn ngày và khung giờ</strong><small>Xem lịch trống và xác nhận thông tin</small></div><ui-icon name="calendar" /></div><div class="journey-row"><span>03</span><div><strong>Chuẩn bị chu đáo</strong><small>Đọc thông báo trước khi đến khám</small></div><ui-icon name="bell" /></div></div></section>
+<section class="how-section" id="how-it-works"><span class="eyebrow">BẮT ĐẦU THẬT DỄ DÀNG</span><div class="how-grid"><div><ui-icon name="user" /><h3>Tạo tài khoản bệnh nhân</h3><p><a asp-controller="Account" asp-action="Register">Đăng ký</a> để lưu hồ sơ và quản lý lịch khám cá nhân.</p></div><div><ui-icon name="calendar" /><h3>Chọn và xác nhận lịch</h3><p>Chọn chuyên khoa, bác sĩ, ngày và khung giờ. Kiểm tra thông tin trước khi xác nhận.</p></div><div><ui-icon name="shield" /><h3>Giữ hồ sơ chính xác</h3><p>Cập nhật thông tin liên hệ để nhân viên có thể hỗ trợ khi cần thiết.</p></div></div></section>
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div>
+<section class="how-section"><h2>Tìm bác sĩ hoặc chuyên khoa</h2><form asp-controller="Catalog" asp-action="Index" method="get" class="toolbar"><div class="field"><label for="home-keyword">Tên bác sĩ, mã hoặc chuyên khoa</label><input id="home-keyword" name="keyword" maxlength="100" placeholder="Nhập thông tin muốn tìm" /></div><button class="btn btn-primary" type="submit">Tìm kiếm</button></form><p>Đăng nhập để xem danh mục và lịch trống cập nhật từ cơ sở y tế.</p></section>

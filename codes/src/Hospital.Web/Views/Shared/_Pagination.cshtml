@@ -1,0 +1,18 @@
+@model Pagination
+@{
+    var totalPages = Math.Max(1, (int)Math.Ceiling((double)Model.TotalCount / Model.PageSize));
+    string PageUrl(int page) {
+        var query = Context.Request.Query.ToDictionary(x => x.Key, x => (string?)x.Value.ToString());
+        query["page"] = page.ToString();
+        return Context.Request.Path + QueryString.Create(query).ToString();
+    }
+}
+<nav class="pagination" aria-label="Phân trang">
+    <span>@Model.TotalCount kết quả · Trang @Model.Page / @totalPages</span>
+    <div class="button-row">
+        @if (Model.Page > 1) { <a class="btn btn-secondary btn-small" href="@PageUrl(Model.Page - 1)" rel="prev">Trước</a> }
+        else { <button class="btn btn-secondary btn-small" disabled title="Đang ở trang đầu">Trước</button> }
+        @if (Model.Page < totalPages) { <a class="btn btn-secondary btn-small" href="@PageUrl(Model.Page + 1)" rel="next">Sau</a> }
+        else { <button class="btn btn-secondary btn-small" disabled title="Đang ở trang cuối">Sau</button> }
+    </div>
+</nav>

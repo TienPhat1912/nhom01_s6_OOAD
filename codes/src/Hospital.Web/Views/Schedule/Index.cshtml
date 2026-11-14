@@ -1,0 +1,6 @@
+@model List<WorkingScheduleDto>
+@{ ViewData["Title"] = "Lịch làm việc"; var start = (DateOnly)ViewData["Date"]!; }
+<div class="page-heading"><div><h1>Lịch làm việc của tôi</h1><p>Các ca trực đã được phân công trong 7 ngày.</p></div></div>
+<form method="get" class="toolbar"><div class="field"><label for="date">Xem từ ngày</label><input name="date" id="date" type="date" value="@start.ToString("yyyy-MM-dd")" required /></div><button class="btn btn-primary">Xem lịch</button></form>
+@if (Model.Count == 0) { <section class="card"><partial name="_EmptyState" model='new EmptyState("Chưa có ca trực", "Không có lịch làm việc trong khoảng ngày đã chọn.", "clock")' /></section> }
+<div class="schedule-list">@foreach (var schedule in Model) { <article class="card schedule-item"><div><span class="eyebrow">@schedule.WorkDate.ToString("dd/MM/yyyy")</span><h2>@schedule.StartTime.ToString("HH:mm") – @schedule.EndTime.ToString("HH:mm")</h2><p>@schedule.Note</p></div><div class="button-row"><span class="badge badge-confirmed">@schedule.OpenSlotsCount khung giờ trống</span><span class="badge">@schedule.OccupiedSlotsCount đã có lịch</span></div></article> }</div>

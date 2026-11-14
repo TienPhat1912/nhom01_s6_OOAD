@@ -1,50 +1,49 @@
-﻿<!DOCTYPE html>
-<html lang="en">
+@{
+    var authenticated = User.Identity?.IsAuthenticated == true;
+    var profile = Context.Items["Profile"] as UserProfileDto;
+    var name = profile?.FullName ?? User.Identity?.Name ?? "";
+    var role = DisplayText.Role(User.FindFirstValue(ClaimTypes.Role));
+}
+<!DOCTYPE html>
+<html lang="vi">
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - Hospital.Web</title>
-    <script type="importmap"></script>
-    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#0f3b38" />
+    <title>@ViewData["Title"] · An Tâm</title>
+    <link rel="icon" href="~/brand.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="~/css/tokens.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
-    <link rel="stylesheet" href="~/Hospital.Web.styles.css" asp-append-version="true" />
+    <script src="~/js/site.js" asp-append-version="true" defer></script>
 </head>
-<body>
-    <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-            <div class="container-fluid">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">Hospital.Web</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                    <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </nav>
-    </header>
-    <div class="container">
-        <main role="main" class="pb-3">
-            @RenderBody()
-        </main>
-    </div>
-
-    <footer class="border-top footer text-muted">
-        <div class="container">
-            &copy; 2026 - Hospital.Web - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+<body class="@(authenticated ? "portal" : "public-site")">
+    <a class="skip-link" href="#main-content">Đến nội dung chính</a>
+    @if (authenticated) {
+        <aside class="sidebar" id="sidebar" aria-label="Menu tài khoản">
+            <div class="sidebar-heading"><partial name="_Brand" /><button class="icon-button sidebar-close" type="button" data-sidebar-close aria-label="Đóng menu"><span aria-hidden="true">×</span></button></div><partial name="_Navigation" />
+            <div class="sidebar-note"><ui-icon name="shield" /><strong>Thông tin của bạn được bảo vệ</strong><p>Chỉ bạn và người có trách nhiệm được truy cập thông tin phù hợp.</p></div>
+            <div class="sidebar-user"><span class="avatar">@DisplayText.Initials(name)</span><div><strong>@name</strong><small>@role</small></div></div>
+            <form asp-controller="Account" asp-action="Logout" method="post"><button class="logout-button" type="submit"><ui-icon name="logout" />Đăng xuất</button></form>
+        </aside>
+        <button class="nav-scrim" type="button" data-nav-close aria-label="Đóng menu" tabindex="-1" hidden></button>
+        <div class="workspace">
+            <header class="topbar"><div class="topbar-left"><button class="icon-button mobile-menu" type="button" data-nav-toggle aria-controls="sidebar" aria-expanded="false" aria-label="Mở menu"><ui-icon name="menu" /></button><span class="breadcrumb">Không gian @role.ToLower()<span>/</span><strong>@ViewData["Title"]</strong></span></div>
+                <div class="topbar-right"><span class="date-label"><ui-icon name="calendar" />@DisplayText.Today.ToString("dd/MM/yyyy")</span><a class="avatar" asp-controller="Account" asp-action="Profile" aria-label="Hồ sơ cá nhân">@DisplayText.Initials(name)</a></div>
+            </header>
+            <main id="main-content" class="page-content" tabindex="-1">
+                @if (TempData["Success"] is string success) { <partial name="_Message" model='new UiMessage("Đã lưu thành công", success, "success")' /> }
+                @RenderBody()
+            </main>
+            <footer class="portal-footer"><span>An Tâm · Chăm sóc từ sự an tâm</span><span>Thời gian hiển thị theo giờ Việt Nam</span></footer>
         </div>
-    </footer>
-    <script src="~/lib/jquery/dist/jquery.min.js"></script>
-    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="~/js/site.js" asp-append-version="true"></script>
+    } else {
+        <header class="public-header"><partial name="_Brand" /><nav aria-label="Điều hướng chính"><a asp-controller="Home" asp-action="Index" asp-fragment="how-it-works">Hướng dẫn sử dụng</a><a class="btn btn-primary btn-small" asp-controller="Account" asp-action="Login">Đăng nhập <ui-icon name="arrow" /></a></nav></header>
+        <main id="main-content" tabindex="-1">
+@if (TempData["Success"] is string publicSuccess) { <div class="public-form-page"><partial name="_Message" model='new UiMessage("Thành công", publicSuccess, "success")' /></div> }
+@RenderBody()</main>
+        <footer class="public-footer"><span>© @DateTime.UtcNow.Year An Tâm</span><a asp-controller="Home" asp-action="Privacy">Quyền riêng tư</a></footer>
+    }
+    <partial name="_ConfirmDialog" />
+    <div class="page-loading" hidden role="status" aria-live="polite"><span class="spinner"></span>Đang tải thông tin…</div>
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>

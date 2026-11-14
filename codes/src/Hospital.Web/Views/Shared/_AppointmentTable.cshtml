@@ -1,0 +1,13 @@
+@model List<AppointmentDto>
+@if (Model.Count == 0) {
+    <partial name="_EmptyState" model='new EmptyState("Chưa có lịch hẹn", "Các lịch hẹn phù hợp sẽ xuất hiện tại đây.")' />
+} else {
+<div class="table-scroll" role="region" aria-label="Danh sách lịch hẹn" tabindex="0">
+<table class="data-table"><thead><tr><th>Lịch khám</th><th>@(User.IsInRole("Patient") ? "Bác sĩ" : "Bệnh nhân")</th><th>Chuyên khoa</th><th>Trạng thái</th><th><span class="sr-only">Chi tiết</span></th></tr></thead>
+<tbody>@foreach (var a in Model) {
+    <tr><td><strong>@a.StartTime.ToString("HH:mm") – @a.EndTime.ToString("HH:mm")</strong><small>@a.AppointmentDate.ToString("dd/MM/yyyy")</small></td>
+    <td><div class="person"><span class="avatar avatar-small">@DisplayText.Initials(User.IsInRole("Patient") ? a.DoctorName : a.PatientName)</span><div><strong>@(User.IsInRole("Patient") ? a.DoctorName : a.PatientName)</strong><small>@a.AppointmentCode</small></div></div></td>
+    <td>@a.SpecialtyName</td><td><partial name="_StatusBadge" model="a.Status" /></td>
+    <td><a class="icon-button" asp-controller="Appointments" asp-action="Detail" asp-route-id="@a.Id" aria-label="Chi tiết lịch @a.AppointmentCode"><ui-icon name="arrow" /></a></td></tr>
+}</tbody></table></div>
+}

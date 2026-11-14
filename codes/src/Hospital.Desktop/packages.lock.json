@@ -8,6 +8,12 @@
           "Hospital.Domain": "[1.0.0, )"
         }
       },
+      "hospital.client": {
+        "type": "Project",
+        "dependencies": {
+          "Hospital.Application": "[1.0.0, )"
+        }
+      },
       "hospital.domain": {
         "type": "Project"
       }
