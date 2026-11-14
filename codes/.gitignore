@@ -1,0 +1,41 @@
+# Build output, dependency caches and local runtime state.
+**/bin/
+**/obj/
+**/node_modules/
+**/TestResults/
+**/test-results/
+**/playwright-report/
+**/artifacts/
+tmp/
+.local/
+.vs/
+.idea/
+**/__pycache__/
+*.py[cod]
+*.user
+*.suo
+*.log
+*.trx
+.DS_Store
+Thumbs.db
+
+# Configuration and private data stay on each member's machine.
+demo.local.json
+.env
+.env.*
+!.env.example
+**/appsettings.Local.json
+*.pfx
+*.p12
+*.pem
+*.key
+*.bak
+*.mdf
+*.ldf
+
+# Archive contents are local; keep its documentation in Git.
+/archive/*
+!/archive/README.md
+!/archive/MANIFEST.md
+
+# Do not ignore wwwroot/lib/**/dist: these are required static assets.

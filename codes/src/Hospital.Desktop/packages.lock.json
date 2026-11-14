@@ -1,0 +1,16 @@
+{
+  "version": 1,
+  "dependencies": {
+    "net9.0-windows7.0": {
+      "hospital.application": {
+        "type": "Project",
+        "dependencies": {
+          "Hospital.Domain": "[1.0.0, )"
+        }
+      },
+      "hospital.domain": {
+        "type": "Project"
+      }
+    }
+  }
+}
