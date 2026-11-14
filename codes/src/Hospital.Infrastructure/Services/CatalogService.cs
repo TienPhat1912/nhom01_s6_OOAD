@@ -60,7 +60,7 @@ public class CatalogService(HospitalDbContext db, ICurrentUserService actor, Cli
         return query.OrderBy(d => d.FullName).ThenBy(d => d.Id).Select(d => new DoctorDto
         {
             Id = d.Id, DoctorCode = d.DoctorCode, FullName = d.FullName, Title = d.Title, Bio = d.Bio,
-            AvatarUrl = d.AvatarUrl, IsActive = d.IsActive,
+            AvatarUrl = d.AvatarUrl, IsActive = d.IsActive, LinkedUserId = Admin ? d.UserId : null,
             Specialties = d.DoctorSpecialties.Where(ds => ds.Specialty.IsActive || Admin).OrderByDescending(ds => ds.IsPrimary)
                 .Select(ds => ds.Specialty.Name).ToList()
         }).PageAsync(page ?? new PageQuery());
@@ -81,6 +81,7 @@ public class CatalogService(HospitalDbContext db, ICurrentUserService actor, Cli
         {
             Id = d.Id, DoctorCode = d.DoctorCode, FullName = d.FullName, Title = d.Title, Bio = d.Bio,
             AvatarUrl = d.AvatarUrl, IsActive = d.IsActive,
+            PrimarySpecialtyId = d.DoctorSpecialties.Where(ds => ds.IsPrimary).Select(ds => (int?)ds.SpecialtyId).FirstOrDefault(),
             Specialties = d.DoctorSpecialties.Where(ds => ds.Specialty.IsActive || Admin).OrderByDescending(ds => ds.IsPrimary)
                 .Select(ds => new SpecialtyDto { Id = ds.SpecialtyId, Name = ds.Specialty.Name, Code = ds.Specialty.Code,
                     IsActive = ds.Specialty.IsActive, Description = ds.Specialty.Description }).ToList(),

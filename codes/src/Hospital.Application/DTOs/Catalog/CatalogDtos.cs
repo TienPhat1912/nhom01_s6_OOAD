@@ -12,6 +12,8 @@ public class SpecialtyDto
 
 public class DoctorDto
 {
+    // Only populated for Admin; enables selecting an unlinked profile when provisioning accounts.
+    public Guid? LinkedUserId { get; set; }
     public Guid Id { get; set; }
     public string DoctorCode { get; set; } = string.Empty;
     public string FullName { get; set; } = string.Empty;
@@ -24,6 +26,7 @@ public class DoctorDto
 
 public class DoctorDetailDto
 {
+    public int? PrimarySpecialtyId { get; set; }
     public Guid Id { get; set; }
     public string DoctorCode { get; set; } = string.Empty;
     public string FullName { get; set; } = string.Empty;
