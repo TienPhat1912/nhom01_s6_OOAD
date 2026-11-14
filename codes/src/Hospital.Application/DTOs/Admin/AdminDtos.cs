@@ -31,6 +31,9 @@ public class ChangeRoleRequest
 public record UserDto(Guid Id, string Username, string FullName, string Email, string? PhoneNumber,
     UserRole Role, bool IsActive, Guid? DoctorId);
 
+public record AuditLogDto(long Id, Guid? UserId, string? UserName, string Action, string EntityType,
+    string? EntityId, string? OldValues, string? NewValues, DateTime CreatedAt);
+
 public class SaveDoctorRequest
 {
     [Required, StringLength(100)] public string FullName { get; set; } = "";

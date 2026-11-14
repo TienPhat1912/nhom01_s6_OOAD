@@ -29,6 +29,14 @@ public sealed class AdminService(HospitalDbContext db, ICurrentUserService actor
             u.Doctor == null ? null : (Guid?)u.Doctor.Id)).PageAsync(page);
     }
 
+    public async Task<UserDto> UserAsync(Guid id)
+    {
+        actor.RequireRole("Admin");
+        var user = await db.Users.AsNoTracking().Include(u => u.Doctor).SingleOrDefaultAsync(u => u.Id == id)
+            ?? throw new NotFoundException("Tài khoản", id);
+        return Map(user);
+    }
+
     public async Task<UserDto> CreateUserAsync(CreateUserRequest request)
     {
         var adminId = actor.RequireRole("Admin");
@@ -148,6 +156,19 @@ public sealed class AdminService(HospitalDbContext db, ICurrentUserService actor
             PhoneNumber = p.User.PhoneNumber, DateOfBirth = p.DateOfBirth, Gender = p.Gender, Address = p.Address,
             Role = "Patient", IsActive = p.User.IsActive
         }).PageAsync(page);
+    }
+
+    public async Task<UserProfileDto> PatientAsync(Guid id)
+    {
+        actor.RequireRole("Staff");
+        return await db.Patients.AsNoTracking()
+            .Where(p => p.Id == id && p.User.IsActive && p.User.RoleId == (int)UserRole.Patient)
+            .Select(p => new UserProfileDto
+            {
+                UserId = p.UserId, PatientId = p.Id, PatientCode = p.PatientCode, FullName = p.User.FullName,
+                PhoneNumber = p.User.PhoneNumber, DateOfBirth = p.DateOfBirth, Gender = p.Gender,
+                Address = p.Address, Role = "Patient", IsActive = p.User.IsActive
+            }).SingleOrDefaultAsync() ?? throw new NotFoundException("Bệnh nhân", id);
     }
 
     public async Task<DoctorDetailDto> SaveDoctorAsync(Guid? id, SaveDoctorRequest request)

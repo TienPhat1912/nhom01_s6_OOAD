@@ -13,6 +13,9 @@ namespace Hospital.Api.Controllers;
 [ApiController, Route("api/admin"), Authorize(Roles = "Admin")]
 public class AdminController(IAdminService service, HospitalDbContext db) : ControllerBase
 {
+    [HttpGet("users/{id:guid}")]
+    public async Task<IActionResult> GetUser(Guid id) => Ok(ApiResponse<UserDto>.Succeeded(await service.UserAsync(id)));
+
     [HttpGet("users")]
     public async Task<IActionResult> Users([FromQuery] PageQuery pagination, [FromQuery] string? keyword) =>
         Ok(ApiResponse<PagedResult<UserDto>>.Succeeded(await service.UsersAsync(pagination, keyword)));
@@ -55,14 +58,19 @@ public class AdminController(IAdminService service, HospitalDbContext db) : Cont
         var total = await query.CountAsync();
         var items = await query.OrderByDescending(a => a.CreatedAt).ThenByDescending(a => a.Id)
             .Skip((pagination.Page - 1) * pagination.PageSize).Take(pagination.PageSize)
-            .Select(a => new { a.Id, a.UserId, a.Action, a.EntityType, a.EntityId, a.OldValues, a.NewValues, a.CreatedAt }).ToListAsync();
-        return Ok(ApiResponse<object>.Succeeded(new { items, totalCount = total, pagination.Page, pagination.PageSize }));
+            .Select(a => new AuditLogDto(a.Id, a.UserId, a.User == null ? null : a.User.FullName,
+                a.Action, a.EntityType, a.EntityId, a.OldValues, a.NewValues, a.CreatedAt)).ToListAsync();
+        return Ok(ApiResponse<PagedResult<AuditLogDto>>.Succeeded(new(items, total, pagination.Page, pagination.PageSize)));
     }
 }
 
 [ApiController, Route("api/patients"), Authorize(Roles = "Staff")]
 public class PatientsController(IAdminService service) : ControllerBase
 {
+    [HttpGet("{id:guid}")]
+    public async Task<IActionResult> Detail(Guid id) =>
+        Ok(ApiResponse<UserProfileDto>.Succeeded(await service.PatientAsync(id)));
+
     [HttpGet]
     public async Task<IActionResult> Search([FromQuery] PageQuery pagination, [FromQuery] string? keyword) =>
         Ok(ApiResponse<PagedResult<UserProfileDto>>.Succeeded(await service.PatientsAsync(pagination, keyword)));

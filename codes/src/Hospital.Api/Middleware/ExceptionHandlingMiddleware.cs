@@ -3,6 +3,7 @@ using Hospital.Application.Common.Exceptions;
 using Hospital.Application.Common.Models;
 using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Storage;
 
 namespace Hospital.Api.Middleware;
 
@@ -27,6 +28,8 @@ public class ExceptionHandlingMiddleware(RequestDelegate next, ILogger<Exception
 
     private static (int, string, string) Classify(Exception ex) => ex switch
     {
+        // EF wraps the SQL error when its connection retry policy is exhausted.
+        RetryLimitExceededException { InnerException: { } inner } => Classify(inner),
         BusinessRuleException e when e.ErrorCode is "INVALID_CREDENTIALS" or "ACCOUNT_INACTIVE" => (401, e.ErrorCode, e.Message),
         BusinessRuleException e when e.ErrorCode.Contains("ALREADY_EXISTS") || e.ErrorCode is "TIMESLOT_OCCUPIED" or "IDEMPOTENCY_KEY_REUSED" => (409, e.ErrorCode, e.Message),
         BusinessRuleException e => (400, e.ErrorCode, e.Message),
