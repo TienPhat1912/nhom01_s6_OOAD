@@ -1,241 +1,82 @@
-# Kiến trúc Hệ thống — Hospital Appointment System
+# Kiến trúc triển khai — Phase 8
 
----
+Tài liệu mô tả mã nguồn đang chạy, cập nhật ngày 19/10/2026. Hệ thống quản lý lịch khám, không bao gồm bệnh án, chẩn đoán, kê đơn hay thanh toán.
 
-## 1. Tổng quan kiến trúc
+## 1. Các tiến trình và dữ liệu dùng chung
 
-```
-┌─────────────────────────────────────────────────────────────────────────────┐
-│                           PRESENTATION LAYER                                │
-│  ┌──────────────┐  ┌──────────────┐  ┌──────────────┐  ┌───────────────┐  │
-│  │ Patient Web  │  │ Staff Portal │  │ Doctor Portal│  │ Desktop Admin │  │
-│  │  (MVC/Razor) │  │  (MVC/Razor) │  │  (MVC/Razor) │  │  (WinForms)   │  │
-│  └──────┬───────┘  └──────┬───────┘  └──────┬───────┘  └───────┬───────┘  │
-│         │                  │                  │                   │          │
-│         └──────────────────┴──────────────────┴───────────────────┘          │
-│                                    │                                         │
-│                             HTTP / REST API                                  │
-│                                    ▼                                         │
-├─────────────────────────────────────────────────────────────────────────────┤
-│                             API LAYER                                        │
-│  ┌─────────────────────────────────────────────────────────────────────┐    │
-│  │                     Hospital.Api (ASP.NET Core)                     │    │
-│  │  Controllers → DTOs → Validation → Auth → Middleware → Logging     │    │
-│  └─────────────────────────────────────────────────────────────────────┘    │
-│                                    │                                         │
-├─────────────────────────────────────────────────────────────────────────────┤
-│                          APPLICATION LAYER                                   │
-│  ┌─────────────────────────────────────────────────────────────────────┐    │
-│  │                  Hospital.Application                               │    │
-│  │  Services → Use Cases → Validators → Mappers → Interfaces          │    │
-│  └─────────────────────────────────────────────────────────────────────┘    │
-│                                    │                                         │
-├─────────────────────────────────────────────────────────────────────────────┤
-│                            DOMAIN LAYER                                      │
-│  ┌─────────────────────────────────────────────────────────────────────┐    │
-│  │                    Hospital.Domain                                   │    │
-│  │  Entities → Enums → Business Rules → Value Objects                  │    │
-│  └─────────────────────────────────────────────────────────────────────┘    │
-│                                    │                                         │
-├─────────────────────────────────────────────────────────────────────────────┤
-│                         INFRASTRUCTURE LAYER                                 │
-│  ┌─────────────────────────────────────────────────────────────────────┐    │
-│  │                  Hospital.Infrastructure                             │    │
-│  │  DbContext → Repositories → EF Core → Migrations → Seed Data       │    │
-│  └─────────────────────────────────────────────────────────────────────┘    │
-│                                    │                                         │
-│                             Microsoft SQL Server                             │
-└─────────────────────────────────────────────────────────────────────────────┘
+```mermaid
+flowchart LR
+    Browser[Patient / Staff / Doctor] -->|Cookie, CSRF, HTML| Web[Hospital.Web MVC]
+    Web --> Client[Hospital.Client]
+    Desktop[Hospital.Desktop WinForms Admin] --> Client
+    Client -->|HTTP JSON, JWT| Api[Hospital.Api]
+    Api --> Services[Services trong Infrastructure]
+    Services --> EF[HospitalDbContext / EF Core]
+    EF --> SQL[(SQL Server)]
+    Worker[NotificationWorker] --> Dispatcher[NotificationDispatcher]
+    Dispatcher --> EF
 ```
 
----
+Web và Desktop cùng gọi API; không tham chiếu Infrastructure và không tạo DbContext. Khi Admin tạo bác sĩ/ca trên Desktop, Patient đọc lại API sẽ thấy dữ liệu đã commit. Giao diện cần tải lại; không có push realtime/SignalR.
 
-## 2. Cấu trúc Solution
+## 2. Trách nhiệm từng project
 
-```
-HospitalAppointmentSystem/
-├── src/
-│   ├── Hospital.Domain/              # Entities, Enums, Value Objects, Interfaces
-│   ├── Hospital.Application/         # Services, DTOs, Validators, Mapping
-│   ├── Hospital.Infrastructure/      # EF Core, DbContext, Repos, Migrations
-│   ├── Hospital.Api/                 # ASP.NET Core Web API (Backend)
-│   ├── Hospital.Web/                 # ASP.NET Core MVC (Patient, Staff, Doctor portals)
-│   ├── Hospital.Desktop/             # Windows Forms Admin App
-│   └── Hospital.SharedKernel/        # Shared DTOs, Constants, Helpers
-├── tests/
-│   ├── Hospital.UnitTests/           # xUnit unit tests
-│   ├── Hospital.IntegrationTests/    # Integration tests
-│   └── Hospital.ApiTests/            # API endpoint tests
-├── docs/
-│   ├── requirements-review.md
-│   ├── architecture.md
-│   ├── database-design.md
-│   ├── ui-ux-guidelines.md
-│   ├── usecase-coverage.md
-│   ├── api-documentation.md
-│   ├── demo-guide.md
-│   └── project-progress.md
-├── scripts/
-├── docker-compose.yml
-├── README.md
-└── HospitalAppointmentSystem.sln
-```
+| Project | Thành phần thực tế | Trách nhiệm |
+|---|---|---|
+| `Hospital.Domain` | Entities, Enums | Tài khoản, danh mục, lịch, lịch sử, audit, notification/outbox và trạng thái |
+| `Hospital.Application` | DTO, DataAnnotations, interfaces, exceptions | Hợp đồng vào/ra, validation và giao diện service |
+| `Hospital.Infrastructure` | DbContext, migrations, seeder, Services | EF mapping, nghiệp vụ, transaction, hash mật khẩu, JWT và dispatcher |
+| `Hospital.Api` | Controllers, middleware, CurrentUserService, worker | HTTP, xác thực/phân quyền, response có trace, tác vụ thông báo |
+| `Hospital.Client` | HospitalApiClient, HospitalApiException | HTTP JSON có token, đọc DTO và lỗi cho cả hai giao diện |
+| `Hospital.Web` | Controllers/Views, PortalApi, cookie events, BookingTokens | UI theo vai trò, cookie/CSRF, quy trình chọn lịch có bản xác nhận được bảo vệ |
+| `Hospital.Desktop` | Forms, AdminSession, EditorForm, UiControls | Quản trị, xác nhận, validation/loading/lỗi, kết thúc phiên bị thu hồi |
 
----
+Services dùng DbContext trực tiếp; không triển khai generic repository, AutoMapper hoặc CQRS. DTO được map trong service. DI khai báo ở `Infrastructure/DependencyInjection.cs` và `Program.cs` của từng host.
 
-## 3. Chi tiết từng Project
+## 3. Một yêu cầu đặt lịch
 
-### Hospital.Domain
-- **Entities:** User, Role, Patient, Doctor, Specialty, DoctorSpecialty, WorkingSchedule, TimeSlot, Appointment, AppointmentStatusHistory, Notification, AuditLog
-- **Enums:** UserRole, AppointmentStatus, TimeSlotStatus, AccountStatus, Gender
-- **Interfaces:** IRepository<T>, IUnitOfWork
-- **Value Objects:** DateRange, TimeRange
-
-### Hospital.Application
-- **Services:** AccountService, AuthService, SpecialtyService, DoctorService, WorkingScheduleService, TimeSlotService, AppointmentService, NotificationService, AuditService
-- **DTOs:** Request/Response DTOs cho mỗi use case
-- **Validators:** FluentValidation validators
-- **Interfaces:** Service interfaces cho DI
-
-### Hospital.Infrastructure
-- **Data:** HospitalDbContext, Entity configurations, Migrations
-- **Repositories:** GenericRepository, UnitOfWork
-- **Seeding:** DataSeeder (demo data)
-- **Services:** JwtTokenService, PasswordHashService, DateTimeService
-
-### Hospital.Api
-- **Controllers:** AuthController, AccountController, SpecialtyController, DoctorController, WorkingScheduleController, TimeSlotController, AppointmentController, NotificationController
-- **Middleware:** ExceptionHandling, RequestLogging, Authentication
-- **Filters:** RoleAuthorization, ModelValidation
-
-### Hospital.Web
-- **Areas:** Patient, Staff, Doctor (tách biệt 3 portal)
-- **Controllers:** Mỗi area có controllers riêng
-- **Views:** Razor views với shared layout
-- **wwwroot:** CSS, JS, Images
-
-### Hospital.Desktop
-- **Forms:** LoginForm, MainForm, DashboardForm
-- **UserControls:** Sidebar, DataGrid, FormPanels
-- **Services:** ApiClient (gọi Backend API)
-
-### Hospital.SharedKernel
-- **Constants:** AppRoles, AppointmentStatuses
-- **DTOs:** Shared request/response models
-- **Helpers:** DateTimeHelper, StringHelper
-
----
-
-## 4. Công nghệ sử dụng
-
-| Thành phần | Công nghệ | Phiên bản |
-|-----------|-----------|-----------|
-| Runtime | .NET | Target 9.0 hiện tại |
-| Backend API | ASP.NET Core Web API | 9.0 |
-| Web Frontend | ASP.NET Core MVC + Razor Views | 9.0 |
-| Desktop | Windows Forms | .NET 9.0 |
-| ORM | Entity Framework Core | 9.0 |
-| Database | Microsoft SQL Server | 2022 |
-| Authentication | JWT Bearer Token | — |
-| Validation | FluentValidation | Latest |
-| Testing | xUnit + Moq | Latest |
-| Logging | Serilog | Latest |
-| CSS | Tailwind CSS (Web) | 3.x |
-
----
-
-## 5. Luồng xử lý chính
-
-### 5.1. Đặt lịch khám (UC13)
-```
-Patient/Staff → Web/API → AppointmentService
-  1. Xác thực người dùng (JWT)
-  2. Tra cứu chuyên khoa (UC05)
-  3. Tra cứu bác sĩ (UC06)
-  4. Xem khung giờ trống (UC08)
-  5. Kiểm tra điều kiện đặt (UC14):
-     a. Bác sĩ & chuyên khoa còn hoạt động?
-     b. Khung giờ thuộc lịch LV, đang mở, chưa bắt đầu?
-     c. Khung giờ chưa bị lịch khác chiếm?
-     d. BN không có lịch chồng lấn?
-  6. Transaction:
-     a. Tạo Appointment (status = Confirmed)
-     b. Chiếm TimeSlot
-     c. Ghi AuditLog
-     d. Tạo Notification
-  7. Trả kết quả + mã lịch hẹn
+```mermaid
+sequenceDiagram
+    participant P as Patient
+    participant W as MVC / BookingTokens
+    participant A as API / AppointmentService
+    participant D as SQL Server
+    participant N as NotificationDispatcher
+    P->>W: Chọn slot, xem lại, xác nhận
+    W->>W: Kiểm tra CSRF và draft gắn actor
+    W->>A: POST + JWT + RequestKey
+    A->>D: Transaction SERIALIZABLE
+    A->>D: Kiểm tra key, slot, lịch chồng lấn
+    A->>D: Appointment, slot, history, audit, outbox
+    A->>D: Commit
+    A->>N: Giao thông báo sau commit
+    N->>D: Notification / DeliveredAt
+    A-->>W: AppointmentDto
+    W-->>P: Phiếu hẹn
 ```
 
-### 5.2. Đổi lịch (UC17)
-```
-Patient/Staff → Web/API → AppointmentService
-  1. Kiểm tra quyền sở hữu/phạm vi
-  2. Kiểm tra trạng thái = Confirmed
-  3. Kiểm tra thời hạn (BN ≥ 2h, NV: trước giờ bắt đầu)
-  4. Chọn khung giờ mới
-  5. UC14 (loại trừ lịch đang đổi)
-  6. Transaction:
-     a. Cập nhật Appointment → khung giờ mới
-     b. Giải phóng khung giờ cũ
-     c. Chiếm khung giờ mới
-     d. Ghi AuditLog
-     e. Cập nhật/tạo Notification
-  7. Nếu thất bại → rollback, giữ lịch cũ
-```
+`DatabaseWork.AtomicAsync` dùng execution strategy của EF, xóa tracking trước mỗi lượt retry, tạo transaction Serializable, chạy nghiệp vụ rồi SaveChanges/Commit. Transaction chưa commit rollback khi dispose. Kiểm tra trên UI hỗ trợ người dùng; kiểm tra quyết định nằm trong service/transaction.
 
-### 5.3. Web ↔ Desktop dùng chung dữ liệu
-```
-┌──────────┐     HTTP/REST     ┌──────────┐     EF Core     ┌──────────┐
-│   Web    │ ──────────────── │   API    │ ─────────────── │ SQL Server│
-│  (MVC)   │                  │ (ASP.NET)│                  │           │
-└──────────┘                  └──────────┘                  └──────────┘
-                                    ▲                            ▲
-┌──────────┐     HTTP/REST          │                            │
-│ Desktop  │ ───────────────────────┘                            │
-│(WinForms)│     (gọi cùng API)                                 │
-└──────────┘                                                     │
-                                                     Shared Database
-```
+Transaction bảo vệ việc đọc–ghi; RowVersion phát hiện dữ liệu đã đổi; filtered unique index ngăn hai lịch Confirmed/CheckedIn cùng chiếm một slot. Chồng lấn bệnh nhân ở hai bác sĩ được kiểm tra trong service. Cùng `(BookedBy, RequestKey)` và fingerprint trả lại lịch đã tạo; key dùng cho nội dung khác bị từ chối. Đổi/hủy mang RowVersion cũ; thất bại giữ nguyên lịch cũ.
 
----
+## 4. Phiên và quyền
 
-## 6. Authentication & Authorization
+- API kiểm tra JWT và đọc lại IsActive, TokenVersion, role mỗi request. Khóa/đổi quyền/đổi mật khẩu thu hồi token cũ.
+- Web lưu JWT trong ticket cookie được Data Protection bảo vệ, HttpOnly và SameSite=Lax. Các POST MVC có CSRF; JavaScript không quản lý bearer token.
+- Desktop chỉ chấp nhận Admin, giữ token trong bộ nhớ AdminSession; hết phiên đóng form/shell và quay về đăng nhập.
+- Patient dùng hồ sơ của mình; Doctor đọc lịch thuộc mình; Staff đặt hộ/tiếp nhận theo điều kiện; Admin quản trị qua Desktop. Menu ẩn không thay thế kiểm tra quyền backend.
+- Development tạo khóa JWT theo process, nên restart API cần đăng nhập lại. Ngoài Development phải cấu hình secret tối thiểu 32 byte và HTTPS. Nghiệm thu này dành cho demo cục bộ.
 
-### JWT Flow
-1. User gửi credentials → `/api/auth/login`
-2. API verify → tạo JWT token (chứa UserId, Role, Claims)
-3. Client lưu token → gửi trong Authorization header
-4. API middleware kiểm tra token mỗi request
-5. Role-based + Resource-based authorization
+## 5. Thời gian và thông báo
 
-### Roles & Permissions
-| Quyền | Patient | Doctor | Staff | Admin |
-|-------|---------|--------|-------|-------|
-| Đăng ký TK | ✅ | ❌ | ❌ | ❌ |
-| Xem lịch của mình | ✅ | ✅ | ❌ | ❌ |
-| Xem tất cả lịch | ❌ | ❌ | ✅ | ❌ |
-| Đặt/đổi/hủy lịch | ✅ (của mình) | ❌ | ✅ (hỗ trợ) | ❌ |
-| Tiếp nhận BN | ❌ | ❌ | ✅ | ❌ |
-| Quản lý lịch LV | ❌ | ❌ (chỉ xem) | ❌ | ✅ |
-| Quản lý TK/BS/CK | ❌ | ❌ | ❌ | ✅ |
+`ClinicTime` dùng `Asia/Ho_Chi_Minh`. Ngày/giờ khám là DateOnly/TimeOnly; dấu thời gian audit/outbox là UTC. UI hiển thị giờ Việt Nam. Không đổi đồng hồ máy để demo hạn hai giờ hoặc NoShow.
 
----
+Outbox ghi cùng transaction lịch hẹn; dispatcher tạo Notification sau commit, worker xử lý lại các mục đến hạn. Unique `Notifications.OutboxId` ngăn trùng khi retry. Nhắc lịch lên lịch trước một giờ, có xử lý mục nhắc cũ khi đổi/hủy. Đây là thông báo trong ứng dụng, không phải email/SMS.
 
-## 7. Error Handling & Logging
+## 6. Lỗi, vận hành và kiểm chứng
 
-### Error Response Format
-```json
-{
-  "success": false,
-  "message": "Khung giờ đã được đặt bởi người khác",
-  "errorCode": "TIMESLOT_OCCUPIED",
-  "errors": [],
-  "timestamp": "2026-10-16T12:00:00Z"
-}
-```
+Middleware trả `ApiResponse`, mã lỗi, TraceId; phân biệt validation, quyền, không tìm thấy, concurrency và database unavailable. Khi mất phản hồi ghi, tra cứu kết quả hoặc gửi lại cùng RequestKey. UI không tự tạo yêu cầu đặt mới để thử lại.
 
-### Logging Strategy
-- **Structured logging** với Serilog
-- **Request logging** middleware
-- **Audit logging** cho thao tác quan trọng (đặt, đổi, hủy, phân quyền, ...)
-- **Error logging** với stack trace (chỉ trong development)
+Auth limiter là 10 request/phút theo IP. Các lượt đăng nhập qua MVC cùng server dùng chung hạn mức; runner chờ giữa các nhóm. Script `demo.ps1` quản lý API/Web chạy ẩn, readiness, log và PID/start-time; stop giữ database.
+
+Xem [demo-guide.md](demo-guide.md), [database-design.md](database-design.md), [technical-explanation.md](technical-explanation.md), [ma trận UC/BR](usecase-coverage.md) và [kiểm chứng Phase 8](phase8-verification.md).
