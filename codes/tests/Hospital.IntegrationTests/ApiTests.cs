@@ -138,7 +138,13 @@ public class ApiTests
     [Fact]
     public async Task FullBackendFlowAdminToPatientDoctorAndReceptionUsesOneDatabase()
     {
-        using var f = new TestFixture(); using var admin = await f.ClientAsync("admin");
+        using var f = new TestFixture();
+        await VerifyFullBackendFlowAsync(f);
+    }
+
+    internal static async Task VerifyFullBackendFlowAsync(TestFixture f)
+    {
+        using var admin = await f.ClientAsync("admin");
         var specialty = f.Specialty();
         var doctorResponse = await admin.PostAsJsonAsync("/api/admin/doctors", new SaveDoctorRequest
         { FullName = "Bác sĩ mới", SpecialtyIds = [specialty], PrimarySpecialtyId = specialty });

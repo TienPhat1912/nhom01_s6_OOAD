@@ -991,6 +991,12 @@
           "Hospital.Domain": "[1.0.0, )"
         }
       },
+      "hospital.client": {
+        "type": "Project",
+        "dependencies": {
+          "Hospital.Application": "[1.0.0, )"
+        }
+      },
       "hospital.domain": {
         "type": "Project"
       },
@@ -1001,6 +1007,13 @@
           "Hospital.Application": "[1.0.0, )",
           "Hospital.Domain": "[1.0.0, )",
           "Microsoft.EntityFrameworkCore.SqlServer": "[9.0.2, )"
+        }
+      },
+      "hospital.web": {
+        "type": "Project",
+        "dependencies": {
+          "Hospital.Application": "[1.0.0, )",
+          "Hospital.Client": "[1.0.0, )"
         }
       }
     }
