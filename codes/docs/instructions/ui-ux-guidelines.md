@@ -2,6 +2,8 @@
 
 > Tài liệu hướng dẫn thiết kế giao diện người dùng (UI), trải nghiệm người dùng (UX) và Design System chuẩn mực cho toàn bộ hệ sinh thái: **Patient Web**, **Staff Portal**, **Doctor Portal** và **Desktop Admin (WinForms)**.
 
+> Tài liệu này giữ đặc tả thiết kế ban đầu. Component/token thực tế nằm trong [phase4-design-system.md](phase4-design-system.md); các luồng Web/Desktop đã hoàn tất Phase 5–6. Phạm vi giao diện bàn giao, ảnh rà soát cuối và giới hạn kiểm thử nằm trong [Phase 8](phase8-verification.md). Những mô tả định hướng như shadow/animation không thay thế bằng chứng tính năng đã triển khai.
+
 ---
 
 ## 1. Triết lý thiết kế & Định vị thẩm mỹ
@@ -21,8 +23,8 @@ Hệ thống được định vị theo phong cách **Modern Healthcare SaaS**:
 | Token Name | Mã Hex | Tên màu / Ứng dụng |
 |---|---|---|
 | `--color-primary-900` | `#0f3b38` | Deep Teal Dark (Header, Sidebar background) |
-| `--color-primary-700` | `#0d5e56` | Medical Teal Hover |
-| `--color-primary-600` | `#0d9488` | **Brand Primary Teal** (Action buttons, Active states) |
+| `--color-primary-700` | `#0d5e56` | Nút primary, liên kết, chữ trên nền sáng; hover dùng primary-900 |
+| `--color-primary-600` | `#0d9488` | Brand Teal cho chi tiết trang trí; không ghép chữ trắng cỡ nhỏ |
 | `--color-primary-100` | `#ccfbf1` | Teal Tint (Badge, Highlight background) |
 | `--color-primary-50` | `#f0fdfa` | Teal Surface Light (Table row hover, Card tint) |
 | `--color-secondary-600` | `#0284c7` | Clinical Cyan/Blue (Secondary CTA, Links) |
@@ -33,14 +35,14 @@ Hệ thống được định vị theo phong cách **Modern Healthcare SaaS**:
 | `--color-slate-100` | `#f1f5f9` | Card Background, Input Background |
 | `--color-slate-50` | `#f8fafc` | General App Background |
 | `--color-surface` | `#ffffff` | Pure White Surfaces & Cards |
-| `--color-success-600` | `#16a34a` | Trạng thái: Confirmed (Đã xác nhận), Tiếp nhận thành công |
-| `--color-warning-600` | `#d97706` | Trạng thái: Sắp diễn ra, Cảnh báo khung giờ sát giờ |
-| `--color-danger-600` | `#dc2626` | Trạng thái: Cancelled (Đã hủy), Lỗi thao tác, Nút Hủy |
-| `--color-info-600` | `#2563eb` | Trạng thái: CheckedIn (Đã tiếp nhận), Thông báo hệ thống |
+| `--color-success-600` | `#15803d` | Trạng thái: Confirmed (Đã xác nhận), Tiếp nhận thành công |
+| `--color-warning-600` | `#92400e` | Trạng thái: Sắp diễn ra, Cảnh báo khung giờ sát giờ |
+| `--color-danger-600` | `#b91c1c` | Trạng thái: Cancelled (Đã hủy), Lỗi thao tác, Nút Hủy |
+| `--color-info-600` | `#1d4ed8` | Trạng thái: CheckedIn (Đã tiếp nhận), Thông báo hệ thống |
 | `--color-neutral-600` | `#475569` | Trạng thái: NoShow (Không đến) |
 
 ### 2.2. Kiểu chữ (Typography)
-- **Primary Font Family:** `Inter`, `Be Vietnam Pro`, `system-ui, -apple-system, sans-serif`
+- **Primary Font Family:** `Segoe UI`, `system-ui, -apple-system, sans-serif`; dùng font hệ thống, không phụ thuộc CDN.
 - **Chỉ số kích thước & Line-height:**
   - `Display / H1`: 32px / Bold (700) / Tracking: -0.02em
   - `H2 (Section titles)`: 24px / SemiBold (600)
@@ -100,7 +102,7 @@ Quy trình được thể hiện qua **Progress Stepper** rõ ràng:
 - **Tab 1: Lịch hẹn sắp tới:** Danh sách lịch `Confirmed` với bộ đếm ngược thời gian, thẻ chi tiết địa điểm, phòng khám, kèm 2 hành động:
   - Nút **"Đổi lịch"** (Hiển thị nếu còn $\ge 2$ giờ trước giờ khám).
   - Nút **"Hủy lịch"** (Hiển thị nếu còn $\ge 2$ giờ trước giờ khám, yêu cầu xác nhận modal).
-- **Tab 2: Lịch sử khám:** Danh sách lịch đã hoàn tất (`CheckedIn`), `Cancelled`, hoặc `NoShow`.
+- **Tab 2: Lịch sử lịch hẹn:** Danh sách `CheckedIn` (đã tiếp nhận), `Cancelled`, hoặc `NoShow`. `CheckedIn` không xác nhận đã hoàn tất khám.
 - **Trung tâm Thông báo:** Danh sách thông báo (Xác nhận đặt, Đổi lịch, Hủy lịch, Nhắc hẹn 1h trước khám) kèm đánh dấu đã đọc.
 - **Hồ sơ cá nhân:** Cập nhật SĐT, địa chỉ, ngày sinh, đổi mật khẩu.
 
@@ -110,7 +112,7 @@ Quy trình được thể hiện qua **Progress Stepper** rõ ràng:
 
 - **Layout:** Thiết kế Compact Toolbar để thao tác nhanh tại quầy tiếp đón.
 - **Thanh tìm kiếm tiếp nhận nhanh (Quick Search):**
-  - Nhập Mã lịch hẹn, Số điện thoại hoặc Họ tên bệnh nhân $\rightarrow$ Ra ngay kết quả trong 200ms.
+  - Nhập Mã lịch hẹn, Số điện thoại hoặc Họ tên bệnh nhân $\rightarrow$ Hiển thị loading trong khi chờ API; cần đo thời gian phản hồi trong môi trường triển khai.
 - **Màn hình Tiếp nhận bệnh nhân (Check-in Desk):**
   - Danh sách lịch hẹn trong ngày hôm nay.
   - Nút thao tác nhanh 1-Click: **"Tiếp nhận"** $\rightarrow$ Hệ thống chuyển trạng thái sang `CheckedIn`, ghi nhận thời gian và nhân viên xử lý.
@@ -118,7 +120,7 @@ Quy trình được thể hiện qua **Progress Stepper** rõ ràng:
   - Bộ lọc các lịch hẹn đã qua giờ kết thúc khung giờ mà bệnh nhân chưa đến tiếp nhận.
   - Nút **"Ghi nhận không đến"** (Chỉ kích hoạt khi `EndTime < Now`).
 - **Đặt lịch hỗ trợ (Assisted Booking):**
-  - Form tìm kiếm hồ sơ bệnh nhân cũ hoặc tạo nhanh hồ sơ bệnh nhân mới $\rightarrow$ Thực hiện các bước đặt lịch thay bệnh nhân.
+  - Form tìm kiếm hồ sơ bệnh nhân đã tồn tại $\rightarrow$ Thực hiện các bước đặt lịch thay bệnh nhân. Staff không có quyền tự tạo tài khoản bệnh nhân trong API hiện tại.
 - **Xử lý Đổi/Hủy lịch hỗ trợ:**
   - Được phép đổi/hủy lịch cho bệnh nhân trước thời điểm bắt đầu khám (linh hoạt hơn quyền tự thao tác của bệnh nhân).
   - Bắt buộc điền **"Lý do thay đổi"** để lưu vào `AuditLog` và `AppointmentStatusHistory`.
@@ -134,7 +136,7 @@ Quy trình được thể hiện qua **Progress Stepper** rõ ràng:
 - **Lịch làm việc của tôi (My Schedule):**
   - Lịch tuần/tháng thể hiện các ca trực đã được phân công bởi Quản trị viên (Chế độ xem Read-only).
 - **Hồ sơ Bác sĩ:**
-  - Bác sĩ xem và cập nhật tiểu sử giới thiệu, ảnh đại diện, đổi mật khẩu.
+  - Bác sĩ xem và cập nhật thông tin liên hệ, chức danh, tiểu sử giới thiệu; đổi mật khẩu ở Phase 5. API hiện chưa hỗ trợ sửa ảnh đại diện, giao diện dùng chữ viết tắt tên.
 
 ---
 

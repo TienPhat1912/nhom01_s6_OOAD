@@ -1,285 +1,463 @@
-# Database Design — Hospital Appointment System
+# Cơ sở dữ liệu triển khai — Phase 8
 
----
+Cập nhật 19/10/2026. Tài liệu thay thế bản thiết kế dự kiến ở Phase 1 bằng schema thực tế sau hai migration. Đã đối chiếu metadata SQL Server ngày 18/10/2026; Phase 8 không thêm migration. Có **13 bảng nghiệp vụ**, ngoài bảng EF `__EFMigrationsHistory`.
 
-## 1. ERD (Entity Relationship Diagram)
+## 1. Quan hệ chính
 
 ```mermaid
 erDiagram
-    User ||--o| Patient : "has profile"
-    User ||--o| Doctor : "has profile"
-    User }|--|| Role : "belongs to"
-    Doctor }|--|{ Specialty : "belongs to (DoctorSpecialty)"
-    Doctor ||--o{ WorkingSchedule : "has"
-    WorkingSchedule ||--|{ TimeSlot : "contains"
-    TimeSlot ||--o{ Appointment : "appointment history (one effective)"
-    Patient ||--o{ Appointment : "has"
-    Doctor ||--o{ Appointment : "assigned to"
-    Appointment ||--o{ AppointmentStatusHistory : "tracks changes"
-    Patient ||--o{ Notification : "receives"
-    User ||--o{ AuditLog : "performs action"
+    Roles ||--o{ Users : RoleId
+    Users ||--o| Patients : UserId
+    Users o|--o| Doctors : UserId
+    Doctors ||--o{ DoctorSpecialties : DoctorId
+    Specialties ||--o{ DoctorSpecialties : SpecialtyId
+    Doctors ||--o{ WorkingSchedules : DoctorId
+    WorkingSchedules ||--o{ TimeSlots : WorkingScheduleId
+    Doctors ||--o{ TimeSlots : DoctorId
+    Patients ||--o{ Appointments : PatientId
+    Doctors ||--o{ Appointments : DoctorId
+    Specialties ||--o{ Appointments : SpecialtyId
+    TimeSlots ||--o{ Appointments : TimeSlotId
+    Appointments ||--o{ AppointmentStatusHistories : AppointmentId
+    Patients ||--o{ Notifications : PatientId
+    Appointments o|--o{ Notifications : AppointmentId
+    Patients ||--o{ NotificationOutbox : PatientId
+    Appointments ||--o{ NotificationOutbox : AppointmentId
+    Users o|--o{ AuditLogs : UserId
 ```
 
----
+Sơ đồ tập trung quan hệ nghiệp vụ. Các FK người tạo/tiếp nhận/đóng khung và hành vi xóa được ghi đầy đủ trong từng bảng bên dưới. `Doctors.UserId` tùy chọn: có thể tạo hồ sơ bác sĩ trước khi cấp tài khoản. DoctorSpecialties dùng PK ghép; service yêu cầu ít nhất một chuyên khoa và một chuyên khoa chính.
 
-## 2. Danh sách bảng
+## 2. Ràng buộc và trách nhiệm nghiệp vụ
 
-### 2.1. Users — Tài khoản người dùng
-| Cột | Kiểu | Ràng buộc | Mô tả |
-|-----|------|----------|-------|
-| Id | UNIQUEIDENTIFIER | PK, DEFAULT NEWSEQUENTIALID() | Mã tài khoản |
-| Username | NVARCHAR(50) | UNIQUE, NOT NULL | Tên đăng nhập |
-| PasswordHash | NVARCHAR(256) | NOT NULL | Mật khẩu đã hash |
-| Email | NVARCHAR(100) | UNIQUE, NOT NULL | Email |
-| PhoneNumber | NVARCHAR(20) | NULL | Số điện thoại |
-| FullName | NVARCHAR(100) | NOT NULL | Họ tên |
-| RoleId | INT | FK → Roles.Id, NOT NULL | Vai trò |
-| IsActive | BIT | NOT NULL, DEFAULT 1 | Trạng thái hoạt động |
-| CreatedAt | DATETIME2 | NOT NULL, DEFAULT GETUTCDATE() | Thời điểm tạo |
-| UpdatedAt | DATETIME2 | NULL | Thời điểm cập nhật |
-| LastLoginAt | DATETIME2 | NULL | Lần đăng nhập cuối |
+- PK/FK, NOT NULL, độ dài, unique và filtered index do SQL bảo vệ. Các bảng hiện tại **không có CHECK constraint**; quy tắc 30 phút, giờ kết thúc, chồng lấn, hạn hai giờ và chuyển trạng thái được kiểm tra trong service/transaction.
+- `Appointments.TimeSlotId` unique khi Status thuộc `(0,2)`: một slot có nhiều lịch sử nhưng tối đa một Confirmed/CheckedIn. NoShow/Cancelled không xóa Appointment.
+- `(BookedBy, RequestKey)` unique khi key khác NULL; fingerprint kiểm tra key không bị dùng cho nội dung khác. Key NULL giữ tương thích dữ liệu seed/cũ.
+- `Appointments.RowVersion` và `TimeSlots.RowVersion` là rowversion SQL 8 byte, không phải thời gian. EF dùng để phát hiện sửa đồng thời. Serializable và execution strategy bảo vệ chuỗi kiểm tra–ghi.
+- `Notifications.OutboxId` unique khi khác NULL để chống giao lặp. OutboxId không có FK trong mapping hiện tại; dispatcher quản lý liên kết. Tương tự, OldTimeSlotId/NewTimeSlotId của lịch sử là dấu vết Id, không phải FK.
+- `Users.TokenVersion` hỗ trợ thu hồi phiên. Doctor.FullName tồn tại độc lập tài khoản, service đồng bộ khi hồ sơ được liên kết.
+- Mọi giá trị GUID, ngày tạo và mặc định không có SQL DEFAULT trong bảng dưới do ứng dụng/EF cấp. Không giả định `NEWSEQUENTIALID()` hoặc `GETUTCDATE()` trên mọi bảng.
+- Lịch khám dùng `date`/`time` theo giờ Việt Nam. Thời điểm thao tác, audit và outbox lưu UTC; UI chuyển sang UTC+7.
 
-### 2.2. Roles — Vai trò
-| Cột | Kiểu | Ràng buộc | Mô tả |
-|-----|------|----------|-------|
-| Id | INT | PK, IDENTITY | Mã vai trò |
-| Name | NVARCHAR(50) | UNIQUE, NOT NULL | Tên vai trò |
-| Description | NVARCHAR(200) | NULL | Mô tả |
+| Enum | Giá trị lưu |
+|---|---|
+| UserRole | Patient=1, Doctor=2, Staff=3, Admin=4 |
+| Gender | Other=0, Male=1, Female=2 |
+| AppointmentStatus | Confirmed=0, Cancelled=1, CheckedIn=2, NoShow=3 |
+| TimeSlotStatus | Open=0, Closed=1, Occupied=2 |
+| NotificationType | Confirmed=0, Rescheduled=1, Cancelled=2, Reminder=3 |
 
-> Seed: Patient (1), Doctor (2), Staff (3), Admin (4)
+## 3. Migration và dữ liệu khởi tạo
 
-### 2.3. Patients — Hồ sơ bệnh nhân
-| Cột | Kiểu | Ràng buộc | Mô tả |
-|-----|------|----------|-------|
-| Id | UNIQUEIDENTIFIER | PK, DEFAULT NEWSEQUENTIALID() | Mã bệnh nhân |
-| UserId | UNIQUEIDENTIFIER | FK → Users.Id, UNIQUE, NOT NULL | Liên kết tài khoản |
-| DateOfBirth | DATE | NOT NULL | Ngày sinh |
-| Gender | TINYINT | NOT NULL | 0: Khác, 1: Nam, 2: Nữ |
-| Address | NVARCHAR(300) | NULL | Địa chỉ |
-| PatientCode | NVARCHAR(20) | UNIQUE, NOT NULL | Mã bệnh nhân (hiển thị) |
-| CreatedAt | DATETIME2 | NOT NULL | Thời điểm tạo |
-| UpdatedAt | DATETIME2 | NULL | Thời điểm cập nhật |
+Migration trong `src/Hospital.Infrastructure/Data/Migrations`:
 
-### 2.4. Specialties — Chuyên khoa
-| Cột | Kiểu | Ràng buộc | Mô tả |
-|-----|------|----------|-------|
-| Id | INT | PK, IDENTITY | Mã chuyên khoa |
-| Code | NVARCHAR(20) | UNIQUE, NOT NULL | Mã chuyên khoa (hiển thị) |
-| Name | NVARCHAR(100) | NOT NULL | Tên chuyên khoa |
-| Description | NVARCHAR(500) | NULL | Mô tả |
-| IsActive | BIT | NOT NULL, DEFAULT 1 | Trạng thái hoạt động |
-| CreatedAt | DATETIME2 | NOT NULL | Thời điểm tạo |
-| UpdatedAt | DATETIME2 | NULL | Thời điểm cập nhật |
-| CreatedBy | UNIQUEIDENTIFIER | FK → Users.Id | Người tạo |
+1. `20261016125545_InitialCreate`: schema nền tảng.
+2. `20261016143621_Phase3Backend`: tên bác sĩ độc lập, TokenVersion, idempotency, outbox và các ràng buộc backend.
 
-### 2.5. Doctors — Hồ sơ bác sĩ
-| Cột | Kiểu | Ràng buộc | Mô tả |
-|-----|------|----------|-------|
-| Id | UNIQUEIDENTIFIER | PK, DEFAULT NEWSEQUENTIALID() | Mã bác sĩ |
-| UserId | UNIQUEIDENTIFIER | FK → Users.Id, UNIQUE, NULL | Liên kết tài khoản (NULL khi chưa cấp TK) |
-| DoctorCode | NVARCHAR(20) | UNIQUE, NOT NULL | Mã bác sĩ (hiển thị) |
-| Title | NVARCHAR(50) | NULL | Chức danh (TS., PGS., GS.) |
-| Bio | NVARCHAR(1000) | NULL | Giới thiệu |
-| AvatarUrl | NVARCHAR(500) | NULL | Đường dẫn ảnh đại diện |
-| IsActive | BIT | NOT NULL, DEFAULT 1 | Trạng thái hoạt động |
-| CreatedAt | DATETIME2 | NOT NULL | Thời điểm tạo |
-| UpdatedAt | DATETIME2 | NULL | Thời điểm cập nhật |
-| CreatedBy | UNIQUEIDENTIFIER | FK → Users.Id | Người tạo |
+Áp dụng migration bằng `dotnet ef database update --project src/Hospital.Infrastructure --startup-project src/Hospital.Api`; đặt connection string/Development trước theo [hướng dẫn demo](demo-guide.md). Không sửa migration đã áp dụng để đồng bộ database đang dùng; thay đổi schema tiếp theo cần migration mới.
 
-### 2.6. DoctorSpecialties — Bác sĩ – Chuyên khoa (Many-to-Many)
-| Cột | Kiểu | Ràng buộc | Mô tả |
-|-----|------|----------|-------|
-| DoctorId | UNIQUEIDENTIFIER | PK, FK → Doctors.Id | Mã bác sĩ |
-| SpecialtyId | INT | PK, FK → Specialties.Id | Mã chuyên khoa |
-| IsPrimary | BIT | NOT NULL, DEFAULT 0 | Chuyên khoa chính |
+Seeder chỉ chạy khi Users chưa có dữ liệu và bật seed trong Development:
 
-### 2.7. WorkingSchedules — Lịch làm việc
-| Cột | Kiểu | Ràng buộc | Mô tả |
-|-----|------|----------|-------|
-| Id | UNIQUEIDENTIFIER | PK | Mã lịch làm việc |
-| DoctorId | UNIQUEIDENTIFIER | FK → Doctors.Id, NOT NULL | Bác sĩ |
-| WorkDate | DATE | NOT NULL | Ngày làm việc |
-| StartTime | TIME | NOT NULL | Giờ bắt đầu |
-| EndTime | TIME | NOT NULL | Giờ kết thúc |
-| Note | NVARCHAR(500) | NULL | Ghi chú |
-| CreatedAt | DATETIME2 | NOT NULL | Thời điểm tạo |
-| UpdatedAt | DATETIME2 | NULL | Thời điểm cập nhật |
-| CreatedBy | UNIQUEIDENTIFIER | FK → Users.Id | Người tạo |
+| Dữ liệu mới | Số lượng / nội dung |
+|---|---|
+| Roles | 4, Id cố định 1–4, không IDENTITY |
+| Users | 6: admin, staff1, doctor1, doctor2, patient1, patient2 |
+| Patients / Doctors / Specialties | 2 / 2 / 5 |
+| WorkingSchedules | 14 ca trong 7 ngày, tính cả hôm seed |
+| TimeSlots | 98 khung, mỗi ca 7 khung 30 phút |
+| Appointments | 2 Confirmed ngày mai: patient1/doctor1 08:30; patient2/doctor2 14:00 |
+| Thông báo / audit | 1 Notification ban đầu, 2 reminder outbox tương lai, 1 audit seed |
 
-> **UNIQUE:** (DoctorId, WorkDate, StartTime) — Không chồng lấn cùng BS
+Hai ca mỗi ngày: doctor1 08:00–11:30, doctor2 13:30–17:00. Database đã có Users không tự seed lại hoặc dời lịch cũ. Khi demo tuần khác, tạo ca mới bằng Desktop. Thông báo/outbox thay đổi theo worker và thao tác sau seed nên không dùng số đếm ban đầu để kết luận dữ liệu chạy lâu bị sai.
 
-### 2.8. TimeSlots — Khung giờ
-| Cột | Kiểu | Ràng buộc | Mô tả |
-|-----|------|----------|-------|
-| Id | UNIQUEIDENTIFIER | PK | Mã khung giờ |
-| WorkingScheduleId | UNIQUEIDENTIFIER | FK → WorkingSchedules.Id, NOT NULL | Lịch làm việc |
-| DoctorId | UNIQUEIDENTIFIER | FK → Doctors.Id, NOT NULL | Bác sĩ (denormalized cho query) |
-| SlotDate | DATE | NOT NULL | Ngày |
-| StartTime | TIME | NOT NULL | Giờ bắt đầu |
-| EndTime | TIME | NOT NULL | Giờ kết thúc |
-| Status | TINYINT | NOT NULL, DEFAULT 0 | 0: Open, 1: Closed, 2: Occupied |
-| IsActive | BIT | NOT NULL, DEFAULT 1 | Đang mở đặt lịch |
-| ClosedReason | NVARCHAR(500) | NULL | Lý do đóng |
-| ClosedAt | DATETIME2 | NULL | Thời điểm đóng |
-| ClosedBy | UNIQUEIDENTIFIER | FK → Users.Id, NULL | Người đóng |
-| CreatedAt | DATETIME2 | NOT NULL | Thời điểm tạo |
-| RowVersion | ROWVERSION | NOT NULL | Concurrency token |
+## 4. Từ điển dữ liệu và index thực tế
 
-> **INDEX:** (DoctorId, SlotDate, StartTime)
-> **CHECK:** EndTime > StartTime
+`NULL` ghi rõ khả năng thiếu giá trị; `—` trong Default nghĩa là không có SQL default. Index dưới đây không lặp lại PK. `NO_ACTION` giữ quan hệ khi xóa; các màn hình nghiệp vụ thường ngừng hoạt động thay vì xóa dữ liệu có lịch sử.
 
-### 2.9. Appointments — Lịch hẹn
-| Cột | Kiểu | Ràng buộc | Mô tả |
-|-----|------|----------|-------|
-| Id | UNIQUEIDENTIFIER | PK | Mã lịch hẹn |
-| AppointmentCode | NVARCHAR(20) | UNIQUE, NOT NULL | Mã lịch hẹn (hiển thị) |
-| PatientId | UNIQUEIDENTIFIER | FK → Patients.Id, NOT NULL | Bệnh nhân |
-| DoctorId | UNIQUEIDENTIFIER | FK → Doctors.Id, NOT NULL | Bác sĩ |
-| TimeSlotId | UNIQUEIDENTIFIER | FK → TimeSlots.Id, NOT NULL | Khung giờ |
-| SpecialtyId | INT | FK → Specialties.Id, NOT NULL | Chuyên khoa |
-| AppointmentDate | DATE | NOT NULL | Ngày khám |
-| StartTime | TIME | NOT NULL | Giờ bắt đầu (denormalized) |
-| EndTime | TIME | NOT NULL | Giờ kết thúc (denormalized) |
-| Status | TINYINT | NOT NULL, DEFAULT 0 | Trạng thái |
-| Notes | NVARCHAR(1000) | NULL | Ghi chú |
-| CancellationReason | NVARCHAR(500) | NULL | Lý do hủy |
-| RescheduleReason | NVARCHAR(500) | NULL | Lý do đổi |
-| BookedBy | UNIQUEIDENTIFIER | FK → Users.Id, NOT NULL | Người đặt |
-| CheckedInBy | UNIQUEIDENTIFIER | FK → Users.Id, NULL | Người tiếp nhận |
-| CheckedInAt | DATETIME2 | NULL | Thời điểm tiếp nhận |
-| MarkedNoShowBy | UNIQUEIDENTIFIER | FK → Users.Id, NULL | Người ghi không đến |
-| MarkedNoShowAt | DATETIME2 | NULL | Thời điểm ghi không đến |
-| CreatedAt | DATETIME2 | NOT NULL | Thời điểm tạo |
-| UpdatedAt | DATETIME2 | NULL | Thời điểm cập nhật |
-| RowVersion | ROWVERSION | NOT NULL | Concurrency token |
 
-> **Trạng thái (Status):**
-> - 0 = Confirmed (Đã xác nhận)
-> - 1 = Cancelled (Đã hủy)
-> - 2 = CheckedIn (Đã tiếp nhận)
-> - 3 = NoShow (Không đến)
+### 4.1. Roles
 
-> **INDEX:** (PatientId, AppointmentDate), (DoctorId, AppointmentDate), (TimeSlotId), (Status)
+| Cột | Kiểu SQL | NULL | Khóa / tự sinh | SQL Default |
+|---|---|---|---|---|
+| Id | int | Không | PK | — |
+| Name | nvarchar(50) | Không | — | — |
+| Description | nvarchar(200) | Có | — | — |
 
-### 2.10. AppointmentStatusHistory — Lịch sử trạng thái
-| Cột | Kiểu | Ràng buộc | Mô tả |
-|-----|------|----------|-------|
-| Id | BIGINT | PK, IDENTITY | ID |
-| AppointmentId | UNIQUEIDENTIFIER | FK → Appointments.Id, NOT NULL | Lịch hẹn |
-| OldStatus | TINYINT | NULL | Trạng thái cũ |
-| NewStatus | TINYINT | NOT NULL | Trạng thái mới |
-| Reason | NVARCHAR(500) | NULL | Lý do |
-| ChangedBy | UNIQUEIDENTIFIER | FK → Users.Id, NOT NULL | Người thay đổi |
-| ChangedAt | DATETIME2 | NOT NULL | Thời điểm |
-| OldTimeSlotId | UNIQUEIDENTIFIER | NULL | Khung giờ cũ (khi đổi) |
-| NewTimeSlotId | UNIQUEIDENTIFIER | NULL | Khung giờ mới (khi đổi) |
+Index:
 
-### 2.11. Notifications — Thông báo
-| Cột | Kiểu | Ràng buộc | Mô tả |
-|-----|------|----------|-------|
-| Id | UNIQUEIDENTIFIER | PK | Mã thông báo |
-| PatientId | UNIQUEIDENTIFIER | FK → Patients.Id, NOT NULL | Bệnh nhân |
-| AppointmentId | UNIQUEIDENTIFIER | FK → Appointments.Id, NULL | Lịch hẹn liên quan |
-| Type | TINYINT | NOT NULL | Loại: 0=Confirm, 1=Reschedule, 2=Cancel, 3=Reminder |
-| Title | NVARCHAR(200) | NOT NULL | Tiêu đề |
-| Message | NVARCHAR(1000) | NOT NULL | Nội dung |
-| IsRead | BIT | NOT NULL, DEFAULT 0 | Đã đọc |
-| ReadAt | DATETIME2 | NULL | Thời điểm đọc |
-| CreatedAt | DATETIME2 | NOT NULL | Thời điểm tạo |
-| ScheduledFor | DATETIME2 | NULL | Thời điểm gửi (cho nhắc lịch) |
-| IsSent | BIT | NOT NULL, DEFAULT 0 | Đã gửi/hiển thị |
+| Tên | Cột | Unique | Filter |
+|---|---|---|---|
+| IX_Roles_Name | Name | Có | — |
 
-### 2.12. AuditLogs — Nhật ký hệ thống
-| Cột | Kiểu | Ràng buộc | Mô tả |
-|-----|------|----------|-------|
-| Id | BIGINT | PK, IDENTITY | ID |
-| UserId | UNIQUEIDENTIFIER | FK → Users.Id, NULL | Người thực hiện |
-| Action | NVARCHAR(100) | NOT NULL | Hành động |
-| EntityType | NVARCHAR(100) | NOT NULL | Loại thực thể |
-| EntityId | NVARCHAR(50) | NULL | Mã thực thể |
-| OldValues | NVARCHAR(MAX) | NULL | Giá trị cũ (JSON) |
-| NewValues | NVARCHAR(MAX) | NULL | Giá trị mới (JSON) |
-| IpAddress | NVARCHAR(50) | NULL | Địa chỉ IP |
-| CreatedAt | DATETIME2 | NOT NULL | Thời điểm |
+### 4.2. Users
 
-### Bổ sung trong Phase 3
+| Cột | Kiểu SQL | NULL | Khóa / tự sinh | SQL Default |
+|---|---|---|---|---|
+| Id | uniqueidentifier | Không | PK | `(newsequentialid())` |
+| Username | nvarchar(50) | Không | — | — |
+| PasswordHash | nvarchar(256) | Không | — | — |
+| Email | nvarchar(100) | Không | — | — |
+| PhoneNumber | nvarchar(20) | Có | — | — |
+| FullName | nvarchar(100) | Không | — | — |
+| RoleId | int | Không | — | — |
+| IsActive | bit | Không | — | `(CONVERT([bit],(1)))` |
+| CreatedAt | datetime2(7) | Không | — | `(getutcdate())` |
+| UpdatedAt | datetime2(7) | Có | — | — |
+| LastLoginAt | datetime2(7) | Có | — | — |
+| TokenVersion | int | Không | — | `((0))` |
 
-- `Doctors.FullName`: NVARCHAR(100), bắt buộc, lưu độc lập trước khi cấp tài khoản; migration lấy họ tên từ Users cho dữ liệu cũ.
-- `Users.TokenVersion`: INT, mặc định 0; tăng khi đổi mật khẩu, thay trạng thái hoặc quyền để vô hiệu token cũ.
-- `Appointments.RequestKey`: GUID nullable và `RequestFingerprint`: NVARCHAR(64); unique `(BookedBy, RequestKey)` khi RequestKey khác NULL để chống gửi lặp.
-- Quan hệ `TimeSlots → Appointments` là 1–n lịch sử. Unique filtered index trên `TimeSlotId WHERE Status IN (0,2)` chỉ giới hạn lịch còn chiếm chỗ; lịch Cancelled/NoShow được giữ lại.
-- `Notifications.OutboxId`: GUID nullable, unique khi khác NULL để dispatcher xử lý lại không tạo thông báo trùng.
-- Bảng thứ 13 `NotificationOutbox`: Id (GUID PK), PatientId/AppointmentId (FK), Type (TINYINT), Title (200), Message (1000), ScheduledFor (UTC), DeliveredAt và SuppressedAt nullable. Index `(DeliveredAt, SuppressedAt, ScheduledFor)` phục vụ worker. Sự kiện được ghi trong transaction lịch hẹn; Notification được tạo sau commit.
-- `Specialties.Name` có unique index ngoài Code. Lịch làm việc chỉ sinh slot 30 phút; cập nhật giữ slot cũ đã đóng để bảo toàn lịch sử.
+Khóa ngoại:
 
-Chi tiết cấu trúc hiện tại nằm trong EF model/migration `Phase3Backend`; các mô tả 1–1 phía trên được thay bởi quy tắc lịch sử này. Script `phase3-upgrade.sql` nâng database Phase 2, chưa được áp dụng trên SQL Server trong môi trường thực hiện lần này.
+| Cột | Tham chiếu | ON DELETE |
+|---|---|---|
+| RoleId | Roles.Id | NO_ACTION |
 
----
+Index:
 
-## 3. Indexes quan trọng
+| Tên | Cột | Unique | Filter |
+|---|---|---|---|
+| IX_Users_Email | Email | Có | — |
+| IX_Users_RoleId | RoleId | Không | — |
+| IX_Users_Username | Username | Có | — |
 
-```sql
--- User lookup
-CREATE UNIQUE INDEX IX_Users_Username ON Users(Username);
-CREATE UNIQUE INDEX IX_Users_Email ON Users(Email);
+### 4.3. Patients
 
--- Patient code
-CREATE UNIQUE INDEX IX_Patients_PatientCode ON Patients(PatientCode);
-CREATE UNIQUE INDEX IX_Patients_UserId ON Patients(UserId);
+| Cột | Kiểu SQL | NULL | Khóa / tự sinh | SQL Default |
+|---|---|---|---|---|
+| Id | uniqueidentifier | Không | PK | `(newsequentialid())` |
+| UserId | uniqueidentifier | Không | — | — |
+| DateOfBirth | date | Không | — | — |
+| Gender | tinyint | Không | — | — |
+| Address | nvarchar(300) | Có | — | — |
+| PatientCode | nvarchar(20) | Không | — | — |
+| CreatedAt | datetime2(7) | Không | — | — |
+| UpdatedAt | datetime2(7) | Có | — | — |
 
--- Doctor lookup
-CREATE UNIQUE INDEX IX_Doctors_DoctorCode ON Doctors(DoctorCode);
-CREATE INDEX IX_Doctors_IsActive ON Doctors(IsActive);
+Khóa ngoại:
 
--- Time slot lookup for booking
-CREATE INDEX IX_TimeSlots_DoctorId_SlotDate ON TimeSlots(DoctorId, SlotDate) INCLUDE(StartTime, EndTime, Status);
+| Cột | Tham chiếu | ON DELETE |
+|---|---|---|
+| UserId | Users.Id | CASCADE |
 
--- Appointment lookup
-CREATE INDEX IX_Appointments_PatientId_Date ON Appointments(PatientId, AppointmentDate);
-CREATE INDEX IX_Appointments_DoctorId_Date ON Appointments(DoctorId, AppointmentDate);
-CREATE INDEX IX_Appointments_TimeSlotId ON Appointments(TimeSlotId);
-CREATE INDEX IX_Appointments_Status ON Appointments(Status);
+Index:
 
--- Notification lookup
-CREATE INDEX IX_Notifications_PatientId_CreatedAt ON Notifications(PatientId, CreatedAt DESC);
+| Tên | Cột | Unique | Filter |
+|---|---|---|---|
+| IX_Patients_PatientCode | PatientCode | Có | — |
+| IX_Patients_UserId | UserId | Có | — |
 
--- Audit log
-CREATE INDEX IX_AuditLogs_UserId_CreatedAt ON AuditLogs(UserId, CreatedAt DESC);
-CREATE INDEX IX_AuditLogs_EntityType_EntityId ON AuditLogs(EntityType, EntityId);
-```
+### 4.4. Specialties
 
----
+| Cột | Kiểu SQL | NULL | Khóa / tự sinh | SQL Default |
+|---|---|---|---|---|
+| Id | int | Không | PK, IDENTITY | — |
+| Code | nvarchar(20) | Không | — | — |
+| Name | nvarchar(100) | Không | — | — |
+| Description | nvarchar(500) | Có | — | — |
+| IsActive | bit | Không | — | `(CONVERT([bit],(1)))` |
+| CreatedAt | datetime2(7) | Không | — | — |
+| UpdatedAt | datetime2(7) | Có | — | — |
+| CreatedBy | uniqueidentifier | Có | — | — |
 
-## 4. Concurrency Control
+Khóa ngoại:
 
-### Optimistic Concurrency
-- `TimeSlots.RowVersion` — Ngăn 2 người đặt cùng khung giờ
-- `Appointments.RowVersion` — Ngăn đổi/hủy đồng thời
+| Cột | Tham chiếu | ON DELETE |
+|---|---|---|
+| CreatedBy | Users.Id | NO_ACTION |
 
-### Transaction Isolation
-- Đặt lịch: `SERIALIZABLE` trên khung giờ cụ thể
-- Đổi lịch: `SERIALIZABLE` (giải phóng slot cũ + chiếm slot mới)
-- Đọc: `READ COMMITTED`
+Index:
 
----
+| Tên | Cột | Unique | Filter |
+|---|---|---|---|
+| IX_Specialties_Code | Code | Có | — |
+| IX_Specialties_CreatedBy | CreatedBy | Không | — |
+| IX_Specialties_Name | Name | Có | — |
 
-## 5. Seed Data
+### 4.5. Doctors
 
-### Tài khoản demo
-| Username | Password | Vai trò |
-|----------|----------|---------|
-| admin | Admin@123 | Admin |
-| staff1 | Staff@123 | Staff |
-| doctor1 | Doctor@123 | Doctor |
-| doctor2 | Doctor@123 | Doctor |
-| patient1 | Patient@123 | Patient |
-| patient2 | Patient@123 | Patient |
+| Cột | Kiểu SQL | NULL | Khóa / tự sinh | SQL Default |
+|---|---|---|---|---|
+| Id | uniqueidentifier | Không | PK | `(newsequentialid())` |
+| UserId | uniqueidentifier | Có | — | — |
+| DoctorCode | nvarchar(20) | Không | — | — |
+| Title | nvarchar(50) | Có | — | — |
+| Bio | nvarchar(1000) | Có | — | — |
+| AvatarUrl | nvarchar(500) | Có | — | — |
+| IsActive | bit | Không | — | `(CONVERT([bit],(1)))` |
+| CreatedAt | datetime2(7) | Không | — | — |
+| UpdatedAt | datetime2(7) | Có | — | — |
+| CreatedBy | uniqueidentifier | Có | — | — |
+| FullName | nvarchar(100) | Không | — | `(N'')` |
 
-### Dữ liệu demo
-- 5 chuyên khoa (Nội tổng quát, Nhi khoa, Da liễu, Tai Mũi Họng, Mắt)
-- 4 bác sĩ (thuộc các chuyên khoa khác nhau)
-- 2 bệnh nhân
-- Lịch làm việc 7 ngày tới
-- Khung giờ (30 phút/slot, 8h–17h)
-- 10+ lịch hẹn ở các trạng thái khác nhau
-- Thông báo mẫu
+Khóa ngoại:
+
+| Cột | Tham chiếu | ON DELETE |
+|---|---|---|
+| CreatedBy | Users.Id | NO_ACTION |
+| UserId | Users.Id | SET_NULL |
+
+Index:
+
+| Tên | Cột | Unique | Filter |
+|---|---|---|---|
+| IX_Doctors_CreatedBy | CreatedBy | Không | — |
+| IX_Doctors_DoctorCode | DoctorCode | Có | — |
+| IX_Doctors_UserId | UserId | Có | ([UserId] IS NOT NULL) |
+
+### 4.6. DoctorSpecialties
+
+| Cột | Kiểu SQL | NULL | Khóa / tự sinh | SQL Default |
+|---|---|---|---|---|
+| DoctorId | uniqueidentifier | Không | PK | — |
+| SpecialtyId | int | Không | PK | — |
+| IsPrimary | bit | Không | — | — |
+
+Khóa ngoại:
+
+| Cột | Tham chiếu | ON DELETE |
+|---|---|---|
+| DoctorId | Doctors.Id | CASCADE |
+| SpecialtyId | Specialties.Id | CASCADE |
+
+Index:
+
+| Tên | Cột | Unique | Filter |
+|---|---|---|---|
+| IX_DoctorSpecialties_SpecialtyId | SpecialtyId | Không | — |
+
+### 4.7. WorkingSchedules
+
+| Cột | Kiểu SQL | NULL | Khóa / tự sinh | SQL Default |
+|---|---|---|---|---|
+| Id | uniqueidentifier | Không | PK | — |
+| DoctorId | uniqueidentifier | Không | — | — |
+| WorkDate | date | Không | — | — |
+| StartTime | time(7) | Không | — | — |
+| EndTime | time(7) | Không | — | — |
+| Note | nvarchar(500) | Có | — | — |
+| CreatedAt | datetime2(7) | Không | — | — |
+| UpdatedAt | datetime2(7) | Có | — | — |
+| CreatedBy | uniqueidentifier | Có | — | — |
+
+Khóa ngoại:
+
+| Cột | Tham chiếu | ON DELETE |
+|---|---|---|
+| CreatedBy | Users.Id | NO_ACTION |
+| DoctorId | Doctors.Id | CASCADE |
+
+Index:
+
+| Tên | Cột | Unique | Filter |
+|---|---|---|---|
+| IX_WorkingSchedules_CreatedBy | CreatedBy | Không | — |
+| IX_WorkingSchedules_DoctorId_WorkDate_StartTime | DoctorId, WorkDate, StartTime | Có | — |
+
+### 4.8. TimeSlots
+
+| Cột | Kiểu SQL | NULL | Khóa / tự sinh | SQL Default |
+|---|---|---|---|---|
+| Id | uniqueidentifier | Không | PK | — |
+| WorkingScheduleId | uniqueidentifier | Không | — | — |
+| DoctorId | uniqueidentifier | Không | — | — |
+| SlotDate | date | Không | — | — |
+| StartTime | time(7) | Không | — | — |
+| EndTime | time(7) | Không | — | — |
+| Status | tinyint | Không | — | — |
+| IsActive | bit | Không | — | — |
+| ClosedReason | nvarchar(500) | Có | — | — |
+| ClosedAt | datetime2(7) | Có | — | — |
+| ClosedBy | uniqueidentifier | Có | — | — |
+| CreatedAt | datetime2(7) | Không | — | — |
+| RowVersion | rowversion (8 byte) | Không | SQL rowversion | — |
+
+Khóa ngoại:
+
+| Cột | Tham chiếu | ON DELETE |
+|---|---|---|
+| ClosedBy | Users.Id | NO_ACTION |
+| DoctorId | Doctors.Id | NO_ACTION |
+| WorkingScheduleId | WorkingSchedules.Id | CASCADE |
+
+Index:
+
+| Tên | Cột | Unique | Filter |
+|---|---|---|---|
+| IX_TimeSlots_ClosedBy | ClosedBy | Không | — |
+| IX_TimeSlots_DoctorId_SlotDate_StartTime | DoctorId, SlotDate, StartTime | Không | — |
+| IX_TimeSlots_DoctorId_SlotDate_Status | DoctorId, SlotDate, Status | Không | — |
+| IX_TimeSlots_WorkingScheduleId | WorkingScheduleId | Không | — |
+
+### 4.9. Appointments
+
+| Cột | Kiểu SQL | NULL | Khóa / tự sinh | SQL Default |
+|---|---|---|---|---|
+| Id | uniqueidentifier | Không | PK | — |
+| AppointmentCode | nvarchar(20) | Không | — | — |
+| PatientId | uniqueidentifier | Không | — | — |
+| DoctorId | uniqueidentifier | Không | — | — |
+| TimeSlotId | uniqueidentifier | Không | — | — |
+| SpecialtyId | int | Không | — | — |
+| AppointmentDate | date | Không | — | — |
+| StartTime | time(7) | Không | — | — |
+| EndTime | time(7) | Không | — | — |
+| Status | tinyint | Không | — | — |
+| Notes | nvarchar(1000) | Có | — | — |
+| CancellationReason | nvarchar(500) | Có | — | — |
+| RescheduleReason | nvarchar(500) | Có | — | — |
+| BookedBy | uniqueidentifier | Không | — | — |
+| CheckedInBy | uniqueidentifier | Có | — | — |
+| CheckedInAt | datetime2(7) | Có | — | — |
+| MarkedNoShowBy | uniqueidentifier | Có | — | — |
+| MarkedNoShowAt | datetime2(7) | Có | — | — |
+| CreatedAt | datetime2(7) | Không | — | — |
+| UpdatedAt | datetime2(7) | Có | — | — |
+| RowVersion | rowversion (8 byte) | Không | SQL rowversion | — |
+| RequestFingerprint | nvarchar(64) | Có | — | — |
+| RequestKey | uniqueidentifier | Có | — | — |
+
+Khóa ngoại:
+
+| Cột | Tham chiếu | ON DELETE |
+|---|---|---|
+| BookedBy | Users.Id | NO_ACTION |
+| CheckedInBy | Users.Id | NO_ACTION |
+| MarkedNoShowBy | Users.Id | NO_ACTION |
+| DoctorId | Doctors.Id | NO_ACTION |
+| PatientId | Patients.Id | NO_ACTION |
+| SpecialtyId | Specialties.Id | NO_ACTION |
+| TimeSlotId | TimeSlots.Id | NO_ACTION |
+
+Index:
+
+| Tên | Cột | Unique | Filter |
+|---|---|---|---|
+| IX_Appointments_AppointmentCode | AppointmentCode | Có | — |
+| IX_Appointments_BookedBy_RequestKey | BookedBy, RequestKey | Có | ([RequestKey] IS NOT NULL) |
+| IX_Appointments_CheckedInBy | CheckedInBy | Không | — |
+| IX_Appointments_DoctorId_AppointmentDate | DoctorId, AppointmentDate | Không | — |
+| IX_Appointments_MarkedNoShowBy | MarkedNoShowBy | Không | — |
+| IX_Appointments_PatientId_AppointmentDate | PatientId, AppointmentDate | Không | — |
+| IX_Appointments_SpecialtyId | SpecialtyId | Không | — |
+| IX_Appointments_Status | Status | Không | — |
+| IX_Appointments_TimeSlotId | TimeSlotId | Có | ([Status] IN ((0), (2))) |
+
+### 4.10. AppointmentStatusHistories
+
+| Cột | Kiểu SQL | NULL | Khóa / tự sinh | SQL Default |
+|---|---|---|---|---|
+| Id | bigint | Không | PK, IDENTITY | — |
+| AppointmentId | uniqueidentifier | Không | — | — |
+| OldStatus | tinyint | Có | — | — |
+| NewStatus | tinyint | Không | — | — |
+| Reason | nvarchar(500) | Có | — | — |
+| ChangedBy | uniqueidentifier | Không | — | — |
+| ChangedAt | datetime2(7) | Không | — | — |
+| OldTimeSlotId | uniqueidentifier | Có | — | — |
+| NewTimeSlotId | uniqueidentifier | Có | — | — |
+
+Khóa ngoại:
+
+| Cột | Tham chiếu | ON DELETE |
+|---|---|---|
+| ChangedBy | Users.Id | NO_ACTION |
+| AppointmentId | Appointments.Id | CASCADE |
+
+Index:
+
+| Tên | Cột | Unique | Filter |
+|---|---|---|---|
+| IX_AppointmentStatusHistories_AppointmentId | AppointmentId | Không | — |
+| IX_AppointmentStatusHistories_ChangedBy | ChangedBy | Không | — |
+
+### 4.11. Notifications
+
+| Cột | Kiểu SQL | NULL | Khóa / tự sinh | SQL Default |
+|---|---|---|---|---|
+| Id | uniqueidentifier | Không | PK | — |
+| PatientId | uniqueidentifier | Không | — | — |
+| AppointmentId | uniqueidentifier | Có | — | — |
+| Type | tinyint | Không | — | — |
+| Title | nvarchar(200) | Không | — | — |
+| Message | nvarchar(1000) | Không | — | — |
+| IsRead | bit | Không | — | — |
+| ReadAt | datetime2(7) | Có | — | — |
+| CreatedAt | datetime2(7) | Không | — | — |
+| ScheduledFor | datetime2(7) | Có | — | — |
+| IsSent | bit | Không | — | — |
+| OutboxId | uniqueidentifier | Có | — | — |
+
+Khóa ngoại:
+
+| Cột | Tham chiếu | ON DELETE |
+|---|---|---|
+| PatientId | Patients.Id | CASCADE |
+| AppointmentId | Appointments.Id | SET_NULL |
+
+Index:
+
+| Tên | Cột | Unique | Filter |
+|---|---|---|---|
+| IX_Notifications_AppointmentId | AppointmentId | Không | — |
+| IX_Notifications_PatientId_CreatedAt | PatientId, CreatedAt | Không | — |
+| IX_Notifications_OutboxId | OutboxId | Có | ([OutboxId] IS NOT NULL) |
+
+### 4.12. NotificationOutbox
+
+| Cột | Kiểu SQL | NULL | Khóa / tự sinh | SQL Default |
+|---|---|---|---|---|
+| Id | uniqueidentifier | Không | PK | — |
+| PatientId | uniqueidentifier | Không | — | — |
+| AppointmentId | uniqueidentifier | Không | — | — |
+| Type | tinyint | Không | — | — |
+| Title | nvarchar(200) | Không | — | — |
+| Message | nvarchar(1000) | Không | — | — |
+| ScheduledFor | datetime2(7) | Không | — | — |
+| DeliveredAt | datetime2(7) | Có | — | — |
+| SuppressedAt | datetime2(7) | Có | — | — |
+
+Khóa ngoại:
+
+| Cột | Tham chiếu | ON DELETE |
+|---|---|---|
+| PatientId | Patients.Id | NO_ACTION |
+| AppointmentId | Appointments.Id | NO_ACTION |
+
+Index:
+
+| Tên | Cột | Unique | Filter |
+|---|---|---|---|
+| IX_NotificationOutbox_AppointmentId | AppointmentId | Không | — |
+| IX_NotificationOutbox_DeliveredAt_SuppressedAt_ScheduledFor | DeliveredAt, SuppressedAt, ScheduledFor | Không | — |
+| IX_NotificationOutbox_PatientId | PatientId | Không | — |
+
+### 4.13. AuditLogs
+
+| Cột | Kiểu SQL | NULL | Khóa / tự sinh | SQL Default |
+|---|---|---|---|---|
+| Id | bigint | Không | PK, IDENTITY | — |
+| UserId | uniqueidentifier | Có | — | — |
+| Action | nvarchar(100) | Không | — | — |
+| EntityType | nvarchar(100) | Không | — | — |
+| EntityId | nvarchar(50) | Có | — | — |
+| OldValues | nvarchar(max) | Có | — | — |
+| NewValues | nvarchar(max) | Có | — | — |
+| IpAddress | nvarchar(50) | Có | — | — |
+| CreatedAt | datetime2(7) | Không | — | — |
+
+Khóa ngoại:
+
+| Cột | Tham chiếu | ON DELETE |
+|---|---|---|
+| UserId | Users.Id | SET_NULL |
+
+Index:
+
+| Tên | Cột | Unique | Filter |
+|---|---|---|---|
+| IX_AuditLogs_EntityType_EntityId | EntityType, EntityId | Không | — |
+| IX_AuditLogs_UserId_CreatedAt | UserId, CreatedAt | Không | — |
+
+## 5. Bằng chứng và mã nguồn
+
+Nguồn mapping: `HospitalDbContext`, migrations và entities trong Domain. Metadata bảng/index/FK đã đọc trên SQL Server thật; 28 kiểm thử SQL xác minh cạnh tranh, rollback, quyền và lịch sử. Xem [Phase 7](phase7-verification.md), [Phase 8](phase8-verification.md) và [giải thích transaction/outbox](technical-explanation.md).
