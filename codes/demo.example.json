@@ -1,0 +1,7 @@
+{
+  "SqlServer": ".\\SQLEXPRESS",
+  "DatabaseName": "HospitalDemo",
+  "ApiPort": 5014,
+  "WebPort": 5174,
+  "ConnectionString": ""
+}
