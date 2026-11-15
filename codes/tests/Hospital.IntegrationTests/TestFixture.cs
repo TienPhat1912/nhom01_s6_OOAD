@@ -99,8 +99,26 @@ public sealed class TestFixture : IDisposable
         ? new SqliteTestContext(new DbContextOptionsBuilder<HospitalDbContext>()
             .UseSqlite(DatabaseUnavailable ? $"Data Source={file}.missing;Mode=ReadOnly;Pooling=False"
                 : $"Data Source={file};Default Timeout=10;Pooling=False").AddInterceptors(interceptors).Options)
-        : new HospitalDbContext(new DbContextOptionsBuilder<HospitalDbContext>().UseSqlServer(sqlConnection,
-            sql => sql.EnableRetryOnFailure()).AddInterceptors(interceptors).Options);
+        : CreateSqlServerDb(interceptors);
+
+    private HospitalDbContext CreateSqlServerDb(IInterceptor[] interceptors)
+    {
+        var connection = new Microsoft.Data.SqlClient.SqlConnectionStringBuilder(sqlConnection!);
+        if (DatabaseUnavailable)
+        {
+            // Fail a real SQL connection without stopping the shared SQL Server service.
+            connection.InitialCatalog += "_Unavailable";
+            connection.Pooling = false;
+            connection.ConnectTimeout = 1;
+            connection.ConnectRetryCount = 0;
+        }
+        return new HospitalDbContext(new DbContextOptionsBuilder<HospitalDbContext>()
+            .UseSqlServer(connection.ConnectionString, sql =>
+            {
+                if (DatabaseUnavailable) sql.EnableRetryOnFailure(1, TimeSpan.Zero, null);
+                else sql.EnableRetryOnFailure();
+            }).AddInterceptors(interceptors).Options);
+    }
 
     public async Task<TimeSlot> ExtraSlotAsync(string doctor = "doctor2", int day = 1, int hour = 9, int minute = 0)
     {
