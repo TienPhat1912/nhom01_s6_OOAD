@@ -29,14 +29,14 @@ public class AdminDesktopApiTests
     }
 
     [Fact]
-    public async Task CatalogExposesAccountLinkOnlyToAdminAndPreservesPrimarySpecialty()
+    public async Task CatalogExposesAccountLinkOnlyToAdminAndReturnsSingleSpecialty()
     {
         using var fixture = new TestFixture(); using var admin = await fixture.ClientAsync("admin");
         var doctorId = fixture.Actor("doctor1").DoctorId;
         var doctors = (await admin.GetFromJsonAsync<ApiResponse<PagedResult<DoctorDto>>>("/api/doctors?onlyActive=false", TestFixture.Json))!.Data!;
         Assert.Equal(fixture.Actor("doctor1").UserId, doctors.Items.Single(d => d.Id == doctorId).LinkedUserId);
         var detail = (await admin.GetFromJsonAsync<ApiResponse<DoctorDetailDto>>($"/api/doctors/{doctorId}", TestFixture.Json))!.Data!;
-        Assert.Equal(fixture.Specialty(), detail.PrimarySpecialtyId);
+        Assert.Equal(fixture.Specialty(), detail.SpecialtyId);
         foreach (var actor in new[] { "patient1", "staff1" })
         {
             using var client = await fixture.ClientAsync(actor);

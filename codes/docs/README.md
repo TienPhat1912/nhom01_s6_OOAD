@@ -4,6 +4,8 @@ Bắt đầu với [hướng dẫn chạy project](../README.md) để clone, c�
 
 | Nội dung | Tài liệu |
 |---|---|
+| Ánh xạ 14 lớp báo cáo OOAD lần 04 và phần còn thiếu | [Mô hình OOAD](instructions/ooad-model-mapping.md) |
+| Chuyển bác sĩ về một chuyên khoa và nâng cấp dữ liệu cũ | [Migration A2](instructions/single-specialty-migration.md) |
 | Cài đặt chi tiết, SQL Express/Docker, kịch bản demo | [Demo guide](instructions/demo-guide.md) |
 | Kết nối Docker sau khi chuyển dữ liệu, EF CLI và bản sao lưu | [SQL Server Docker](instructions/sql-server-docker.md) |
 | Kiến trúc và phụ thuộc giữa các project | [Architecture](instructions/architecture.md) |

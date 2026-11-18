@@ -147,7 +147,7 @@ public class ApiTests
         using var admin = await f.ClientAsync("admin");
         var specialty = f.Specialty();
         var doctorResponse = await admin.PostAsJsonAsync("/api/admin/doctors", new SaveDoctorRequest
-        { FullName = "Bác sĩ mới", SpecialtyIds = [specialty], PrimarySpecialtyId = specialty });
+        { FullName = "Bác sĩ mới", SpecialtyId = specialty });
         Assert.Equal(HttpStatusCode.Created, doctorResponse.StatusCode);
         var doctor = (await doctorResponse.Content.ReadFromJsonAsync<ApiResponse<DoctorDetailDto>>())!.Data!;
         var account = await admin.PostAsJsonAsync("/api/admin/users", new CreateUserRequest

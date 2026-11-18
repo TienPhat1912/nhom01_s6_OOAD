@@ -168,7 +168,7 @@ public class Phase7AcceptanceTests
                 await Data<AppointmentDto>(await patient.PostAsJsonAsync($"/api/appointments/{historical.Id}/cancel", Mutation(historical)));
                 f.Provider.Now = f.Provider.Now.AddDays(10);
                 var doctor = await Data<DoctorDetailDto>(await admin.GetAsync($"/api/doctors/{historical.DoctorId}"));
-                (await admin.PutAsJsonAsync($"/api/admin/doctors/{doctor.Id}", new SaveDoctorRequest { FullName = doctor.FullName, SpecialtyIds = doctor.Specialties.Select(s => s.Id).ToList(), PrimarySpecialtyId = doctor.PrimarySpecialtyId!.Value, IsActive = false })).EnsureSuccessStatusCode();
+                (await admin.PutAsJsonAsync($"/api/admin/doctors/{doctor.Id}", new SaveDoctorRequest { FullName = doctor.FullName, SpecialtyId = doctor.SpecialtyId, IsActive = false })).EnsureSuccessStatusCode();
                 var specialty = await Data<SpecialtyDto>(await admin.GetAsync($"/api/specialties/{historical.SpecialtyId}"));
                 (await admin.PutAsJsonAsync($"/api/admin/specialties/{specialty.Id}", new SaveSpecialtyRequest { Code = specialty.Code, Name = specialty.Name, IsActive = false })).EnsureSuccessStatusCode();
                 Assert.False((await db.Doctors.FindAsync(doctor.Id))!.IsActive); Assert.False((await db.Specialties.FindAsync(specialty.Id))!.IsActive);

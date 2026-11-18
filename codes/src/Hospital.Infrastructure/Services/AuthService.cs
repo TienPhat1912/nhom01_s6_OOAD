@@ -168,8 +168,7 @@ public class AuthService : IAuthService
             .Include(u => u.Role)
             .Include(u => u.Patient)
             .Include(u => u.Doctor)
-                .ThenInclude(d => d!.DoctorSpecialties)
-                    .ThenInclude(ds => ds.Specialty)
+                .ThenInclude(d => d!.Specialty)
             .FirstOrDefaultAsync(u => u.Id == userId);
 
         if (user == null)
@@ -208,7 +207,7 @@ public class AuthService : IAuthService
             profile.Title = user.Doctor.Title;
             profile.Bio = user.Doctor.Bio;
             profile.AvatarUrl = user.Doctor.AvatarUrl;
-            profile.Specialties = user.Doctor.DoctorSpecialties.Select(ds => ds.Specialty.Name).ToList();
+            profile.SpecialtyName = user.Doctor.Specialty.Name;
         }
 
         return profile;
@@ -226,8 +225,7 @@ public class AuthService : IAuthService
             .Include(u => u.Role)
             .Include(u => u.Patient)
             .Include(u => u.Doctor)
-                .ThenInclude(d => d!.DoctorSpecialties)
-                    .ThenInclude(ds => ds.Specialty)
+                .ThenInclude(d => d!.Specialty)
             .FirstOrDefaultAsync(u => u.Id == userId);
 
         if (user == null)

@@ -30,7 +30,7 @@ public class CatalogService(HospitalDbContext db, ICurrentUserService actor, Cli
         return query.OrderBy(s => s.Name).ThenBy(s => s.Id).Select(s => new SpecialtyDto
         {
             Id = s.Id, Code = s.Code, Name = s.Name, Description = s.Description, IsActive = s.IsActive,
-            DoctorCount = s.DoctorSpecialties.Count(ds => ds.Doctor.IsActive && (ds.Doctor.User == null || ds.Doctor.User.IsActive))
+            DoctorCount = s.Doctors.Count(d => d.IsActive && (d.User == null || d.User.IsActive))
         }).PageAsync(page ?? new PageQuery());
     }
 
@@ -41,7 +41,7 @@ public class CatalogService(HospitalDbContext db, ICurrentUserService actor, Cli
             .Select(s => new SpecialtyDto
             {
                 Id = s.Id, Code = s.Code, Name = s.Name, Description = s.Description, IsActive = s.IsActive,
-                DoctorCount = s.DoctorSpecialties.Count(ds => ds.Doctor.IsActive && (ds.Doctor.User == null || ds.Doctor.User.IsActive))
+                DoctorCount = s.Doctors.Count(d => d.IsActive && (d.User == null || d.User.IsActive))
             }).SingleOrDefaultAsync() ?? throw new NotFoundException("Chuyên khoa", id);
     }
 
@@ -49,29 +49,28 @@ public class CatalogService(HospitalDbContext db, ICurrentUserService actor, Cli
     {
         Access(onlyActive);
         var query = db.Doctors.AsNoTracking().Where(d => !onlyActive || d.IsActive
-            && (d.User == null || d.User.IsActive) && d.DoctorSpecialties.Any(ds => ds.Specialty.IsActive));
-        if (specialtyId.HasValue) query = query.Where(d => d.DoctorSpecialties.Any(ds => ds.SpecialtyId == specialtyId && (ds.Specialty.IsActive || Admin)));
+            && (d.User == null || d.User.IsActive) && d.Specialty.IsActive);
+        if (specialtyId.HasValue) query = query.Where(d => d.SpecialtyId == specialtyId && (d.Specialty.IsActive || Admin));
         if (!string.IsNullOrWhiteSpace(keyword))
         {
             var k = keyword.Trim();
             query = query.Where(d => d.FullName.Contains(k) || d.DoctorCode.Contains(k)
-                || d.DoctorSpecialties.Any(ds => ds.Specialty.Name.Contains(k) && (ds.Specialty.IsActive || Admin)));
+                || d.Specialty.Name.Contains(k) && (d.Specialty.IsActive || Admin));
         }
         return query.OrderBy(d => d.FullName).ThenBy(d => d.Id).Select(d => new DoctorDto
         {
             Id = d.Id, DoctorCode = d.DoctorCode, FullName = d.FullName, Title = d.Title, Bio = d.Bio,
             AvatarUrl = d.AvatarUrl, IsActive = d.IsActive, LinkedUserId = Admin ? d.UserId : null,
-            Specialties = d.DoctorSpecialties.Where(ds => ds.Specialty.IsActive || Admin).OrderByDescending(ds => ds.IsPrimary)
-                .Select(ds => ds.Specialty.Name).ToList()
+            SpecialtyId = d.SpecialtyId, SpecialtyName = d.Specialty.Name
         }).PageAsync(page ?? new PageQuery());
     }
 
     public async Task<DoctorDetailDto> GetDoctorByIdAsync(Guid id)
     {
         Access();
-        var d = await db.Doctors.AsNoTracking().Include(d => d.User).Include(d => d.DoctorSpecialties).ThenInclude(ds => ds.Specialty)
+        var d = await db.Doctors.AsNoTracking().Include(d => d.User).Include(d => d.Specialty)
             .SingleOrDefaultAsync(d => d.Id == id && (Admin || d.IsActive && (d.User == null || d.User.IsActive)
-                && d.DoctorSpecialties.Any(ds => ds.Specialty.IsActive))) ?? throw new NotFoundException("Bác sĩ", id);
+                && d.Specialty.IsActive)) ?? throw new NotFoundException("Bác sĩ", id);
         var today = clock.Today; var now = TimeOnly.FromDateTime(clock.LocalNow);
         var dates = await db.TimeSlots.Where(s => s.DoctorId == id && s.IsActive && s.Status == TimeSlotStatus.Open
             && (s.SlotDate > today || s.SlotDate == today && s.StartTime > now)
@@ -81,10 +80,9 @@ public class CatalogService(HospitalDbContext db, ICurrentUserService actor, Cli
         {
             Id = d.Id, DoctorCode = d.DoctorCode, FullName = d.FullName, Title = d.Title, Bio = d.Bio,
             AvatarUrl = d.AvatarUrl, IsActive = d.IsActive,
-            PrimarySpecialtyId = d.DoctorSpecialties.Where(ds => ds.IsPrimary).Select(ds => (int?)ds.SpecialtyId).FirstOrDefault(),
-            Specialties = d.DoctorSpecialties.Where(ds => ds.Specialty.IsActive || Admin).OrderByDescending(ds => ds.IsPrimary)
-                .Select(ds => new SpecialtyDto { Id = ds.SpecialtyId, Name = ds.Specialty.Name, Code = ds.Specialty.Code,
-                    IsActive = ds.Specialty.IsActive, Description = ds.Specialty.Description }).ToList(),
+            SpecialtyId = d.SpecialtyId,
+            Specialty = new SpecialtyDto { Id = d.SpecialtyId, Name = d.Specialty.Name, Code = d.Specialty.Code,
+                IsActive = d.Specialty.IsActive, Description = d.Specialty.Description },
             AvailableDates = dates
         };
     }

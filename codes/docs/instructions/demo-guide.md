@@ -132,7 +132,7 @@ dotnet run --project src/Hospital.Web --no-build --launch-profile http
 
 Mở các browser profile/cửa sổ riêng cho Patient, Staff và Doctor; các tab chung profile dùng chung cookie. Desktop có phiên Admin riêng. Kịch bản khoảng 15–20 phút:
 
-1. **Admin Desktop:** xem tổng quan; tạo chuyên khoa mã mới, hồ sơ bác sĩ mới, chọn chuyên khoa chính; cấp tài khoản Doctor gắn hồ sơ đó. Tạo ca ngày mai 08:00–10:00; ca chia bốn khung 30 phút. Xem chi tiết để ghi nhận slot, tên bác sĩ và ngày.
+1. **Admin Desktop:** xem tổng quan; tạo chuyên khoa mã mới, hồ sơ bác sĩ mới, chọn một chuyên khoa phụ trách; cấp tài khoản Doctor gắn hồ sơ đó. Tạo ca ngày mai 08:00–10:00; ca chia bốn khung 30 phút. Xem chi tiết để ghi nhận slot, tên bác sĩ và ngày. Quy ước 20 phút của báo cáo lần 04 sẽ được triển khai ở đợt B1.
 2. **Patient Web:** đăng nhập, tải lại danh mục; bác sĩ/chuyên khoa/ca vừa tạo xuất hiện từ API. Chọn khung 08:00, xem lại và xác nhận; ghi mã hẹn, xem/in phiếu. Desktop tải lại thấy khung đã được đặt; thử đóng khung nhận từ chối.
 3. **Doctor Web:** đăng nhập tài khoản vừa cấp; xem lịch làm việc và chi tiết đúng mã hẹn. Patient khác không thấy lịch này trong danh sách của mình.
 4. **Đổi và hủy:** Patient đổi sang 08:30 ngày mai (còn ít nhất 2 giờ), xem lịch sử và thông báo, rồi hủy. Desktop tải lại thấy chỗ được giải phóng; đóng khung trống với lý do. Patient tải lại không chọn được khung đã đóng.

@@ -41,7 +41,7 @@ internal static partial class Program
             using (var form = new DoctorEditorForm(session, Dialogs, options))
             {
                 ShowHidden(form); Fill(form, "FullName", "Bác sĩ P7 " + run); Fill(form, "Title", "BS.CKI");
-                var list = Field<CheckedListBox>(form, "SpecialtyIds"); list.SetItemChecked(Enumerable.Range(0, list.Items.Count).Single(i => ((Choice<int>)list.Items[i]).Value == specialty.Id), true);
+                Select(form, "SpecialtyId", specialty.Id);
                 Capture(form, "create-doctor"); await Submit(form); doctor = (DoctorDetailDto)form.SavedResult!;
             }
             var username = "p7doctor" + run;

@@ -115,5 +115,5 @@ public class UserProfileDto
     public string? Title { get; set; }
     public string? Bio { get; set; }
     public string? AvatarUrl { get; set; }
-    public List<string> Specialties { get; set; } = new();
+    public string? SpecialtyName { get; set; }
 }

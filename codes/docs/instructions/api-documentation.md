@@ -98,9 +98,9 @@ Tiếp nhận yêu cầu nhân viên đã đối chiếu đúng bệnh nhân, đ
 - Đặt/đổi/hủy, thay lịch làm việc và thao tác quản trị dùng transaction `Serializable` trong execution strategy của EF. Retry đọc lại dữ liệu và bỏ tracking của lần thất bại. Tham khảo [EF transactions](https://learn.microsoft.com/en-us/ef/core/saving/transactions) và [connection resiliency](https://learn.microsoft.com/en-us/ef/core/miscellaneous/connection-resiliency).
 - Một slot có nhiều lịch hẹn lịch sử; unique filtered index chỉ cho một bản ghi Confirmed/CheckedIn. RowVersion bảo vệ sửa đồng thời; kiểm tra chồng lấn bệnh nhân chạy trong cùng transaction với thao tác lưu.
 - Khi điều chỉnh ca trực, slot cũ được đóng và giữ lại; không xóa liên kết lịch đã hủy. Chặn ca còn Confirmed/CheckedIn. Hồ sơ bác sĩ giữ họ tên độc lập trước khi cấp tài khoản.
-- Bác sĩ có nhiều chuyên khoa và một chuyên khoa chính. Thay vai trò phải phù hợp hồ sơ; tài khoản bệnh nhân giữ vai trò Patient để bảo toàn quyền sở hữu. Không khóa/thu hồi quyền Admin hoạt động cuối cùng.
+- Mỗi bác sĩ có một chuyên khoa hiện hành qua `SpecialtyId`. Lịch hẹn giữ chuyên khoa đã ghi để bảo toàn lịch sử. Thay vai trò phải phù hợp hồ sơ; tài khoản bệnh nhân giữ vai trò Patient để bảo toàn quyền sở hữu. Không khóa/thu hồi quyền Admin hoạt động cuối cùng.
 - Sự kiện thông báo và lịch hẹn được ghi vào outbox trong cùng transaction. Dispatcher ghi Notification sau commit, có khóa duy nhất OutboxId. Lỗi gửi không đảo ngược lịch đã lưu; worker thử lại mỗi 30 giây. Đổi/hủy/tiếp nhận/vắng hủy reminder chưa gửi. Reminder kiểm tra lại lịch trước khi phát; lịch đặt trong vòng 1 giờ chỉ có xác nhận.
-- `NotificationOutbox` là bảng hỗ trợ thứ 13. Migration `Phase3Backend` giữ dữ liệu Phase 2, lấy tên bác sĩ từ tài khoản, chuyển thông báo sự kiện cũ sang đã hiển thị và tạo reminder cho lịch cũ còn hợp lệ.
+- `NotificationOutbox` là bảng hỗ trợ xử lý thông báo. Migration `Phase3Backend` giữ dữ liệu Phase 2, lấy tên bác sĩ từ tài khoản, chuyển thông báo sự kiện cũ sang đã hiển thị và tạo reminder cho lịch cũ còn hợp lệ.
 
 ## Nâng cấp và kiểm thử
 
@@ -130,7 +130,7 @@ Web dùng hợp đồng đặt/đổi/hủy/tiếp nhận hiện có; bản xác
 ## Bổ sung Phase 6 — 18/10/2026
 
 - `GET /api/admin/users/{id}` chỉ cho Admin, trả `UserDto` hiện tại với thông tin liên hệ/vai trò/trạng thái/DoctorId; không trả mật khẩu. Id không tồn tại trả 404. Desktop đọc lại trước khi mở form sửa/phân quyền.
-- `DoctorDto.linkedUserId` chỉ có giá trị trong response dành cho Admin; Patient/Staff nhận null. Doctor vẫn không có quyền đọc danh mục. `DoctorDetailDto.primarySpecialtyId` giữ chuyên khoa chính khi chỉnh hồ sơ.
+- `DoctorDto.linkedUserId` chỉ có giá trị trong response dành cho Admin; Patient/Staff nhận null. Doctor vẫn không có quyền đọc danh mục. Sau OOAD A2, `DoctorDto` trả `specialtyId`/`specialtyName`; `DoctorDetailDto` trả `specialtyId`/`specialty`. Ghi hồ sơ bằng `SaveDoctorRequest.specialtyId`; các trường danh sách và chuyên khoa chính cũ đã bỏ. Xem [migration và hợp đồng A2](single-specialty-migration.md).
 - Nhật ký trả `PagedResult<AuditLogDto>` gồm `id`, `userId`, `userName`, `action`, `entityType`, `entityId`, `oldValues`, `newValues`, `createdAt`. Tên người thực hiện lấy từ tài khoản hiện tại; thời gian lưu UTC, Desktop hiển thị UTC+7.
 - Desktop dùng nguyên các API ghi đã có, không xóa cứng hoặc kết nối SQL trực tiếp. Khi mất phản hồi ghi, đóng form và đọc lại kết quả trước khi gửi yêu cầu mới.
 

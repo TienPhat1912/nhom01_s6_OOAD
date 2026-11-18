@@ -14,7 +14,6 @@ public class HospitalDbContext : DbContext
     public DbSet<Patient> Patients => Set<Patient>();
     public DbSet<Specialty> Specialties => Set<Specialty>();
     public DbSet<Doctor> Doctors => Set<Doctor>();
-    public DbSet<DoctorSpecialty> DoctorSpecialties => Set<DoctorSpecialty>();
     public DbSet<WorkingSchedule> WorkingSchedules => Set<WorkingSchedule>();
     public DbSet<TimeSlot> TimeSlots => Set<TimeSlot>();
     public DbSet<Appointment> Appointments => Set<Appointment>();
@@ -125,22 +124,11 @@ public class HospitalDbContext : DbContext
                 .OnDelete(DeleteBehavior.Restrict);
         });
 
-        // 6. DoctorSpecialties
-        modelBuilder.Entity<DoctorSpecialty>(entity =>
-        {
-            entity.ToTable("DoctorSpecialties");
-            entity.HasKey(e => new { e.DoctorId, e.SpecialtyId });
-
-            entity.HasOne(e => e.Doctor)
-                .WithMany(d => d.DoctorSpecialties)
-                .HasForeignKey(e => e.DoctorId)
-                .OnDelete(DeleteBehavior.Cascade);
-
-            entity.HasOne(e => e.Specialty)
-                .WithMany(s => s.DoctorSpecialties)
-                .HasForeignKey(e => e.SpecialtyId)
-                .OnDelete(DeleteBehavior.Cascade);
-        });
+        modelBuilder.Entity<Doctor>()
+            .HasOne(d => d.Specialty)
+            .WithMany(s => s.Doctors)
+            .HasForeignKey(d => d.SpecialtyId)
+            .OnDelete(DeleteBehavior.Restrict);
 
         // 7. WorkingSchedules
         modelBuilder.Entity<WorkingSchedule>(entity =>

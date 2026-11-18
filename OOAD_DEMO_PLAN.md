@@ -2,6 +2,12 @@
 
 Ngày rà soát: 18/11/2026.
 
+Tiến độ đợt đầu: đã hoàn thành A1 và A2 trên nhánh `feat/ooad-a1-a2-single-specialty`. Các nhận định hiện trạng bên dưới ghi nhận lúc lập kế hoạch; phần bác sĩ nhiều chuyên khoa đã được thay bằng một chuyên khoa. A3–A8 và các nhóm B–E còn tiếp tục theo thứ tự phụ thuộc.
+
+Kết quả kiểm chứng A1–A2 ngày 18/11/2026: 108 .NET tests đạt (8 unit, 94 integration, 6 Web), không skipped, có SQL Server và kiểm thử migration hai chiều/từ chối dữ liệu cũ không hợp lệ. Desktop build không warning/error. Luồng Phase 7 Web–WinForms đạt, đối chiếu SQL xác nhận 3 lịch hẹn và 3 thông báo vòng đời; database thử đã được dọn. Đã xem ảnh form bác sĩ chọn một chuyên khoa và catalog bệnh nhân. EF xác nhận model không còn thay đổi chưa có migration. Chưa nghiệm thu lại Docker do engine chưa sẵn sàng.
+
+Tài liệu: [ánh xạ đủ 14 lớp](codes/docs/instructions/ooad-model-mapping.md), [migration và hợp đồng A2](codes/docs/instructions/single-specialty-migration.md).
+
 Dự án có thể tái sử dụng để demo môn Phân tích thiết kế hướng đối tượng. Phần cần đầu tư nhiều nhất là quản lý lịch định kỳ và thống nhất mô hình dữ liệu với báo cáo lần 04. Giữ kiến trúc API, Web MVC, WinForms Admin và SQL Server hiện có; triển khai theo thứ tự mô hình dữ liệu, nghiệp vụ, giao diện, kiểm thử và diễn tập.
 
 ## 1. Căn cứ và phạm vi rà soát
@@ -45,8 +51,8 @@ P0 là phần cần hoàn thành để demo bám mô hình báo cáo lần 04. P
 
 ### A. Thống nhất dữ liệu và cách giải thích thiết kế
 
-- [ ] **A1 P0** Lập bảng ánh xạ đủ 14 lớp báo cáo sang entity, bảng, service, DTO và màn hình. `CaTheoNgay` có thể tiếp tục dùng tên `WorkingSchedule`; tên tiếng Anh hoặc khóa GUID không tự tạo thành lỗi nghiệp vụ, nhưng phải ghi rõ khác biệt thiết kế logic/triển khai.
-- [ ] **A2 P0** Chuyển quan hệ bác sĩ–chuyên khoa sang một chuyên khoa hiện hành. Báo cáo dùng quan hệ 1–n, code dùng `DoctorSpecialty` nhiều–nhiều và chọn chuyên khoa chính. Cập nhật Domain, EF mapping, Catalog/Admin DTO, service, form bác sĩ, seed và tests. Với dữ liệu nhiều chuyên khoa, cần quy tắc chuyển đổi có kiểm tra lịch sử; ưu tiên database demo mới để tránh đổi nghĩa dữ liệu cũ.
+- [x] **A1 P0** Lập bảng ánh xạ đủ 14 lớp báo cáo sang entity, bảng, service, DTO và màn hình. `CaTheoNgay` có thể tiếp tục dùng tên `WorkingSchedule`; tên tiếng Anh hoặc khóa GUID không tự tạo thành lỗi nghiệp vụ, nhưng phải ghi rõ khác biệt thiết kế logic/triển khai.
+- [x] **A2 P0** Chuyển quan hệ bác sĩ–chuyên khoa sang một chuyên khoa hiện hành. Báo cáo dùng quan hệ 1–n, code dùng `DoctorSpecialty` nhiều–nhiều và chọn chuyên khoa chính. Cập nhật Domain, EF mapping, Catalog/Admin DTO, service, form bác sĩ, seed và tests. Với dữ liệu nhiều chuyên khoa, cần quy tắc chuyển đổi có kiểm tra lịch sử; ưu tiên database demo mới để tránh đổi nghĩa dữ liệu cũ.
 - [ ] **A3 P0** Bổ sung `ScheduleRule` tương ứng `QuyTacLich`, `WeeklyPattern` tương ứng `MauLapTuan`; mở rộng ca theo ngày bằng nguồn quy tắc tùy chọn, mã ca, trạng thái mở và dấu đã chỉnh riêng.
 - [ ] **A4 P0** Thiết kế ràng buộc duy nhất cho ca `(DoctorId, WorkDate, ShiftCode)` kể cả ca đóng; khung `(WorkingScheduleId, StartTime)`; kiểm tra nguồn quy tắc cùng bác sĩ và khung nằm trong ca. Rà lại cách giữ slot lịch sử để tránh tạo trùng khóa.
 - [ ] **A5 P1** Hoàn thiện `AppointmentStatusHistory` thành sự kiện lịch hẹn có loại thao tác rõ ràng, trạng thái trước/sau, khung trước/sau, người và thời điểm. Hiện có ID khung trước/sau nhưng chưa khai báo quan hệ FK tương ứng trong `HospitalDbContext`.

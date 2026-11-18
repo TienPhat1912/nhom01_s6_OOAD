@@ -256,6 +256,9 @@ namespace Hospital.Infrastructure.Data.Migrations
                         .HasColumnType("bit")
                         .HasDefaultValue(true);
 
+                    b.Property<int>("SpecialtyId")
+                        .HasColumnType("int");
+
                     b.Property<string>("Title")
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
@@ -273,29 +276,13 @@ namespace Hospital.Infrastructure.Data.Migrations
                     b.HasIndex("DoctorCode")
                         .IsUnique();
 
+                    b.HasIndex("SpecialtyId");
+
                     b.HasIndex("UserId")
                         .IsUnique()
                         .HasFilter("[UserId] IS NOT NULL");
 
                     b.ToTable("Doctors", (string)null);
-                });
-
-            modelBuilder.Entity("Hospital.Domain.Entities.DoctorSpecialty", b =>
-                {
-                    b.Property<Guid>("DoctorId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<int>("SpecialtyId")
-                        .HasColumnType("int");
-
-                    b.Property<bool>("IsPrimary")
-                        .HasColumnType("bit");
-
-                    b.HasKey("DoctorId", "SpecialtyId");
-
-                    b.HasIndex("SpecialtyId");
-
-                    b.ToTable("DoctorSpecialties", (string)null);
                 });
 
             modelBuilder.Entity("Hospital.Domain.Entities.Notification", b =>
@@ -771,6 +758,12 @@ namespace Hospital.Infrastructure.Data.Migrations
                         .HasForeignKey("CreatedBy")
                         .OnDelete(DeleteBehavior.Restrict);
 
+                    b.HasOne("Hospital.Domain.Entities.Specialty", "Specialty")
+                        .WithMany("Doctors")
+                        .HasForeignKey("SpecialtyId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
                     b.HasOne("Hospital.Domain.Entities.User", "User")
                         .WithOne("Doctor")
                         .HasForeignKey("Hospital.Domain.Entities.Doctor", "UserId")
@@ -778,26 +771,9 @@ namespace Hospital.Infrastructure.Data.Migrations
 
                     b.Navigation("CreatedByUser");
 
-                    b.Navigation("User");
-                });
-
-            modelBuilder.Entity("Hospital.Domain.Entities.DoctorSpecialty", b =>
-                {
-                    b.HasOne("Hospital.Domain.Entities.Doctor", "Doctor")
-                        .WithMany("DoctorSpecialties")
-                        .HasForeignKey("DoctorId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Hospital.Domain.Entities.Specialty", "Specialty")
-                        .WithMany("DoctorSpecialties")
-                        .HasForeignKey("SpecialtyId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Doctor");
-
                     b.Navigation("Specialty");
+
+                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("Hospital.Domain.Entities.Notification", b =>
@@ -920,8 +896,6 @@ namespace Hospital.Infrastructure.Data.Migrations
                 {
                     b.Navigation("Appointments");
 
-                    b.Navigation("DoctorSpecialties");
-
                     b.Navigation("WorkingSchedules");
                 });
 
@@ -941,7 +915,7 @@ namespace Hospital.Infrastructure.Data.Migrations
                 {
                     b.Navigation("Appointments");
 
-                    b.Navigation("DoctorSpecialties");
+                    b.Navigation("Doctors");
                 });
 
             modelBuilder.Entity("Hospital.Domain.Entities.TimeSlot", b =>
