@@ -158,7 +158,7 @@ public sealed class AdminShellForm : Form
                     Rows(users.Items, ["Tài khoản", "Họ tên", "Email", "Vai trò", "Trạng thái"], u => [u.Username, u.FullName, u.Email, AdminSession.Role(u.Role), u.IsActive ? "Hoạt động" : "Đã khóa"]); break;
                 case "doctors":
                     var doctors = await session.GetAsync<PagedResult<DoctorDto>>("api/doctors?" + query, lifetime.Token); total = doctors.TotalCount;
-                    Rows(doctors.Items, ["Mã bác sĩ", "Họ tên", "Chuyên khoa", "Tài khoản", "Trạng thái"], d => [d.DoctorCode, d.FullName, string.Join(", ", d.Specialties), d.LinkedUserId.HasValue ? "Đã liên kết" : "Chưa liên kết", d.IsActive ? "Hoạt động" : "Ngừng hoạt động"]); break;
+                    Rows(doctors.Items, ["Mã bác sĩ", "Họ tên", "Chuyên khoa", "Tài khoản", "Trạng thái"], d => [d.DoctorCode, d.FullName, d.SpecialtyName, d.LinkedUserId.HasValue ? "Đã liên kết" : "Chưa liên kết", d.IsActive ? "Hoạt động" : "Ngừng hoạt động"]); break;
                 case "specialties":
                     var specialties = await session.GetAsync<PagedResult<SpecialtyDto>>("api/specialties?" + query, lifetime.Token); total = specialties.TotalCount;
                     Rows(specialties.Items, ["Mã", "Chuyên khoa", "Số bác sĩ", "Trạng thái"], s => [s.Code, s.Name, s.DoctorCount, s.IsActive ? "Hoạt động" : "Ngừng hoạt động"]); break;

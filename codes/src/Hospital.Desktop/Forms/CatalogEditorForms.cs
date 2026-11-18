@@ -30,12 +30,11 @@ public sealed class DoctorEditorForm : EditorForm
 {
     private readonly DoctorDetailDto? existing;
     private readonly TextBox name, title, bio, avatar;
-    private readonly CheckedListBox specialties;
-    private readonly ComboBox primary;
+    private readonly ComboBox specialty;
     private readonly CheckBox active;
     public DoctorEditorForm(AdminSession session, IDesktopDialogs dialogs, List<SpecialtyDto> options, DoctorDetailDto? existing = null)
         : base(session, dialogs, existing == null ? "Thêm hồ sơ bác sĩ" : "Cập nhật hồ sơ bác sĩ",
-            "Chọn ít nhất một chuyên khoa và một chuyên khoa chính. Hồ sơ có thể được tạo trước khi cấp tài khoản.")
+            "Mỗi bác sĩ thuộc một chuyên khoa. Hồ sơ có thể được tạo trước khi cấp tài khoản.")
     {
         this.existing = existing;
         name = TextField("FullName", "Họ và tên bác sĩ", 100, existing?.FullName);
@@ -43,28 +42,19 @@ public sealed class DoctorEditorForm : EditorForm
         bio = TextField("Bio", "Giới thiệu", 1000, existing?.Bio, multiline: true);
         avatar = TextField("AvatarUrl", "Đường dẫn ảnh (/images/ hoặc HTTPS)", 500, existing?.AvatarUrl);
         active = AddField("IsActive", "Trạng thái", new CheckBox { Text = "Đang hoạt động", Checked = existing?.IsActive ?? true });
-        specialties = AddField("SpecialtyIds", "Chuyên khoa phụ trách", new CheckedListBox { CheckOnClick = true, IntegralHeight = false, Font = UiTheme.Body() }, 210, true);
-        foreach (var item in options.Where(s => s.IsActive || existing?.Specialties.Any(e => e.Id == s.Id) == true))
-            specialties.Items.Add(new Choice<int>(item.Id, item.Name + (item.IsActive ? "" : " (ngừng hoạt động)")), existing?.Specialties.Any(s => s.Id == item.Id) == true);
-        primary = ChoiceField("PrimarySpecialtyId", "Chuyên khoa chính", specialties.CheckedItems.Cast<Choice<int>>(), existing?.PrimarySpecialtyId ?? 0);
-        if (primary.SelectedIndex < 0 && primary.Items.Count > 0) primary.SelectedIndex = 0;
-        specialties.ItemCheck += (_, e) =>
-        {
-            var selected = specialties.Items.Cast<Choice<int>>().Where((_, index) => index == e.Index ? e.NewValue == CheckState.Checked : specialties.GetItemChecked(index)).ToList();
-            var old = (primary.SelectedItem as Choice<int>)?.Value;
-            primary.Items.Clear(); primary.Items.AddRange(selected.Cast<object>().ToArray());
-            primary.SelectedItem = selected.FirstOrDefault(s => s.Value == old) ?? selected.FirstOrDefault();
-        };
+        specialty = ChoiceField("SpecialtyId", "Chuyên khoa phụ trách",
+            options.Where(s => s.IsActive || s.Id == existing?.SpecialtyId)
+                .Select(s => new Choice<int>(s.Id, s.Name + (s.IsActive ? "" : " (ngừng hoạt động)"))),
+            existing?.SpecialtyId ?? 0);
     }
     protected override object CreateRequest() => new SaveDoctorRequest
     {
         FullName = name.Text.Trim(), Title = title.Text.Trim(), Bio = bio.Text.Trim(),
         AvatarUrl = string.IsNullOrWhiteSpace(avatar.Text) ? null : avatar.Text.Trim(), IsActive = active.Checked,
-        SpecialtyIds = specialties.CheckedItems.Cast<Choice<int>>().Select(s => s.Value).ToList(),
-        PrimarySpecialtyId = (primary.SelectedItem as Choice<int>)?.Value ?? 0
+        SpecialtyId = (specialty.SelectedItem as Choice<int>)?.Value ?? 0
     };
     protected override bool ValidateRequest(object request) => request is SaveDoctorRequest d &&
-        (d.SpecialtyIds.Contains(d.PrimarySpecialtyId) || Error("PrimarySpecialtyId", "Chuyên khoa chính phải nằm trong danh sách đã chọn."));
+        (d.SpecialtyId > 0 || Error("SpecialtyId", "Vui lòng chọn một chuyên khoa."));
     protected override string Confirmation => active.Checked ? $"Lưu hồ sơ bác sĩ {name.Text.Trim()}?" : $"Ngừng hoạt động bác sĩ {name.Text.Trim()}? Lịch hẹn bị ảnh hưởng cần được nhân viên xử lý trước.";
     protected override async Task<object?> PersistAsync(object request) => await Session.SendAsync<DoctorDetailDto>(existing == null ? HttpMethod.Post : HttpMethod.Put,
         existing == null ? "api/admin/doctors" : $"api/admin/doctors/{existing.Id}", request, Lifetime.Token);

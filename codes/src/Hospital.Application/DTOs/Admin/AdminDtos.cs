@@ -40,8 +40,7 @@ public class SaveDoctorRequest
     [StringLength(50)] public string? Title { get; set; }
     [StringLength(1000)] public string? Bio { get; set; }
     [StringLength(500)] public string? AvatarUrl { get; set; }
-    [Required, MinLength(1)] public List<int> SpecialtyIds { get; set; } = [];
-    public int PrimarySpecialtyId { get; set; }
+    [Range(1, int.MaxValue)] public int SpecialtyId { get; set; }
     public bool IsActive { get; set; } = true;
 }
 

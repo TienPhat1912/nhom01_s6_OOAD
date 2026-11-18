@@ -16,7 +16,8 @@ public class Doctor
     public Guid? CreatedBy { get; set; }
     public User? CreatedByUser { get; set; }
 
-    public ICollection<DoctorSpecialty> DoctorSpecialties { get; set; } = new List<DoctorSpecialty>();
+    public int SpecialtyId { get; set; }
+    public Specialty Specialty { get; set; } = null!;
     public ICollection<WorkingSchedule> WorkingSchedules { get; set; } = new List<WorkingSchedule>();
     public ICollection<Appointment> Appointments { get; set; } = new List<Appointment>();
 }

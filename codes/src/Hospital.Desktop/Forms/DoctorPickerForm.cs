@@ -65,7 +65,7 @@ public sealed class DoctorPickerForm : Form
             grid.Columns.Add("Code", "Mã bác sĩ"); grid.Columns.Add("Name", "Họ tên"); grid.Columns.Add("Specialties", "Chuyên khoa"); grid.Columns.Add("Account", "Tài khoản");
             foreach (var doctor in result.Items)
             {
-                var row = grid.Rows[grid.Rows.Add(doctor.DoctorCode, doctor.FullName, string.Join(", ", doctor.Specialties), doctor.LinkedUserId.HasValue ? "Đã liên kết" : "Chưa liên kết")];
+                var row = grid.Rows[grid.Rows.Add(doctor.DoctorCode, doctor.FullName, doctor.SpecialtyName, doctor.LinkedUserId.HasValue ? "Đã liên kết" : "Chưa liên kết")];
                 row.Tag = doctor;
                 if (!Eligible(doctor)) row.DefaultCellStyle.ForeColor = DesignTokens.Slate500;
             }

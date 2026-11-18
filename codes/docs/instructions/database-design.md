@@ -1,6 +1,6 @@
-# Cơ sở dữ liệu triển khai — Phase 8
+# Cơ sở dữ liệu triển khai
 
-Cập nhật 19/10/2026. Tài liệu thay thế bản thiết kế dự kiến ở Phase 1 bằng schema thực tế sau hai migration. Đã đối chiếu metadata SQL Server ngày 18/10/2026; Phase 8 không thêm migration. Có **13 bảng nghiệp vụ**, ngoài bảng EF `__EFMigrationsHistory`.
+Cập nhật OOAD A2 ngày 18/11/2026: thêm migration `SingleDoctorSpecialty`, thay bảng `DoctorSpecialties` bằng FK `Doctors.SpecialtyId`. Hiện có **12 bảng nghiệp vụ**, ngoài bảng EF `__EFMigrationsHistory`. Các phần khác kế thừa schema Phase 8; lịch định kỳ và sự kiện mới của báo cáo lần 04 sẽ được bổ sung ở các đợt tiếp theo. Xem [ánh xạ OOAD](ooad-model-mapping.md) và [hướng dẫn migration A2](single-specialty-migration.md).
 
 ## 1. Quan hệ chính
 
@@ -9,8 +9,7 @@ erDiagram
     Roles ||--o{ Users : RoleId
     Users ||--o| Patients : UserId
     Users o|--o| Doctors : UserId
-    Doctors ||--o{ DoctorSpecialties : DoctorId
-    Specialties ||--o{ DoctorSpecialties : SpecialtyId
+    Specialties ||--o{ Doctors : SpecialtyId
     Doctors ||--o{ WorkingSchedules : DoctorId
     WorkingSchedules ||--o{ TimeSlots : WorkingScheduleId
     Doctors ||--o{ TimeSlots : DoctorId
@@ -26,7 +25,7 @@ erDiagram
     Users o|--o{ AuditLogs : UserId
 ```
 
-Sơ đồ tập trung quan hệ nghiệp vụ. Các FK người tạo/tiếp nhận/đóng khung và hành vi xóa được ghi đầy đủ trong từng bảng bên dưới. `Doctors.UserId` tùy chọn: có thể tạo hồ sơ bác sĩ trước khi cấp tài khoản. DoctorSpecialties dùng PK ghép; service yêu cầu ít nhất một chuyên khoa và một chuyên khoa chính.
+Sơ đồ tập trung quan hệ nghiệp vụ. Các FK người tạo/tiếp nhận/đóng khung và hành vi xóa được ghi đầy đủ trong từng bảng bên dưới. `Doctors.UserId` tùy chọn: có thể tạo hồ sơ bác sĩ trước khi cấp tài khoản. Mỗi bác sĩ bắt buộc có đúng một chuyên khoa hiện hành; lịch hẹn giữ chuyên khoa riêng để bảo toàn lịch sử khi bác sĩ chuyển chuyên khoa.
 
 ## 2. Ràng buộc và trách nhiệm nghiệp vụ
 
@@ -203,8 +202,13 @@ Index:
 | IX_Doctors_CreatedBy | CreatedBy | Không | — |
 | IX_Doctors_DoctorCode | DoctorCode | Có | — |
 | IX_Doctors_UserId | UserId | Có | ([UserId] IS NOT NULL) |
+| IX_Doctors_SpecialtyId | SpecialtyId | Không | — |
 
-### 4.6. DoctorSpecialties
+Bổ sung A2: `Doctors.SpecialtyId` kiểu `int`, NOT NULL, FK tới `Specialties.Id`, ON DELETE NO_ACTION, không có default. Migration chép từ liên kết cũ chỉ khi mỗi bác sĩ có đúng một chuyên khoa.
+
+### 4.6. DoctorSpecialties trong phiên bản trước A2
+
+Bảng dưới đây chỉ mô tả schema cũ để đối chiếu migration. Bảng này đã bị loại khỏi schema hiện hành sau khi chép sang `Doctors.SpecialtyId`.
 
 | Cột | Kiểu SQL | NULL | Khóa / tự sinh | SQL Default |
 |---|---|---|---|---|

@@ -164,6 +164,7 @@ public static class DbSeeder
             var doc1 = new Doctor
             {
                 Id = doc1Id,
+                SpecialtyId = sp1.Id,
                 UserId = doc1UserId,
                 DoctorCode = "BS-0001",
                 FullName = doc1User.FullName,
@@ -178,6 +179,7 @@ public static class DbSeeder
             var doc2 = new Doctor
             {
                 Id = doc2Id,
+                SpecialtyId = sp2.Id,
                 UserId = doc2UserId,
                 DoctorCode = "BS-0002",
                 FullName = doc2User.FullName,
@@ -190,13 +192,6 @@ public static class DbSeeder
             };
 
             await context.Doctors.AddRangeAsync(doc1, doc2);
-            await context.SaveChangesAsync();
-
-            // 6. Seed DoctorSpecialties
-            await context.DoctorSpecialties.AddRangeAsync(
-                new DoctorSpecialty { DoctorId = doc1Id, SpecialtyId = sp1.Id, IsPrimary = true },
-                new DoctorSpecialty { DoctorId = doc2Id, SpecialtyId = sp2.Id, IsPrimary = true }
-            );
             await context.SaveChangesAsync();
 
             // 7. Seed Working Schedules & TimeSlots for next 7 days

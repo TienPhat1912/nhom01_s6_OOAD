@@ -109,8 +109,8 @@ public sealed class AppointmentService(HospitalDbContext db, ICurrentUserService
             .Include(s => s.WorkingSchedule).SingleOrDefaultAsync(s => s.Id == slotId)
             ?? throw new NotFoundException("Khung giờ", slotId);
         if (!slot.Doctor.IsActive || (slot.Doctor.User != null && !slot.Doctor.User.IsActive)
-            || !await db.DoctorSpecialties.AnyAsync(ds => ds.DoctorId == slot.DoctorId
-                && ds.SpecialtyId == specialtyId && ds.Specialty.IsActive))
+            || !await db.Doctors.AnyAsync(d => d.Id == slot.DoctorId
+                && d.SpecialtyId == specialtyId && d.Specialty.IsActive))
             throw new BusinessRuleException("Bác sĩ hoặc chuyên khoa không khả dụng.", "DOCTOR_SPECIALTY_INACTIVE");
         if (!slot.IsActive || slot.Status != TimeSlotStatus.Open || clock.ToUtc(slot.SlotDate, slot.StartTime) <= clock.UtcNow
             || slot.WorkingSchedule.WorkDate != slot.SlotDate || slot.WorkingSchedule.DoctorId != slot.DoctorId

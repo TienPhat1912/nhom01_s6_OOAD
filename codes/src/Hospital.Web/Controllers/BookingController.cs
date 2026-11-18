@@ -151,8 +151,9 @@ public class BookingController(PortalApi api, BookingTokens tokens, AppointmentA
         var model = await Page(selection.Context);
         model.SpecialtyId = selection.SpecialtyId; model.DoctorId = selection.DoctorId;
         model.Doctor = await api.GetAsync<DoctorDetailDto>($"api/doctors/{selection.DoctorId}");
-        model.Specialty = model.Doctor.Specialties.SingleOrDefault(s => s.Id == selection.SpecialtyId && s.IsActive)
-            ?? throw new HospitalApiException(HttpStatusCode.BadRequest, "Bác sĩ không thuộc chuyên khoa đã chọn.", null, []);
+        if (model.Doctor.SpecialtyId != selection.SpecialtyId || !model.Doctor.Specialty.IsActive)
+            throw new HospitalApiException(HttpStatusCode.BadRequest, "Bác sĩ không thuộc chuyên khoa đã chọn.", null, []);
+        model.Specialty = model.Doctor.Specialty;
         model.Date = selection.Date == default ? model.Doctor.AvailableDates.FirstOrDefault(DisplayText.Today) : selection.Date;
         model.Slots = await api.GetAsync<List<TimeSlotDto>>($"api/timeslots/available?doctorId={selection.DoctorId}&date={model.Date:yyyy-MM-dd}");
         model.TimeSlotId = selection.TimeSlotId; model.Notes = selection.Notes; model.Reason = selection.Reason;

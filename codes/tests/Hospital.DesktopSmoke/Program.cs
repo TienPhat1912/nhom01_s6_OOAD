@@ -91,8 +91,8 @@ internal static partial class Program
         using (var form = new DoctorEditorForm(session, Dialogs, options))
         {
             ShowHidden(form); Fill(form, "FullName", "Bác sĩ Phase 6 " + suffix); Fill(form, "Title", "BS.CKI");
-            var choices = Field<CheckedListBox>(form, "SpecialtyIds"); choices.SetItemChecked(Enumerable.Range(0, choices.Items.Count).Single(i => ((Choice<int>)choices.Items[i]).Value == specialty.Id), true);
-            Require(((Choice<int>)Field<ComboBox>(form, "PrimarySpecialtyId").SelectedItem!).Value == specialty.Id, "Primary specialty follows checked selection");
+            Select(form, "SpecialtyId", specialty.Id);
+            Require(((Choice<int>)Field<ComboBox>(form, "SpecialtyId").SelectedItem!).Value == specialty.Id, "Doctor has one selected specialty");
             Capture(form, "doctor-create"); form.Size = form.MinimumSize; Capture(form, "doctor-minimum"); await Submit(form); doctor = (DoctorDetailDto)form.SavedResult!;
         }
         var doctorRow = (await session.AllAsync<DoctorDto>("api/doctors?onlyActive=false", default)).Single(d => d.Id == doctor.Id);

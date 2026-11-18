@@ -29,13 +29,13 @@ public class AdminAndScheduleTests
     }
 
     [Fact]
-    public async Task DoctorProfileExistsBeforeAccountAndSupportsMultipleSpecialties()
+    public async Task DoctorProfileExistsBeforeAccountAndBelongsToOneSpecialty()
     {
         using var f = new TestFixture(); using var db = f.CreateDb(); var service = f.Admin(db);
         var specialty = await service.SaveSpecialtyAsync(null, new() { Code = "TIM", Name = "Tim mạch" });
         var doctor = await service.SaveDoctorAsync(null, new()
-        { FullName = "Nguyễn Bác Sĩ", SpecialtyIds = [specialty.Id, f.Specialty()], PrimarySpecialtyId = specialty.Id });
-        Assert.Equal("Nguyễn Bác Sĩ", doctor.FullName); Assert.Equal(2, doctor.Specialties.Count);
+        { FullName = "Nguyễn Bác Sĩ", SpecialtyId = specialty.Id });
+        Assert.Equal("Nguyễn Bác Sĩ", doctor.FullName); Assert.Equal(specialty.Id, doctor.SpecialtyId); Assert.Equal(specialty.Id, doctor.Specialty.Id);
         var user = await service.CreateUserAsync(new()
         { Username = "newdoctor", Password = "Doctor@123", Email = "newdoctor@test.com", FullName = "Ignored name", Role = UserRole.Doctor, DoctorId = doctor.Id });
         Assert.Equal(doctor.Id, user.DoctorId); Assert.Equal(doctor.FullName, user.FullName);
@@ -60,7 +60,7 @@ public class AdminAndScheduleTests
     {
         using var f = new TestFixture(); using var db = f.CreateDb(); var service = f.Admin(db);
         var doctorId = f.Actor("doctor1").DoctorId!.Value;
-        var save = new SaveDoctorRequest { FullName = "Doctor one", SpecialtyIds = [f.Specialty()], PrimarySpecialtyId = f.Specialty(), IsActive = false };
+        var save = new SaveDoctorRequest { FullName = "Doctor one", SpecialtyId = f.Specialty(), IsActive = false };
         await Assert.ThrowsAsync<BusinessRuleException>(() => service.SaveDoctorAsync(doctorId, save));
         await Assert.ThrowsAsync<BusinessRuleException>(() => service.SaveSpecialtyAsync(f.Specialty(), new() { Code = "NOI", Name = "Nội tổng quát", IsActive = false }));
         var actor = f.Actor("staff1"); var appointments = f.Appointments(db, actor);

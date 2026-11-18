@@ -175,18 +175,15 @@ public sealed class AdminService(HospitalDbContext db, ICurrentUserService actor
     {
         var adminId = actor.RequireRole("Admin");
         DatabaseWork.Validate(request);
-        if (!request.SpecialtyIds.Contains(request.PrimarySpecialtyId))
-            throw new BusinessRuleException("Chuyên khoa chính phải nằm trong danh sách đã chọn.");
         var doctorId = await db.AtomicAsync(async () =>
         {
-            var specialties = request.SpecialtyIds.Distinct().ToList();
-            if (await db.Specialties.CountAsync(s => specialties.Contains(s.Id) && s.IsActive) != specialties.Count)
+            if (!await db.Specialties.AnyAsync(s => s.Id == request.SpecialtyId && s.IsActive))
                 throw new BusinessRuleException("Chuyên khoa không tồn tại hoặc không hoạt động.");
-            var doctor = id.HasValue ? await db.Doctors.Include(d => d.User).Include(d => d.DoctorSpecialties)
+            var doctor = id.HasValue ? await db.Doctors.Include(d => d.User)
                 .SingleOrDefaultAsync(d => d.Id == id) ?? throw new NotFoundException("Bác sĩ", id) :
                 new Doctor { Id = Guid.NewGuid(), CreatedBy = adminId };
-            var old = new { doctor.FullName, doctor.IsActive, SpecialtyIds = doctor.DoctorSpecialties.Select(ds => ds.SpecialtyId).ToList() };
-            if (id.HasValue && (!request.IsActive || old.SpecialtyIds.Except(specialties).Any()))
+            var old = new { doctor.FullName, doctor.IsActive, doctor.SpecialtyId };
+            if (id.HasValue && (!request.IsActive || doctor.SpecialtyId != request.SpecialtyId))
                 await CheckFutureAppointmentsAsync(doctor.Id);
             if (!id.HasValue) { doctor.DoctorCode = "BS-" + doctor.Id.ToString("N")[..17].ToUpperInvariant(); db.Doctors.Add(doctor); }
             doctor.FullName = request.FullName.Trim(); doctor.Title = request.Title?.Trim(); doctor.Bio = request.Bio?.Trim();
@@ -195,16 +192,9 @@ public sealed class AdminService(HospitalDbContext db, ICurrentUserService actor
             doctor.AvatarUrl = request.AvatarUrl; doctor.IsActive = request.IsActive;
             doctor.UpdatedAt = id.HasValue ? clock.UtcNow : null;
             if (doctor.User != null) doctor.User.FullName = doctor.FullName;
-            foreach (var link in doctor.DoctorSpecialties.ToList())
-                if (!specialties.Contains(link.SpecialtyId)) db.DoctorSpecialties.Remove(link);
-            foreach (var specialty in specialties)
-            {
-                var link = doctor.DoctorSpecialties.SingleOrDefault(ds => ds.SpecialtyId == specialty);
-                if (link == null) doctor.DoctorSpecialties.Add(new DoctorSpecialty { DoctorId = doctor.Id, SpecialtyId = specialty, IsPrimary = specialty == request.PrimarySpecialtyId });
-                else link.IsPrimary = specialty == request.PrimarySpecialtyId;
-            }
+            doctor.SpecialtyId = request.SpecialtyId;
             db.Audit(adminId, id.HasValue ? "UPDATE_DOCTOR" : "CREATE_DOCTOR", "Doctor", doctor.Id, old,
-                new { doctor.FullName, doctor.IsActive, SpecialtyIds = specialties });
+                new { doctor.FullName, doctor.IsActive, doctor.SpecialtyId });
             return doctor.Id;
         });
         return await catalog.GetDoctorByIdAsync(doctorId);

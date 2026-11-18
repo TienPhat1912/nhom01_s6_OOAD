@@ -17,7 +17,7 @@ public class ScheduleService(HospitalDbContext db, ICurrentUserService actor, Cl
     {
         actor.RequireRole("Patient", "Staff", "Admin");
         if (!await db.Doctors.AnyAsync(d => d.Id == doctorId && d.IsActive && (d.User == null || d.User.IsActive)
-            && d.DoctorSpecialties.Any(ds => ds.Specialty.IsActive)))
+            && d.Specialty.IsActive))
             throw new NotFoundException("Bác sĩ", doctorId);
         if (date < clock.Today) return [];
         var now = TimeOnly.FromDateTime(clock.LocalNow);
@@ -64,7 +64,7 @@ public class ScheduleService(HospitalDbContext db, ICurrentUserService actor, Cl
         var id = await db.AtomicAsync(async () =>
         {
             if (!await db.Doctors.AnyAsync(d => d.Id == request.DoctorId && d.IsActive && (d.User == null || d.User.IsActive)
-                && d.DoctorSpecialties.Any(ds => ds.Specialty.IsActive))) throw new NotFoundException("Bác sĩ", request.DoctorId);
+                && d.Specialty.IsActive)) throw new NotFoundException("Bác sĩ", request.DoctorId);
             await ValidateAsync(request.DoctorId, request.WorkDate, request.StartTime, request.EndTime);
             var schedule = new WorkingSchedule
             {

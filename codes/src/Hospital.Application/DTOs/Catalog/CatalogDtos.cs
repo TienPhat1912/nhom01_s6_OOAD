@@ -21,12 +21,13 @@ public class DoctorDto
     public string? Bio { get; set; }
     public string? AvatarUrl { get; set; }
     public bool IsActive { get; set; }
-    public List<string> Specialties { get; set; } = new();
+    public int SpecialtyId { get; set; }
+    public string SpecialtyName { get; set; } = string.Empty;
 }
 
 public class DoctorDetailDto
 {
-    public int? PrimarySpecialtyId { get; set; }
+    public int SpecialtyId { get; set; }
     public Guid Id { get; set; }
     public string DoctorCode { get; set; } = string.Empty;
     public string FullName { get; set; } = string.Empty;
@@ -36,6 +37,6 @@ public class DoctorDetailDto
     public string? Email { get; set; }
     public string? PhoneNumber { get; set; }
     public bool IsActive { get; set; }
-    public List<SpecialtyDto> Specialties { get; set; } = new();
+    public SpecialtyDto Specialty { get; set; } = new();
     public List<DateOnly> AvailableDates { get; set; } = new();
 }
